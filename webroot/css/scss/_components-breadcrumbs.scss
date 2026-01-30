@@ -1,13 +1,20 @@
 @use "theme" as *;
+
+// 45px
+$breadcrumb-margin-bottom: 2.8125rem;
+// 2px
+$breadcrumb-divider-gap: 0.125rem;
+// 11px
+$breadcrumb-icon-size: 0.6875rem;
 .breadcrumbs {
   font-size: var(--step-0);
-  margin: 0 0 calc(4.5 * 0.625rem);
+  margin: 0 0 $breadcrumb-margin-bottom;
 
   .brdcrmb-dvdr {
     display: inline-block;
-    margin: 0 0.125rem;
-    width: calc(1.1 * 0.625rem);
-    height: calc(1.1 * 0.625rem);
+    margin: 0 $breadcrumb-divider-gap;
+    width: $breadcrumb-icon-size;
+    height: $breadcrumb-icon-size;
     mask: url(/img/icons/dbl-arrow.svg);
     mask-size: cover;
     background: var(--color-ink-subtle);

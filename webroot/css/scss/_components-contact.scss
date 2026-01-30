@@ -1,9 +1,12 @@
 @use "theme" as *;
+
+// 32px
+$contact-heading-size: 2rem;
 .contact-text {
   main & {
     h2 {
       margin: 0;
-      font-size: calc(3.2 * 0.625rem);
+      font-size: $contact-heading-size;
       &:not(:first-child) {
         margin-top: var(--space-lg); 
       } 

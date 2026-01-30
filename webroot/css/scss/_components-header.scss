@@ -1,6 +1,42 @@
 @use "theme" as *;
 @use "base-utils" as *;
-/* -- MAIN NAV START -- */
+
+// 30px -> 40px
+$nav-sub-pad-right: clamp(1.875rem, 6vw, 2.5rem);
+// 8px -> 16px
+$nav-sub-arrow-right: clamp(0.5rem, 2.5vw, 1rem);
+// 16px -> 20px
+$nav-sub-arrow-size: clamp(1rem, 3.5vw, 1.25rem);
+// 26.25rem (420px)
+$nav-dropdown-max-width: calc(42 * 0.625rem);
+// -2px
+$nav-dropdown-right: calc(-0.2 * 0.625rem);
+// 10px
+$nav-dropdown-arrow-base: 0.625rem;
+// 10px / 12px
+$nav-dropdown-pad-top: 0.625rem;
+$nav-dropdown-pad-x: 0.75rem;
+$nav-dropdown-pad-bottom: 0.75rem;
+// 15px / 45px
+$hdr-notice-pad-y: 0.9375rem;
+$hdr-notice-pad-x: calc(4.5 * 0.625rem);
+// 24px
+$hdr-close-size: calc(2.4 * 0.625rem);
+// -3px / 2px
+$hdr-close-margin-top: calc(-0.3 * 0.625rem);
+$hdr-close-margin-right: calc(0.2 * 0.625rem);
+// 24px
+$primary-hdr-pad: 1.5rem;
+// 5px
+$primary-hdr-pad-sticking: 0.3125rem;
+// 120px / 90px
+$logo-width-default: 7.5rem;
+$logo-width-sticky: 5.625rem;
+// 24px -> 44px
+$layout-rail-pad-inline: clamp(1.5rem, 6.5vw, 2.75rem);
+// 24px
+$hdr-container-gap: 1.5rem;
+// -- MAIN NAV START --
 header {
   nav {
     display: inline-block;
@@ -30,15 +66,15 @@ header {
 
         &.has-sub > a {
           position: relative;
-          padding-right: clamp(1.875rem, 6vw, 2.5rem);
+          padding-right: $nav-sub-pad-right;
 
           &::after {
             content: "";
             position: absolute;
             top: 50%;
-            right: clamp(0.5rem, 2.5vw, 1rem);
-            width: clamp(1rem, 3.5vw, 1.25rem);
-            height: clamp(1rem, 3.5vw, 1.25rem);
+            right: $nav-sub-arrow-right;
+            width: $nav-sub-arrow-size;
+            height: $nav-sub-arrow-size;
             transform: translateY(-50%) rotate(90deg);
             transition: transform 100ms ease-in-out;
             mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M8 6l8 6-8 6' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
@@ -68,10 +104,10 @@ header {
         box-shadow: $boxShadowSubtle;
         position: absolute;
         width: max-content;
-        max-width: calc(42 * 0.625rem);
+        max-width: $nav-dropdown-max-width;
         border-radius: var(--radius-xs);
         left: auto;
-        right: calc(-0.2 * 0.625rem);
+        right: $nav-dropdown-right;
         transition: opacity 250ms ease-in-out;
         padding-inline-start: 0;
 
@@ -81,15 +117,15 @@ header {
           height: 0;
           display: block;
           border-style: solid;
-          border-width: 0 calc(1.2 * 0.625rem) calc(1.2 * 0.625rem) calc(1.2 * 0.625rem);
+          border-width: 0 calc(1.2 * #{$nav-dropdown-arrow-base}) calc(1.2 * #{$nav-dropdown-arrow-base}) calc(1.2 * #{$nav-dropdown-arrow-base});
           border-color: transparent transparent var(--color-ink-on-dark) transparent;
-          top: calc(-1.2 * 0.625rem);
+          top: calc(-1.2 * #{$nav-dropdown-arrow-base});
           left: auto;
-          right: calc(1.6 * 0.625rem);
+          right: calc(1.6 * #{$nav-dropdown-arrow-base});
           position: absolute;
           z-index: 1;
           filter: drop-shadow(
-            0 calc(-0.2 * 0.625rem) calc(0.25 * 0.625rem)
+            0 calc(-0.2 * #{$nav-dropdown-arrow-base}) calc(0.25 * #{$nav-dropdown-arrow-base})
               rgb(var(--color-ink-absolute-rgb) / 0.1)
           );
         }
@@ -102,7 +138,7 @@ header {
           font-size: var(--step--1);
           display: block;
           text-align: left;
-          padding: 0.625rem 0.75rem 0.75rem;
+          padding: $nav-dropdown-pad-top $nav-dropdown-pad-x $nav-dropdown-pad-bottom;
         }
 
         li {
@@ -128,13 +164,13 @@ header {
     }
   }
 }
-/* -- MAIN NAV END -- */
+// -- MAIN NAV END --
 #hdr-notice {
   background: var(--color-ink-contrast);
   color: var(--color-ink-on-dark);
   text-shadow: $textShadow;
   position: relative;
-  padding: 0.9375rem calc(4.5 * 0.625rem);
+  padding: $hdr-notice-pad-y $hdr-notice-pad-x;
 
   .hdr-notice-content {
     @include wrapperNarrow;
@@ -146,8 +182,8 @@ header {
   #close-notice {
     display: inline-block;
     vertical-align: middle;
-    width: calc(2.4 * 0.625rem);
-    height: calc(2.4 * 0.625rem);
+    width: $hdr-close-size;
+    height: $hdr-close-size;
     padding: 0;
     mask: url(/img/icons/circle-close.svg);
     mask-size: cover;
@@ -155,7 +191,7 @@ header {
     border: none;
     appearance: none;
     cursor: pointer;
-    margin: calc(-0.3 * 0.625rem) calc(0.2 * 0.625rem) 0 0;
+    margin: $hdr-close-margin-top $hdr-close-margin-right 0 0;
     transition: all 250ms ease-out;
 
     &:hover,
@@ -182,7 +218,7 @@ header {
 header {
   &.primary-hdr {
     // background: #fff;
-    padding-block: 1.5rem;
+    padding-block: $primary-hdr-pad;
     position: fixed;
     inset: 0 0 auto 0;
     transition: padding-block 500ms ease-in-out;
@@ -207,15 +243,15 @@ header {
       transition: opacity 500ms ease-in-out;
     }
     & img {
-      --logo-width: 7.5rem;
+      --logo-width: #{$logo-width-default};
     }
     &.sticking {
       & img {
-        --logo-width: 5.625rem;
+        --logo-width: #{$logo-width-sticky};
         transition: 500ms ease-in-out;
       }
       background: rgb(var(--color-surface-base-rgb) / 0.8);
-      padding-block: 0.3125rem;
+      padding-block: $primary-hdr-pad-sticking;
       backdrop-filter: blur(4px);
 
       &::after {
@@ -234,7 +270,7 @@ header {
 
 .layout-rail {
   @include container-inline("directory-max");
-  padding-inline: clamp(1.5rem, 6.5vw, 2.75rem);
+  padding-inline: $layout-rail-pad-inline;
 
   & + & {
     margin-top: var(--space-xl);
@@ -245,7 +281,7 @@ header {
   @include wrapperMedium;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: $hdr-container-gap;
 }
 
 .hdr-links {
@@ -285,10 +321,10 @@ header {
 
 /* Enter: glide to the 0% pose, then start the loop from that exact pose */
 .logo:is(:hover, :focus-visible) img{
-  /* 1) pose-into-start (no jump) */
+  // 1) pose-into-start (no jump)
   transform: translate(0, calc(-1*var(--drift))) rotate(calc(-1*var(--tilt)));
 
-  /* 2) after the glide, the animation takes over from 0% seamlessly */
+  // 2) after the glide, the animation takes over from 0% seamlessly
   animation: xy-circle var(--dur) linear infinite;
   animation-delay: 200ms;                 /* match transition duration */
   animation-play-state: running;

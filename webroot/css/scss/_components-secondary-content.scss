@@ -1,4 +1,23 @@
 @use "theme" as *;
+// 20px -> 40px
+$secondary-pad-block: clamp(1.25rem, 4vw, 2.5rem);
+// 32px -> 56px
+$secondary-margin-bottom: clamp(2rem, 3.30189vw, 3.5rem);
+// 16px -> 36px
+$secondary-gap: clamp(1rem, 3.5vw, 2.25rem);
+// 8px -> 12px
+$secondary-title-margin-bottom: clamp(0.5rem, 2vw, 0.75rem);
+// 22px -> 36px
+$secondary-title-size: clamp(calc(2.2 * 0.625rem), 3.2vw, calc(3.6 * 0.625rem));
+// 12px -> 20px
+$secondary-list-margin-bottom: clamp(0.75rem, 3vw, 1.25rem);
+// 7.5px
+$secondary-cta-margin-top: 0.46875rem;
+// 6px / 9px
+$secondary-cta-pad-y: 0.375rem;
+$secondary-cta-pad-x: 0.5625rem;
+// 16px -> 24px
+$secondary-row-gap: clamp(1rem, 5vw, 1.5rem);
 /* ==== Section (full-width platter) ==== */
 .secondary-content {
 
@@ -6,8 +25,8 @@
   --text: var(--color-ink-on-dark);
   --text-muted: var(--color-ink-overlay);
 
-  padding-block: clamp(20px, 4vw, 40px);
-  margin-bottom: clamp(2rem, 3.30189vw, 3.5rem);
+  padding-block: $secondary-pad-block;
+  margin-bottom: $secondary-margin-bottom;
   position: relative;
   overflow: hidden;
   background: transparent; /* key */
@@ -43,7 +62,7 @@
   margin-inline: auto;
   display: grid;
   grid-template-columns: 1fr 1fr; /* text : image */
-  gap: clamp(16px, 3.5vw, 36px);
+  gap: $secondary-gap;
   align-items: stretch;
   position: inherit;
   z-index: 2;
@@ -54,19 +73,19 @@
   color: var(--text);
 }
 .secondary-content__copy h2 {
-  margin: 0 0 clamp(8px, 2vw, 12px);
+  margin: 0 0 $secondary-title-margin-bottom;
   font-family: var(--font-serif);
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: 0.02em;
   color: var(--text);
-  font-size: clamp(calc(2.2 * 0.625rem), 3.2vw, calc(3.6 * 0.625rem));
+  font-size: $secondary-title-size;
   text-transform: uppercase;
 }
 
 /* bullets */
 .secondary-content__copy ul {
-  margin: 0 0 clamp(12px, 3vw, 20px);
+  margin: 0 0 $secondary-list-margin-bottom;
   padding-left: 1.2em;
   color: var(--text-muted);
   font-size: var(--step-1);
@@ -78,8 +97,8 @@
 /* optional CTA */
 .secondary-content .btn {
   display: inline-block;
-  margin-top: 0.46875rem;
-  padding: 0.375rem 0.5625rem;
+  margin-top: $secondary-cta-margin-top;
+  padding: $secondary-cta-pad-y $secondary-cta-pad-x;
   border-radius: var(--radius-max);
   background: var(--color-brand-accent);
   color: var(--color-ink-on-dark);
@@ -89,7 +108,7 @@
 
 /* === Secondary content (mobile-first) === */
 
-/* 1) Layout: stack on mobile */
+// 1) Layout: stack on mobile
 .secondary-content__inner {
   width: calc(100% - var(--inline-padding, 24px) * 2);
   max-width: 75rem;
@@ -97,11 +116,11 @@
 
   display: grid;
   grid-template-columns: 1fr; /* mobile: stack */
-  row-gap: clamp(16px, 5vw, 24px);
+  row-gap: $secondary-row-gap;
   align-items: stretch;
 }
 
-/* 2) Media: ratio on the CONTAINER (mobile = 16:10) */
+// 2) Media: ratio on the CONTAINER (mobile = 16:10)
 .secondary-content__media {
   position: relative;
   overflow: hidden;
@@ -121,11 +140,11 @@
   display: block;
 }
 
-/* 3) Tablet+ adjustments */
+// 3) Tablet+ adjustments
 @media (min-width: breakpoint("sm")) {
   .secondary-content__inner {
     grid-template-columns: 1fr 1fr; /* two columns */
-    column-gap: clamp(16px, 3.5vw, 36px);
+    column-gap: $secondary-gap;
     row-gap: 0;
   }
 

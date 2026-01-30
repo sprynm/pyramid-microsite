@@ -1,42 +1,53 @@
 @use "theme" as *;
 
+// 48px
+$table-margin-bottom: 3rem;
+// 4px
+$table-corner-radius: var(--radius-sm);
+// 1px
+$table-border-width: 0.0625rem;
+// 8px
+$table-cell-padding-y: 0.5rem;
+// 12px
+$table-cell-padding-x: 0.75rem;
+
 table {
   border-collapse: collapse;
   width: 100%;
   box-shadow: $boxShadowSubtle;
-  margin-bottom: 3rem;
+  margin-bottom: $table-margin-bottom;
 
   & > tr {
     th:first-child,
     td:first-child {
-      border-top-left-radius: calc(0.4 * 0.625rem);
+      border-top-left-radius: $table-corner-radius;
     }
 
     th:last-child,
     td:last-child {
-      border-top-right-radius: calc(0.4 * 0.625rem);
+      border-top-right-radius: $table-corner-radius;
     }
   }
 
   thead {
     th:first-child,
     td:first-child {
-      border-top-left-radius: calc(0.4 * 0.625rem);
+      border-top-left-radius: $table-corner-radius;
     }
 
     th:last-child,
     td:last-child {
-      border-top-right-radius: calc(0.4 * 0.625rem);
+      border-top-right-radius: $table-corner-radius;
     }
   }
 
   tfoot {
     td:first-child {
-      border-bottom-left-radius: calc(0.4 * 0.625rem);
+      border-bottom-left-radius: $table-corner-radius;
     }
 
     td:last-child {
-      border-bottom-right-radius: calc(0.4 * 0.625rem);
+      border-bottom-right-radius: $table-corner-radius;
     }
   }
 }
@@ -44,7 +55,7 @@ table {
 th {
   background: var(--color-brand-primary);
   color: var(--color-ink-on-dark);
-  padding: 0.5rem 0.75rem;
+  padding: $table-cell-padding-y $table-cell-padding-x;
   font-size: var(--font-label);
   text-align: left;
 }
@@ -80,8 +91,8 @@ tr {
 }
 
 td {
-  border-bottom: 0.0625rem solid var(--color-border-muted);
-  padding: 0.5rem 0.75rem;
+  border-bottom: $table-border-width solid var(--color-border-muted);
+  padding: $table-cell-padding-y $table-cell-padding-x;
   font-size: var(--font-label);
 }
 

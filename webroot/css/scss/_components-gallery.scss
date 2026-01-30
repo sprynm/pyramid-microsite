@@ -1,19 +1,33 @@
 @use "theme" as *;
+
+// 140px
+$gallery-grid-min: 8.75rem;
+// 24px
+$gallery-gap: 1.5rem;
+// 32px -> 56px
+$gallery-margin-block: clamp(2rem, 3.30188679245283vw, 3.5rem);
+// 1px
+$gallery-outline-width: 0.0625rem;
+// -4px
+$gallery-outline-offset: -0.25rem;
+// 2px
+$gallery-outline-offset-hover: 0.125rem;
+
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(8.75rem, 1fr));
-  gap: 1.5rem;
-  margin-block: clamp(2rem, 3.30188679245283vw, 3.5rem); /* 48/1696 */
+  grid-template-columns: repeat(auto-fill, minmax($gallery-grid-min, 1fr));
+  gap: $gallery-gap;
+  margin-block: $gallery-margin-block;
 
   a {
     border-radius: var(--radius-xs);
-    outline: 0.0625rem solid #{$brandPrimary}00;
-    outline-offset: -0.25rem;
+    outline: $gallery-outline-width solid #{$brandPrimary}00;
+    outline-offset: $gallery-outline-offset;
     box-shadow: $boxShadowSubtle;
 
     &:hover {
-      outline: 0.0625rem solid #{$brandPrimary}ff;
-      outline-offset: 0.125rem;
+      outline: $gallery-outline-width solid #{$brandPrimary}ff;
+      outline-offset: $gallery-outline-offset-hover;
       box-shadow: $boxShadow;
     }
   }

@@ -1,13 +1,28 @@
 @use "theme" as *;
 @use "base-utils" as *;
+// 16px -> 28px
+$feature-grid-gap: clamp(1rem, 3vw, 1.75rem);
+// 32px -> 56px
+$feature-margin-block: clamp(2rem, 3.30188679245283vw, 3.5rem);
+// 2px / 4px
+$feature-focus-ring-inner: 0.125rem;
+$feature-focus-ring-outer: 0.25rem;
+// 20px -> 34px
+$feature-text-inset: clamp(1.25rem, 3.6vw, 2.125rem);
+// 20px -> 40px
+$feature-title-size: clamp(calc(2 * 0.625rem), 3vw, calc(4 * 0.625rem));
+// 5px
+$feature-title-pad-bottom: 0.3125rem;
+// 3px
+$feature-underline-height: 0.1875rem;
 /* ===== Layout for the pair ===== */
 .feature-boxes {
   @include wrapperMedium;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(16px, 3vw, 28px);
+  gap: $feature-grid-gap;
   align-items: stretch;
-  margin-block: clamp(2rem, 3.30188679245283vw, 3.5rem); /* 48/1696 */
+  margin-block: $feature-margin-block;
 }
 
 /* Mobile: stack the cards (already true below), also make them shorter */
@@ -41,8 +56,8 @@
   /* Accessible focus ring */
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px rgb(var(--color-surface-base-rgb) / 0.85),
-      0 0 0 4px rgb(var(--color-ink-absolute-rgb) / 0.35);
+    box-shadow: 0 0 0 $feature-focus-ring-inner rgb(var(--color-surface-base-rgb) / 0.85),
+      0 0 0 $feature-focus-ring-outer rgb(var(--color-ink-absolute-rgb) / 0.35);
   }
 }
 
@@ -82,9 +97,9 @@
 /* ===== Text block ===== */
 .feature-text {
   position: absolute;
-  left: clamp(20px, 3.6vw, 34px);
-  right: clamp(20px, 3.6vw, 34px);
-  bottom: clamp(20px, 3.6vw, 34px);
+  left: $feature-text-inset;
+  right: $feature-text-inset;
+  bottom: $feature-text-inset;
   color: var(--color-ink-on-dark);
   pointer-events: none; /* whole card clickable */
 }
@@ -100,11 +115,11 @@
   text-transform: uppercase;
   letter-spacing: 0.015em;
   line-height: 1.05;
-  font-size: clamp(calc(2 * 0.625rem), 3vw, calc(4 * 0.625rem));
+  font-size: $feature-title-size;
   text-wrap: nowrap;
   text-shadow: 0 1px 2px rgb(var(--color-ink-absolute-rgb) / 0.45);
   position: relative;
-  padding-bottom: 0.3125rem;
+  padding-bottom: $feature-title-pad-bottom;
   padding-right: 1.4em; /* reserve space for arrow */
 }
 
@@ -115,7 +130,7 @@
   left: 0;
   right: 4em; /* keep the line away from the arrow */
   bottom: 0;
-  height: 3px;
+  height: $feature-underline-height;
   background: currentColor;
   opacity: 0.9;
   transition: right 0.25s ease;

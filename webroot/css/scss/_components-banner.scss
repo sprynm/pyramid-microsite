@@ -1,12 +1,26 @@
 @use "theme" as *;
+
+// 320px -> 820px
+$banner-min-height: clamp(calc(32 * 0.625rem), 70svh, calc(82 * 0.625rem));
+// 16px
+$banner-edge-min: 1rem;
+// 1200px
+$banner-content-max: 1200px;
+// 16px -> 36px
+$banner-pad-top: clamp(1rem, 4vw, 2.25rem);
+// 10px
+$banner-text-gap: 0.625rem;
+// 21.875px -> 37.5px
+$banner-title-size: clamp(calc(3.5 * 0.625rem), 5vw, calc(6 * 0.625rem));
+// 8.75px
+$banner-text-gap-sm: 0.546875rem;
+// 8px / 11px
+$banner-btn-pad-y-sm: 0.5rem;
+$banner-btn-pad-x-sm: 0.6875rem;
 /* === Banner base === */
 .banner {
   position: relative;
-  min-height: clamp(
-    calc(32 * 0.625rem),
-    70svh,
-    calc(82 * 0.625rem)
-  ); /* tall enough on phones, capped on desktop */
+  min-height: $banner-min-height; /* tall enough on phones, capped on desktop */
   color: var(--color-ink-on-dark);
   isolation: isolate; /* keep overlay layers scoped */
 }
@@ -44,11 +58,11 @@
   /* grid with fluid gutters + centered content rail */
   display: grid;
   grid-template-columns:
-    [edge] minmax(16px, 1fr)
-    [content] minmax(0, 1200px)
-    [edge-end] minmax(16px, 1fr);
+    [edge] minmax($banner-edge-min, 1fr)
+    [content] minmax(0, $banner-content-max)
+    [edge-end] minmax($banner-edge-min, 1fr);
   align-items: center; /* vertical centering */
-  padding-top: calc(var(--nav-offset) + clamp(1rem, 4vw, 2.25rem));
+  padding-top: calc(var(--nav-offset) + #{$banner-pad-top});
 }
 
 /* Lower-third option:
@@ -59,7 +73,7 @@
   grid-column: content; /* keep text on the centered rail */
   display: flex;
   flex-direction: column;
-  gap: 0.625rem; /* tight control between title and button */
+  gap: $banner-text-gap; /* tight control between title and button */
   // max-width: 100ch;         /* avoid ultra-long lines on huge screens */
 }
 
@@ -69,7 +83,7 @@
   font-weight: 700;
   font-family: var(--font-serif);
   line-height: 1.08;
-  font-size: clamp(calc(3.5 * 0.625rem), 5vw, calc(6 * 0.625rem));
+  font-size: $banner-title-size;
   text-wrap: balance; /* nicer multi-line breaks on supporting browsers */
   margin: 0 0 0.25em;
   line-height: 1.5;
@@ -93,9 +107,9 @@
 /* Small-screen refinements */
 @media (max-width: breakpoint("sm")) {
   .banner .text-block {
-    gap: 0.546875rem;
+    gap: $banner-text-gap-sm;
   }
   .banner .btn {
-    padding: 0.5rem 0.6875rem;
+    padding: $banner-btn-pad-y-sm $banner-btn-pad-x-sm;
   }
 }
