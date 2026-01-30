@@ -1,0 +1,192 @@
+@use "theme" as *;
+@use "base-utils" as *;
+/* ===== Layout for the pair ===== */
+.feature-boxes {
+  @include wrapperMedium;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 3vw, 28px);
+  align-items: stretch;
+  margin-block: clamp(2rem, 3.30188679245283vw, 3.5rem); /* 48/1696 */
+}
+
+/* Mobile: stack the cards (already true below), also make them shorter */
+@media (max-width: breakpoint("sm")) {
+  .feature-boxes {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== Card (the <a>) ===== */
+.feature-boxes > a {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  // border: 2px solid rgba(0,0,0,.12);
+  background: var(--color-ink-absolute);
+  isolation: isolate;
+  text-decoration: none;
+  color: var(--color-ink-on-dark);
+  -webkit-tap-highlight-color: rgb(var(--color-surface-base-rgb) / 0.15);
+  touch-action: manipulation;
+
+  /* Tablet & desktop: always square */
+  aspect-ratio: 1 / 1;
+
+  &:visited,
+  &:active {
+    color: var(--color-ink-on-dark);
+  }
+
+  /* Accessible focus ring */
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgb(var(--color-surface-base-rgb) / 0.85),
+      0 0 0 4px rgb(var(--color-ink-absolute-rgb) / 0.35);
+  }
+}
+
+/* Mobile: shorter, banner-like cards (still responsive) */
+@media (max-width: breakpoint("sm")) {
+  .feature-boxes > a {
+    aspect-ratio: 16 / 9; /* shorter than square */
+  }
+}
+
+/* Image covers the card */
+.feature-boxes picture,
+.feature-boxes picture > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: -2;
+}
+
+/* Lighter overlay */
+.feature-boxes > a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgb(var(--color-ink-absolute-rgb) / 0.18) 0%,
+    rgb(var(--color-ink-absolute-rgb) / 0.36) 100%
+  );
+  transition: opacity 0.25s ease;
+}
+
+/* ===== Text block ===== */
+.feature-text {
+  position: absolute;
+  left: clamp(20px, 3.6vw, 34px);
+  right: clamp(20px, 3.6vw, 34px);
+  bottom: clamp(20px, 3.6vw, 34px);
+  color: var(--color-ink-on-dark);
+  pointer-events: none; /* whole card clickable */
+}
+
+/* Headline with underline + masked arrow */
+.feature-text h2 {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  font-weight: 600;
+  color: var(--color-ink-on-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.015em;
+  line-height: 1.05;
+  font-size: clamp(calc(2 * 0.625rem), 3vw, calc(4 * 0.625rem));
+  text-wrap: nowrap;
+  text-shadow: 0 1px 2px rgb(var(--color-ink-absolute-rgb) / 0.45);
+  position: relative;
+  padding-bottom: 0.3125rem;
+  padding-right: 1.4em; /* reserve space for arrow */
+}
+
+/* Underline stops before arrow */
+.feature-text h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 4em; /* keep the line away from the arrow */
+  bottom: 0;
+  height: 3px;
+  background: currentColor;
+  opacity: 0.9;
+  transition: right 0.25s ease;
+}
+
+/* Arrow via mask (rounded stroke) */
+.feature-text h2::after {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em; /* 1:1 arrow box */
+  background-color: currentColor;
+  mask: url("data:image/svg+xml;utf8,\
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
+      <path d='M3 12h14M13 6l6 6-6 6' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/>\
+    </svg>")
+    center / contain no-repeat;
+  transform: translateY(0.05em);
+  transition: transform 0.25s ease;
+}
+
+/* ===== Hover / Focus / Touch states (same visuals) ===== */
+.feature-boxes > a picture > img {
+  transition: transform 0.35s ease;
+  will-change: transform;
+}
+
+/* mouse hover */
+.feature-boxes > a:hover picture > img {
+  transform: scale(1.04);
+}
+.feature-boxes > a:hover::after {
+  opacity: 0.65;
+}
+.feature-boxes > a:hover .feature-text h2::before {
+  right: 3em;
+}
+
+/* keyboard focus */
+.feature-boxes > a:focus-visible picture > img {
+  transform: scale(1.04);
+}
+.feature-boxes > a:focus-visible::after {
+  opacity: 0.65;
+}
+.feature-boxes > a:focus-visible .feature-text h2::before {
+  right: 3em;
+}
+
+/* touch active (devices without hover) */
+@media (hover: none) {
+  .feature-boxes > a:active picture > img {
+    transform: scale(1.03);
+  }
+  .feature-boxes > a:active::after {
+    opacity: 0.62;
+  }
+  .feature-boxes > a:active .feature-text h2::before {
+    right: 3em;
+  }
+}
+
+/* Screen reader CTA (not needed; title serves as name) */
+.feature-cta { 
+  display: none;
+}
+
+/* Motion respect */
+@media (prefers-reduced-motion: reduce) {
+  .feature-boxes > a *,
+  .feature-boxes > a::after {
+    transition: none !important;
+  }
+}

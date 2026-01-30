@@ -2,9 +2,9 @@
 @use "theme" as *;
 @use "base-utils" as *;
 
-$layout-gap-default: clamp(#{base-step(2.4)}, 4vw, #{base-step(3.6)});
-$layout-pad-default: clamp(#{base-step(3.2)}, 5vw, #{base-step(4.8)});
-$subnav-width-default: clamp(20rem, 25vw, 320rem);
+$layout-gap-default: clamp(1.5rem, 4vw, 2.25rem);
+$layout-pad-default: clamp(2rem, 5vw, 3rem);
+$subnav-width-default: clamp(12.5rem, 25vw, 200rem);
 
 .site-wrapper {
   background: var(
@@ -74,7 +74,7 @@ $subnav-width-default: clamp(20rem, 25vw, 320rem);
 .l-with-subnav > .subnav--list {
   &.subnav--sticky {
     position: sticky;
-    top: calc(var(--nav-offset, 0px) + #{base-step(1.6)});
+    top: calc(var(--nav-offset, 0px) + 1rem);
   }
   align-self: start;
 }
@@ -112,19 +112,19 @@ $subnav-width-default: clamp(20rem, 25vw, 320rem);
   background-color: var(--color-surface-base);
   border: 1px solid rgb(var(--color-brand-primary-rgb) / 0.25);
   border-radius: var(--radius-md);
-  padding: clamp(0.9rem, 2.8vw, 1.1rem) clamp(3.2rem, 6vw, 4rem)
-    clamp(0.9rem, 2.8vw, 1.1rem) clamp(1.4rem, 4vw, 2.4rem);
-  box-shadow: 0 0.4rem 1.2rem rgb(var(--color-surface-inverse-rgb) / 0.08);
+  padding: clamp(0.5625rem, 2.8vw, 0.6875rem) clamp(2rem, 6vw, 2.5rem)
+    clamp(0.5625rem, 2.8vw, 0.6875rem) clamp(0.875rem, 4vw, 1.5rem);
+  box-shadow: 0 0.25rem 0.75rem rgb(var(--color-surface-inverse-rgb) / 0.08);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='currentColor' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right clamp(1.2rem, 3vw, 1.8rem) center;
-  background-size: clamp(1rem, 2.5vw, 1.4rem);
+  background-position: right clamp(0.75rem, 3vw, 1.125rem) center;
+  background-size: clamp(0.625rem, 2.5vw, 0.875rem);
   transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 .c-select:focus {
   outline: none;
   border-color: rgb(var(--color-brand-primary-rgb) / 0.6);
-  box-shadow: 0 0 0 0.3rem rgb(var(--color-brand-primary-rgb) / 0.2);
+  box-shadow: 0 0 0 0.1875rem rgb(var(--color-brand-primary-rgb) / 0.2);
 }
 
 /* Spacing utilities */

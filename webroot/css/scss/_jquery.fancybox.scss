@@ -74,7 +74,7 @@ body.fancybox-iosfix {
 .fancybox-infobar {
   top: 0;
   left: 0;
-  font-size: calc(1.3 * var(--base-10));
+  font-size: calc(1.3 * 0.625rem);
   padding: 0 10px;
   height: 44px;
   min-width: 44px;
@@ -270,7 +270,7 @@ body.fancybox-iosfix {
   margin: 0;
   padding: 0;
   color: var(--color-ink-secondary);
-  font-size: calc(1.6 * var(--base-10));
+  font-size: calc(1.6 * 0.625rem);
   line-height: 20px; }
 
 /* Buttons */
@@ -409,7 +409,7 @@ body.fancybox-iosfix {
 
 .fancybox-slide--image .fancybox-close-small:after,
 .fancybox-slide--iframe .fancybox-close-small:after {
-  font-size: calc(3.5 * var(--base-10));
+  font-size: calc(3.5 * 0.625rem);
   color: var(--color-ink-soft); }
 
 .fancybox-slide--image .fancybox-close-small:hover:after,
@@ -440,7 +440,7 @@ body.fancybox-iosfix {
 .fancybox-caption {
   padding: 30px 0;
   border-top: 1px solid rgb(var(--color-surface-base-rgb) / 0.4);
-  font-size: calc(1.4 * var(--base-10));
+  font-size: calc(1.4 * 0.625rem);
   color: var(--color-ink-on-dark);
   line-height: 20px;
   -webkit-text-size-adjust: none; }
@@ -593,7 +593,7 @@ body.fancybox-iosfix {
 .fancybox-share h1 {
   color: var(--color-ink-deep);
   margin: 0 0 20px 0;
-  font-size: calc(3.5 * var(--base-10));
+  font-size: calc(3.5 * 0.625rem);
   font-weight: 700; }
 
 .fancybox-share p {
@@ -613,7 +613,7 @@ p.fancybox-share__links {
   border-radius: var(--radius-sm);
   background: var(--color-surface-base);
   white-space: nowrap;
-  font-size: calc(1.4 * var(--base-10));
+  font-size: calc(1.4 * 0.625rem);
   font-weight: 700;
   line-height: 40px;
   -webkit-user-select: none;
@@ -662,7 +662,7 @@ p.fancybox-share__links {
   padding: 10px 15px;
   background: transparent;
   color: var(--color-modal-muted);
-  font-size: calc(1.4 * var(--base-10));
+  font-size: calc(1.4 * 0.625rem);
   outline: none;
   border: 0;
   border-bottom: 2px solid var(--color-modal-border); }

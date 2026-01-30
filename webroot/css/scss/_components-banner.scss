@@ -1,0 +1,101 @@
+@use "theme" as *;
+/* === Banner base === */
+.banner {
+  position: relative;
+  min-height: clamp(
+    calc(32 * 0.625rem),
+    70svh,
+    calc(82 * 0.625rem)
+  ); /* tall enough on phones, capped on desktop */
+  color: var(--color-ink-on-dark);
+  isolation: isolate; /* keep overlay layers scoped */
+}
+
+/* Make the <picture>/<img> fully cover the banner area */
+.banner picture,
+.banner picture > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Contrast gradient (image remains visible, text stays readable) */
+.banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(var(--color-ink-absolute-rgb) / 0.45),
+    rgb(var(--color-ink-absolute-rgb) / 0.55)
+  );
+}
+
+/* === Overlay layout === */
+.banner .overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  /* grid with fluid gutters + centered content rail */
+  display: grid;
+  grid-template-columns:
+    [edge] minmax(16px, 1fr)
+    [content] minmax(0, 1200px)
+    [edge-end] minmax(16px, 1fr);
+  align-items: center; /* vertical centering */
+  padding-top: calc(var(--nav-offset) + clamp(1rem, 4vw, 2.25rem));
+}
+
+/* Lower-third option:
+.banner .overlay { align-items: end; padding-block-end: clamp(24px, 8vh, 96px); }
+*/
+
+.banner .text-block {
+  grid-column: content; /* keep text on the centered rail */
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem; /* tight control between title and button */
+  // max-width: 100ch;         /* avoid ultra-long lines on huge screens */
+}
+
+/* Title */
+.banner .header-tagline {
+  display: block;
+  font-weight: 700;
+  font-family: var(--font-serif);
+  line-height: 1.08;
+  font-size: clamp(calc(3.5 * 0.625rem), 5vw, calc(6 * 0.625rem));
+  text-wrap: balance; /* nicer multi-line breaks on supporting browsers */
+  margin: 0 0 0.25em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--color-ink-on-dark) !important;
+}
+
+/* Button */
+.banner .btn {
+  align-self: flex-start;
+  // display: inline-block;
+  // padding: 0.53125rem 0.75rem;
+  // border-radius: 0;
+  background: var(--color-brand-accent);
+  color: var(--color-ink-contrast);
+  // text-decoration: none;
+  // font-weight: 400;
+  // box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+
+/* Small-screen refinements */
+@media (max-width: breakpoint("sm")) {
+  .banner .text-block {
+    gap: 0.546875rem;
+  }
+  .banner .btn {
+    padding: 0.5rem 0.6875rem;
+  }
+}

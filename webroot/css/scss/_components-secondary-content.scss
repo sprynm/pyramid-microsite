@@ -1,0 +1,142 @@
+@use "theme" as *;
+/* ==== Section (full-width platter) ==== */
+.secondary-content {
+
+  --frame: var(--color-ink-on-dark);
+  --text: var(--color-ink-on-dark);
+  --text-muted: var(--color-ink-overlay);
+
+  padding-block: clamp(20px, 4vw, 40px);
+  margin-bottom: clamp(2rem, 3.30189vw, 3.5rem);
+  position: relative;
+  overflow: hidden;
+  background: transparent; /* key */
+  color: var(--color-ink-on-dark);
+}
+
+/* Blue tint that multiplies with page tile */
+.secondary-content:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-brand-secondary);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Local contrast lift within the oval only */
+.secondary-content:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(var(--color-surface-base-rgb) / 0.001); /* trigger backdrop pipeline */
+  backdrop-filter: contrast(3.75) brightness(9) ;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* wrapperMedium equivalent */
+.secondary-content__inner {
+  width: calc(100% - var(--inline-padding, 24px) * 2);
+  max-width: 75rem;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* text : image */
+  gap: clamp(16px, 3.5vw, 36px);
+  align-items: stretch;
+  position: inherit;
+  z-index: 2;
+}
+
+/* copy column */
+.secondary-content__copy {
+  color: var(--text);
+}
+.secondary-content__copy h2 {
+  margin: 0 0 clamp(8px, 2vw, 12px);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  font-size: clamp(calc(2.2 * 0.625rem), 3.2vw, calc(3.6 * 0.625rem));
+  text-transform: uppercase;
+}
+
+/* bullets */
+.secondary-content__copy ul {
+  margin: 0 0 clamp(12px, 3vw, 20px);
+  padding-left: 1.2em;
+  color: var(--text-muted);
+  font-size: var(--step-1);
+}
+.secondary-content__copy li {
+  margin: 0.35em 0;
+}
+
+/* optional CTA */
+.secondary-content .btn {
+  display: inline-block;
+  margin-top: 0.46875rem;
+  padding: 0.375rem 0.5625rem;
+  border-radius: var(--radius-max);
+  background: var(--color-brand-accent);
+  color: var(--color-ink-on-dark);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* === Secondary content (mobile-first) === */
+
+/* 1) Layout: stack on mobile */
+.secondary-content__inner {
+  width: calc(100% - var(--inline-padding, 24px) * 2);
+  max-width: 75rem;
+  margin-inline: auto;
+
+  display: grid;
+  grid-template-columns: 1fr; /* mobile: stack */
+  row-gap: clamp(16px, 5vw, 24px);
+  align-items: stretch;
+}
+
+/* 2) Media: ratio on the CONTAINER (mobile = 16:10) */
+.secondary-content__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9; /* match feature-boxes mobile */
+  /* optional: put image first on mobile */
+  order: -1;
+}
+
+/* Fill the box */
+.secondary-content__media picture,
+.secondary-content__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 3) Tablet+ adjustments */
+@media (min-width: breakpoint("sm")) {
+  .secondary-content__inner {
+    grid-template-columns: 1fr 1fr; /* two columns */
+    column-gap: clamp(16px, 3.5vw, 36px);
+    row-gap: 0;
+  }
+
+  .secondary-content__media {
+    aspect-ratio: 1 / 1; /* square like feature cards */
+    order: 0; /* normal flow */
+  }
+
+  .secondary-content__copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertically center text */
+  }
+}

@@ -1,0 +1,12 @@
+@use "theme" as *;
+.contact-text {
+  main & {
+    h2 {
+      margin: 0;
+      font-size: calc(3.2 * 0.625rem);
+      &:not(:first-child) {
+        margin-top: var(--space-lg); 
+      } 
+    }
+  }
+}

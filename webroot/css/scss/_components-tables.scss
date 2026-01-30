@@ -1,0 +1,92 @@
+@use "theme" as *;
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: $boxShadowSubtle;
+  margin-bottom: 3rem;
+
+  & > tr {
+    th:first-child,
+    td:first-child {
+      border-top-left-radius: calc(0.4 * 0.625rem);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-top-right-radius: calc(0.4 * 0.625rem);
+    }
+  }
+
+  thead {
+    th:first-child,
+    td:first-child {
+      border-top-left-radius: calc(0.4 * 0.625rem);
+    }
+
+    th:last-child,
+    td:last-child {
+      border-top-right-radius: calc(0.4 * 0.625rem);
+    }
+  }
+
+  tfoot {
+    td:first-child {
+      border-bottom-left-radius: calc(0.4 * 0.625rem);
+    }
+
+    td:last-child {
+      border-bottom-right-radius: calc(0.4 * 0.625rem);
+    }
+  }
+}
+
+th {
+  background: var(--color-brand-primary);
+  color: var(--color-ink-on-dark);
+  padding: 0.5rem 0.75rem;
+  font-size: var(--font-label);
+  text-align: left;
+}
+
+tfoot {
+  th,
+  td {
+    background: var(--color-ink-muted);
+    color: var(--color-ink-on-dark);
+  }
+}
+
+tr {
+  transition: all 250ms ease-out;
+
+  &:nth-child(odd) {
+    background: var(--color-surface-base);
+  }
+
+  &:nth-child(even) {
+    background: var(--color-surface-soft);
+  }
+
+  &:hover,
+  &:focus {
+    background: color-mix(
+      in srgb,
+      var(--color-brand-primary) 90%,
+      var(--color-ink-on-dark, #{$surfaceBody}) 10%
+    );
+    color: var(--color-ink-on-dark);
+  }
+}
+
+td {
+  border-bottom: 0.0625rem solid var(--color-border-muted);
+  padding: 0.5rem 0.75rem;
+  font-size: var(--font-label);
+}
+
+tr:last-child {
+  td {
+    border-bottom: none;
+  }
+}

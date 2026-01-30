@@ -1,0 +1,304 @@
+@use "theme" as *;
+@use "base-utils" as *;
+/* -- MAIN NAV START -- */
+header {
+  nav {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    z-index: 100;
+
+    a:link,
+    a:visited {
+      font-family: var(--font-serif);
+      position: relative;
+      text-align: center;
+      height: 100%;
+    }
+    a:link,
+    a:visited,
+    a:hover,
+    a:focus,
+    .current > a {
+      color: var(--color-ink-on-dark);
+    }
+
+    ul {
+      li {
+        position: relative;
+        margin: 0;
+
+        &.has-sub > a {
+          position: relative;
+          padding-right: clamp(1.875rem, 6vw, 2.5rem);
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: clamp(0.5rem, 2.5vw, 1rem);
+            width: clamp(1rem, 3.5vw, 1.25rem);
+            height: clamp(1rem, 3.5vw, 1.25rem);
+            transform: translateY(-50%) rotate(90deg);
+            transition: transform 100ms ease-in-out;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M8 6l8 6-8 6' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+            mask-size: cover;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M8 6l8 6-8 6' fill='none' stroke='currentColor' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/cover no-repeat;
+            background-color: currentColor;
+          }
+        }
+
+        &.is-open > ul,
+        &:focus-within > ul {
+          opacity: 1;
+          pointer-events: initial;
+        }
+
+        &.is-open.has-sub > a::after {
+          transform: translateY(-50%) rotate(-90deg);
+        }
+      }
+      // Drop menu   
+      ul {
+        display: block;
+        opacity: 0;
+        pointer-events: none;
+        box-shadow: $boxShadowSubtle;
+        position: absolute;
+        width: max-content;
+        max-width: calc(42 * 0.625rem);
+        border-radius: var(--radius-xs);
+        left: auto;
+        right: calc(-0.2 * 0.625rem);
+        transition: opacity 250ms ease-in-out;
+        padding-inline-start: 0;
+
+        &:before {
+          content: "";
+          width: 0;
+          height: 0;
+          display: block;
+          border-style: solid;
+          border-width: 0 calc(1.2 * 0.625rem) calc(1.2 * 0.625rem) calc(1.2 * 0.625rem);
+          border-color: transparent transparent var(--color-ink-on-dark) transparent;
+          top: calc(-1.2 * 0.625rem);
+          left: auto;
+          right: calc(1.6 * 0.625rem);
+          position: absolute;
+          z-index: 1;
+          filter: drop-shadow(
+            0 calc(-0.2 * 0.625rem) calc(0.25 * 0.625rem)
+              rgb(var(--color-ink-absolute-rgb) / 0.1)
+          );
+        }
+
+        a:link,
+        a:visited {
+          font-family: var(--font-sans);
+          background: rgb(var(--color-surface-base-rgb) / 0.9);
+          color: var(--color-ink-primary);
+          font-size: var(--step--1);
+          display: block;
+          text-align: left;
+          padding: 0.625rem 0.75rem 0.75rem;
+        }
+
+        li {
+          display: block;
+
+          &:first-child a:link,
+          &:first-child a:visited {
+            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+          }
+
+          &:last-child a:link,
+          &:last-child a:visited {
+            border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+          }
+        }
+      }
+    }
+
+    .current .current a,
+    ul ul a:hover {
+      background: var(--color-surface-muted);
+      color: var(--color-brand-primary);
+    }
+  }
+}
+/* -- MAIN NAV END -- */
+#hdr-notice {
+  background: var(--color-ink-contrast);
+  color: var(--color-ink-on-dark);
+  text-shadow: $textShadow;
+  position: relative;
+  padding: 0.9375rem calc(4.5 * 0.625rem);
+
+  .hdr-notice-content {
+    @include wrapperNarrow;
+    font-size: var(--font-label);
+    position: relative;
+    text-align: center;
+  }
+
+  #close-notice {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(2.4 * 0.625rem);
+    height: calc(2.4 * 0.625rem);
+    padding: 0;
+    mask: url(/img/icons/circle-close.svg);
+    mask-size: cover;
+    background: var(--color-surface-base);
+    border: none;
+    appearance: none;
+    cursor: pointer;
+    margin: calc(-0.3 * 0.625rem) calc(0.2 * 0.625rem) 0 0;
+    transition: all 250ms ease-out;
+
+    &:hover,
+    &:focus {
+      background: var(--color-brand-primary);
+    }
+  }
+
+  .notice-btn:link,
+  .notice-btn:visited {
+    color: var(--color-ink-on-dark);
+    font-weight: bold;
+    text-decoration: underline;
+    white-space: nowrap;
+  }
+
+  .notice-btn:hover,
+  .notice-btn:focus {
+    text-decoration: none;
+  }
+}
+
+
+header {
+  &.primary-hdr {
+    // background: #fff;
+    padding-block: 1.5rem;
+    position: fixed;
+    inset: 0 0 auto 0;
+    transition: padding-block 500ms ease-in-out;
+    z-index: 100;
+
+    // a:link,
+    // a:visited,
+    // a:hover,
+    // a:focus,
+    // .current > a {
+    //   color: #fff;
+    // }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      // background: #fff;
+      box-shadow: $boxShadow;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 500ms ease-in-out;
+    }
+    & img {
+      --logo-width: 7.5rem;
+    }
+    &.sticking {
+      & img {
+        --logo-width: 5.625rem;
+        transition: 500ms ease-in-out;
+      }
+      background: rgb(var(--color-surface-base-rgb) / 0.8);
+      padding-block: 0.3125rem;
+      backdrop-filter: blur(4px);
+
+      &::after {
+        opacity: 1;
+      }
+      & a:link,
+      & a:visited,
+      & a:hover,
+      & a:focus,
+      & .current > a {
+        color: var(--color-ink-absolute);
+      }
+    }
+  }
+}
+
+.layout-rail {
+  @include container-inline("directory-max");
+  padding-inline: clamp(1.5rem, 6.5vw, 2.75rem);
+
+  & + & {
+    margin-top: var(--space-xl);
+  }
+}
+
+.hdr-container {
+  @include wrapperMedium;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.hdr-links {
+  margin-right: calc(-0.5 * var(--inline-padding));
+}
+
+.logo {
+  margin: 0 auto 0 0;
+
+  img {
+    width: var(--logo-width);
+  }
+}
+:root{ --drift: 6px; --dur: 2.4s; --tilt: 5deg; }
+.logo img{
+  display:block;
+  transform-origin:50% 50%;
+  backface-visibility:hidden;
+
+  /* Resting pose + exit easing */
+  transform: translate(0,0) rotate(0deg);
+  transition: transform 500ms ease-out;
+}
+
+/* unchanged from your version */
+@keyframes xy-circle {
+  0%   { transform: translate( 0, calc(-1*var(--drift))) rotate(calc(-1*var(--tilt))); }
+  12.5%{ transform: translate(calc(-0.707*var(--drift)), calc(-0.707*var(--drift))) rotate(calc(-1*var(--tilt))); }
+  25%  { transform: translate(calc(-1*var(--drift)), 0) rotate(calc(-0.6*var(--tilt))); }
+  37.5%{ transform: translate(calc(-0.707*var(--drift)),  calc(0.707*var(--drift))) rotate(var(--tilt)); }
+  50%  { transform: translate(0, var(--drift)) rotate(var(--tilt)); }
+  62.5%{ transform: translate(calc(0.707*var(--drift)),  calc(0.707*var(--drift))) rotate(var(--tilt)); }
+  75%  { transform: translate(var(--drift), 0) rotate(calc(0.6*var(--tilt))); }
+  87.5%{ transform: translate(calc(0.707*var(--drift)), calc(-0.707*var(--drift))) rotate(calc(-1*var(--tilt))); }
+  100% { transform: translate(0, calc(-1*var(--drift))) rotate(calc(-1*var(--tilt))); }
+}
+
+/* Enter: glide to the 0% pose, then start the loop from that exact pose */
+.logo:is(:hover, :focus-visible) img{
+  /* 1) pose-into-start (no jump) */
+  transform: translate(0, calc(-1*var(--drift))) rotate(calc(-1*var(--tilt)));
+
+  /* 2) after the glide, the animation takes over from 0% seamlessly */
+  animation: xy-circle var(--dur) linear infinite;
+  animation-delay: 200ms;                 /* match transition duration */
+  animation-play-state: running;
+}
+
+/* Reduced motion: no animation; keep a gentle pose-in if you like */
+@media (prefers-reduced-motion: reduce){
+  .logo:is(:hover, :focus-visible) img{
+    animation: none;
+    /* optional: comment out next line to avoid any movement */
+    transform: translate(0, calc(-0.5*var(--drift))) rotate(calc(-0.5*var(--tilt)));
+  }
+}

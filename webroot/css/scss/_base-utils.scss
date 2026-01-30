@@ -2,38 +2,17 @@
 @use "sass:map";
 @use "theme" as *;
 
-@function base-step($multiplier) {
-  @return calc(#{$multiplier} * var(--base-10));
-}
-
-@mixin base-space($property, $values...) {
-  $resolved: ();
-  @each $value in $values {
-    $resolved: list.append($resolved, base-step($value));
-  }
-  #{$property}: $resolved;
-}
-
 
 @mixin wrapperWide {
-  width: calc(100% - var(--inline-padding) * 2);
-  max-width: 169.6rem;
-  box-sizing: border-box;
-  margin: 0 auto;
+  @include container-inline("wrapper-wide");
 }
 
 @mixin wrapperMedium {
-  width: calc(100% - var(--inline-padding) * 2);
-  max-width: 120rem;
-  box-sizing: border-box;
-  margin: 0 auto;
+  @include container-inline("wrapper-medium");
 }
 
 @mixin wrapperNarrow {
-  width: calc(100% - var(--inline-padding) * 2);
-  max-width: 83.2rem;
-  box-sizing: border-box;
-  margin: 0 auto;
+  @include container-inline("wrapper-narrow");
 }
 
 @mixin container-inline($token) {
