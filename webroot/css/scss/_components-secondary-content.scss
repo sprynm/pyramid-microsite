@@ -74,7 +74,7 @@ $secondary-row-gap: clamp(1rem, 5vw, 1.5rem);
 }
 .secondary-content__copy h2 {
   margin: 0 0 $secondary-title-margin-bottom;
-  font-family: var(--font-serif);
+  // font-family: var(--font-serif);
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: 0.02em;

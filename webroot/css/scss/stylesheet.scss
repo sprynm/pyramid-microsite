@@ -86,7 +86,7 @@ h6{ font-size: var(--step--1);line-height: 1.45; }                          /*  
 
 :root {
   --font-sans: #{$fontSans};
-  --font-serif: #{$fontSerif};
+  --font-serif: var(--font-sans);  // no serif font for now
 
     /* Supplemental type tokens */
   --font-compact: 1rem;  /* 16px utility text */

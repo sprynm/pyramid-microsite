@@ -3,7 +3,7 @@
 @use "sass:map";
 
 $fontSans: "Open Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-$fontSerif: "Spectral", ui-serif, Georgia, "Times New Roman", Times, serif;
+$fontSerif: Georgia, "Times New Roman", Times, serif;
 
 $textShadow: 0.0625rem 0.0625rem 0.3125rem rgba(0, 0, 0, 0.25);
 $boxShadow: 0.0625rem 0.0625rem 1rem 0 rgba(0, 0, 0, 0.25);

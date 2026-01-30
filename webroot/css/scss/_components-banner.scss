@@ -81,7 +81,7 @@ $banner-btn-pad-x-sm: 0.6875rem;
 .banner .header-tagline {
   display: block;
   font-weight: 700;
-  font-family: var(--font-serif);
+  // font-family: var(--font-serif);
   line-height: 1.08;
   font-size: $banner-title-size;
   text-wrap: balance; /* nicer multi-line breaks on supporting browsers */

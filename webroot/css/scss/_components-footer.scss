@@ -100,7 +100,7 @@ $footer-nav-gap-sm: 1rem;
   font-weight: 500;
   font-size: $footer-cta-title-size;
   /* Prefer a classic serif; falls back cleanly */
-  font-family: var(--font-serif);
+  // font-family: var(--font-serif);
   text-shadow: 0 $footer-cta-text-shadow-y $footer-cta-text-shadow-blur rgb(var(--color-ink-absolute-rgb) / 0.25); /* crisp on bright water */
 }
 
