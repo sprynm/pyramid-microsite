@@ -35,6 +35,7 @@ $subnav-width-default: clamp(12.5rem, 25vw, 200rem);
 
 #content {
   scroll-margin-top: var(--nav-offset, 0px);
+  flex: 1;
 }
 
 .c-container {
