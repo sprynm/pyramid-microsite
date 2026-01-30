@@ -1,0 +1,56 @@
+# Ignore everything by default
+/*
+# Keep git metadata references
+!.gitignore
+!.gitattributes
+
+# reenable root folders
+!/docs/
+!/tools/
+
+# reenable plugins folders
+!/Plugin/
+/Plugin/*
+!/Plugin/Prototype
+/Plugin/Prototype/*
+!/Plugin/Prototype/View
+!/Plugin/Prototype/CorePlugin/
+/Plugin/Prototype/CorePlugin/*
+!/Plugin/Prototype/CorePlugin/View/
+/Plugin/Prototype/CorePlugin/View/*
+!/Plugin/Prototype/CorePlugin/View/PrototypeItems/
+/Plugin/Prototype/CorePlugin/View/PrototypeItems/*
+!/Plugin/Prototype/CorePlugin/View/PrototypeItems/admin_edit.ctp
+
+# expose select folder in View
+!/View/
+/View/*
+!/View/Elements
+!/View/Emails
+!/View/Layouts
+
+# expose select folder in webroot
+!/webroot/
+/webroot/*
+!/webroot/css
+/webroot/css/*
+!/webroot/css/scss/
+!/webroot/fonts/*
+!/webroot/img/*
+!/webroot/js
+!/webroot/js/*
+
+# Frontend build manifests
+!/package.json
+!/package-lock.json
+!/README.md
+
+# Re-ignore dependencies and build artefacts
+node_modules/
+webroot/cache_css/
+webroot/cache_js/
+webroot/media/
+webroot/uploads/
+tmp.txt
+webroot/index.php
+

@@ -1,0 +1,43 @@
+@use "theme" as *;
+/* 18px */
+{prefix}-f-on-t-s-iz-e: 1.125rem;
+
+
+
+
+.subnav {
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: var(--space-sm);
+	}
+
+	li {
+		margin: 0;
+	}
+
+	a:link,
+	a:visited {
+		color: $primaryTextColor;
+		text-decoration: none;
+		font-size: {prefix}-f-on-t-s-iz-e;
+		line-height: 1.4;
+	}
+
+	.current > a,
+	a:hover,
+	a:focus {
+		color: $highlight;
+	}
+}
+
+
+
+
+
+
+
+
+

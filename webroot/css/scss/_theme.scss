@@ -1,0 +1,73 @@
+// A collection of SASS variables for consistent styling across the application
+// This file should not create any CSS on its own.
+@use "sass:map";
+
+$fontSans: "Open Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$fontSerif: "Spectral", ui-serif, Georgia, "Times New Roman", Times, serif;
+
+$textShadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.25);
+$boxShadow: 0.1rem 0.1rem 1.6rem 0 rgba(0, 0, 0, 0.25);
+$boxShadowSubtle: 0.1rem 0.1rem 0.8rem 0 rgba(0, 0, 0, 0.15);
+
+// Core palette  0b1f4b
+$surfaceBody: #fff;
+$textPrimary: #535353;
+$brandPrimary: #040395;
+$brandSecondary: #172B61;
+$brandDark: #2B384F;
+$brandAccent: #FF6700;
+$brandAccentHover: #ff8330;
+$brandPrimaryBright: #0116b4;
+$brandPrimaryHover: #011188;
+$brandPrimaryVisited: #0220ff;
+$inkStrong: #010101;
+$inkNeutral: #333333;
+$borderMuted: #cccccc;
+$surfaceDark: #0b1f4b;
+$surfaceNeutral: #f7f7f7;
+$surfaceNeutralSoft: #f5f5f5;
+
+// Component states
+$focusRing: #ffbb33;
+$stateSuccess: #7aac41;
+$stateCritical: #bc0000;
+$noticeErrorBg: #ffeded;
+$noticeAttentionBg: #feefb3;
+$noticeInformationBg: #bde5f8;
+$noticeSuccessBg: #dff2bf;
+
+// Footer accents
+$footerBg: #2e3a4a;
+$footerText: #e7eef6;
+$footerMuted: #c7cfda;
+$footerRuleOpacity: 0.35;
+
+// Shared responsive breakpoints captured from existing media queries
+$breakpoints: (
+  "xs": 576px,
+  "sm": 768px,
+  "md": 992px,
+  "lg": 1024px,
+  "xl": 1440px
+);
+
+@function breakpoint($key) {
+  $value: map.get($breakpoints, $key);
+
+  @if $value == null {
+    @error 'Breakpoints: token "#{$key}" is not defined.';
+  }
+
+  @return $value;
+}
+
+// Common container widths used across layout wrappers
+$containerWidths: (
+  "wrapper-wide": 169.6rem,
+  "wrapper-medium": 120rem,
+  "wrapper-narrow": 83.2rem,
+  "hero-max": 1200px,
+  "directory-max": 1120px,
+  "directory-fluid-max": 1100px,
+  "hero-copy-max": 700px
+);

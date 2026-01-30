@@ -1,0 +1,40 @@
+@use "theme" as *;
+/* 24px */
+{prefix}-g-ri-d-t-em-pl-at-e-c-ol-um-ns: 1.5rem;
+/* 32px */
+{prefix}-g-r-i-d-t-e-m-p-l-a-t-e-c-o-l-u-m-n-s-min: 2rem;
+/* 320px */
+{prefix}-g-r-i-d-t-e-m-p-l-a-t-e-c-o-l-u-m-n-s-max: 20rem;
+
+
+
+
+
+
+
+
+
+
+.contact-content {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax({prefix}-g-r-i-d-t-e-m-p-l-a-t-e-c-o-l-u-m-n-s-max, 1fr));
+	gap: {prefix}-g-ri-d-t-em-pl-at-e-c-ol-um-ns;
+}
+
+.contact-text {
+	main & {
+		h2 {
+			margin: 0;
+			font-size: {prefix}-g-r-i-d-t-e-m-p-l-a-t-e-c-o-l-u-m-n-s-min;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+

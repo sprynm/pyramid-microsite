@@ -1,0 +1,50 @@
+@use "theme" as *;
+/* 2px */
+{prefix}-f-on-t-s-iz-e: 0.125rem;
+/* 11px */
+{prefix}-f-o-n-t-s-i-z-e-min: 0.6875rem;
+/* 18px */
+{prefix}-f-o-n-t-s-i-z-e-max: 1.125rem;
+/* 45px */
+{prefix}-f-o-n-t-s-i-z-e-mid: 2.8125rem;
+
+
+
+
+
+
+
+
+
+
+
+
+
+.breadcrumbs {
+	font-size: {prefix}-f-o-n-t-s-i-z-e-max;
+	margin: 0 0 {prefix}-f-o-n-t-s-i-z-e-mid;
+
+	.brdcrmb-dvdr {
+		display: inline-block;
+		margin: 0 {prefix}-f-on-t-s-iz-e;
+		width: {prefix}-f-o-n-t-s-i-z-e-min;
+		height: {prefix}-f-o-n-t-s-i-z-e-min;
+		mask: url(/img/icons/dbl-arrow.svg);
+		mask-size: cover;
+		background: #555;
+	}
+
+	.current {
+		font-weight: bold;
+		color: $highlight;
+	}
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,172 @@
+<?php
+$bannerData = isset($banner) ? $banner : array();
+$pageData = isset($page) ? $page : array();
+$bodyId = isset($bodyId) ? $bodyId : null;
+$pageHeading = isset($pageHeading) ? trim($pageHeading) : '';
+$memberHero = isset($memberHero) ? $memberHero : null;
+
+$hasBannerImage = isset($bannerData['Image'][0]) && !empty($bannerData['Image'][0]);
+$bannerImage = $hasBannerImage ? $bannerData['Image'][0] : array();
+
+$heroHeading = $pageHeading !== '' ? $pageHeading : '';
+if ($heroHeading === '' && !empty($pageData['Page']['name'])) {
+    $heroHeading = trim($pageData['Page']['name']);
+}
+
+$heroAlt = '';
+if ($hasBannerImage && !empty($bannerImage['alternative'])) {
+    $heroAlt = trim($bannerImage['alternative']);
+} elseif ($heroHeading !== '') {
+    $heroAlt = $heroHeading;
+} else {
+    $heroAlt = $this->Settings->show('Site.name');
+}
+
+$fallbackWebp = '';
+$fallbackPng = '';
+$commonHeroSetting = trim((string)$this->Settings->show('Site.common_head_image'));
+
+if ($commonHeroSetting !== '') {
+    $extractedSrc = '';
+    if (preg_match('/src=["\']([^"\']+)["\']/', $commonHeroSetting, $match)) {
+        $extractedSrc = $match[1];
+    } elseif (filter_var($commonHeroSetting, FILTER_VALIDATE_URL) || strpos($commonHeroSetting, '/') === 0) {
+        $extractedSrc = $commonHeroSetting;
+    }
+
+    if ($extractedSrc !== '') {
+        $fallbackWebp = $extractedSrc;
+        $fallbackPng = $extractedSrc;
+    }
+}
+
+$renderFallbackPicture = function ($alt) use ($fallbackWebp, $fallbackPng) {
+    if ($fallbackWebp === '' && $fallbackPng === '') {
+        return '';
+    }
+
+    ob_start();
+    ?>
+    <picture>
+        <?php if ($fallbackWebp !== '' && $fallbackWebp !== $fallbackPng): ?>
+            <source srcset="<?php echo $fallbackWebp; ?>" type="image/webp">
+        <?php endif; ?>
+        <img src="<?php echo $fallbackPng !== '' ? $fallbackPng : $fallbackWebp; ?>" alt="<?php echo h($alt); ?>" loading="lazy" decoding="async">
+    </picture>
+    <?php
+    return ob_get_clean();
+};
+
+$heroLayout = 'page-hero--single';
+$showPortrait = false;
+$portraitHtml = '';
+$defaultAvatarAlt = '';
+$memberName = '';
+$memberCategory = '';
+$memberSummary = '';
+
+if ($memberHero !== null && is_array($memberHero)) {
+    $showPortrait = !isset($memberHero['showPortrait']) || $memberHero['showPortrait'] !== false;
+    $portraitHtml = isset($memberHero['portraitHtml']) ? trim((string)$memberHero['portraitHtml']) : '';
+    $memberName = !empty($memberHero['name']) ? (string)$memberHero['name'] : '';
+    $memberCategory = !empty($memberHero['category']) ? (string)$memberHero['category'] : '';
+    $memberSummary = !empty($memberHero['summary']) ? (string)$memberHero['summary'] : '';
+
+    if ($memberName !== '') {
+        $defaultAvatarAlt = sprintf('%s portrait placeholder', $memberName);
+    } else {
+        $defaultAvatarAlt = 'Member portrait placeholder';
+    }
+
+    if ($showPortrait) {
+        $heroLayout = 'page-hero--split';
+    }
+}
+
+if ($showPortrait && $portraitHtml === '') {
+    $portraitHtml = $this->Html->image(
+        'default-avatar.svg',
+        array(
+            'alt' => $defaultAvatarAlt,
+            'loading' => 'lazy'
+        )
+    );
+}
+
+$pageHeroClasses = array('page-hero', $heroLayout);
+if ($hasBannerImage || $fallbackWebp !== '' || $fallbackPng !== '') {
+    $pageHeroClasses[] = 'page-hero--has-media';
+}
+
+$showHeroHeading = ($heroHeading !== '');
+$shouldRenderHero = $showHeroHeading || $memberHero !== null || $hasBannerImage || $fallbackWebp !== '' || $fallbackPng !== '';
+
+if ($shouldRenderHero):
+?>
+<section class="<?php echo h(implode(' ', $pageHeroClasses)); ?>">
+    <?php if ($hasBannerImage || $fallbackWebp !== '' || $fallbackPng !== ''): ?>
+        <div class="page-hero__media">
+            <?php if ($hasBannerImage): ?>
+                <picture>
+                    <source srcset="<?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-xlrg')); ?>" media="(min-width: 1981px)">
+                    <source srcset="<?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-lrg')); ?> 1x, <?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-xlrg')); ?> 2x" media="(min-width: 1441px)">
+                    <source srcset="<?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-med')); ?>" media="(min-width: 801px)">
+                    <source srcset="<?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-sm')); ?>" media="(min-width: 641px)">
+                    <source srcset="<?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-xsm')); ?>">
+                    <img src="<?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-lrg')); ?>" width="1920" height="970" alt="<?php echo h($heroAlt); ?>" loading="lazy" decoding="async">
+                </picture>
+            <?php else: ?>
+                <?php echo $renderFallbackPicture($heroAlt); ?>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+    <div class="page-hero__overlay"></div>
+
+    <div class="page-hero__inner">
+        <div class="page-hero__content">
+            <?php if ($memberHero !== null && ($memberName !== '' || $memberCategory !== '' || $memberSummary !== '')): ?>
+                <?php if ($memberName !== ''): ?>
+                    <h1 class="page-hero__title"><?php echo h($memberName); ?></h1>
+                <?php endif; ?>
+
+                <?php if ($memberCategory !== ''): ?>
+                    <p class="page-hero__meta"><?php echo h($memberCategory); ?></p>
+                <?php endif; ?>
+
+                <?php if ($memberSummary !== ''): ?>
+                    <p class="page-hero__summary"><?php echo h($memberSummary); ?></p>
+                <?php endif; ?>
+
+            <?php else: ?>
+                <?php if (!empty($pageData['Page']['banner_header'])): ?>
+                    <p class="page-hero__eyebrow"><?php echo h($pageData['Page']['banner_header']); ?></p>
+                <?php endif; ?>
+
+                <?php if ($showHeroHeading): ?>
+                    <h1 class="page-hero__title"><?php echo h($heroHeading); ?></h1>
+                <?php endif; ?>
+
+                <?php if (!empty($pageData['Page']['banner_summary'])): ?>
+                    <p class="page-hero__summary"><?php echo h($pageData['Page']['banner_summary']); ?></p>
+                <?php endif; ?>
+
+                <?php if (!empty($pageData['Page']['banner_cta']) && !empty($pageData['Page']['banner_cta_link'])): ?>
+                    <div class="page-hero__actions">
+                        <?php echo $this->Html->link($pageData['Page']['banner_cta'], $pageData['Page']['banner_cta_link'], array('class' => 'page-hero__cta', 'escape' => false)); ?>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+        </div>
+
+        <?php if ($heroLayout === 'page-hero--split' && $showPortrait): ?>
+            <aside class="page-hero__aside">
+                <?php if ($portraitHtml !== ''): ?>
+                    <div class="page-hero__portrait">
+                        <?php echo $portraitHtml; ?>
+                    </div>
+                <?php endif; ?>
+            </aside>
+        <?php endif; ?>
+    </div>
+</section>
+<?php endif; ?>

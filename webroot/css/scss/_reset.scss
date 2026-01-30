@@ -1,0 +1,67 @@
+/* Modern minimal reset (safe-by-default) */
+
+/* 1) Box sizing + margin reset */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+/* 2) Body defaults */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { min-height: 100vh; line-height: 1.5; }
+
+/* 3) Typography: inherit fonts for form elements */
+input, button, textarea, select { font: inherit; color: inherit; }
+
+/* 4) Media: responsive by default */
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+img, video { height: auto; }
+
+/* 5) Lists: remove default list styling where a class is applied */
+ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
+
+/* 6) Anchors: better default underline */
+a { text-decoration-skip-ink: auto; }
+
+/* 7) Buttons: remove platform quirks but keep accessibility */
+button { background: none; border: 0; padding: 0; cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+
+/* 8) Forms: basic normalization */
+fieldset { border: 0; padding: 0; }
+textarea { resize: vertical; }
+
+/* 9) Tables */
+table { border-collapse: collapse; border-spacing: 0; }
+
+/* 10) Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+/* Optional: narrower selection ring focus outline for keyboard users */
+:where(
+  a[href],
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  [role="button"],
+  [role="link"],
+  [role="checkbox"],
+  [role="switch"],
+  [role="menuitem"],
+  [tabindex]:not([tabindex="-1"])
+):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+:where(
+  form,
+  fieldset,
+  [role="form"] ,
+  [tabindex="-1"]:focus,
+  [tabindex="-1"]:focus-visible*
+):focus-visible {
+  outline: none !important;
+}

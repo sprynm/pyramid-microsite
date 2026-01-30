@@ -1,0 +1,191 @@
+@use "theme" as *;
+/* //
+Default styles for preconfigured protytpe instances
+Only use those that are required
+Move the required styles into stylesheet.css 
+// */
+
+/* FAQ Default Styles */
+.faq {
+  margin: 0 0 3rem 6rem;
+
+  .question {
+    cursor: pointer;
+    position: relative;
+    font-size: 2.6rem;
+    margin: 0;
+    padding: 1rem;
+
+    &.open:before {
+      mask: url(/img/icons/minus.svg);
+    }
+
+    &:before {
+      content: "";
+      width: 1.8rem;
+      height: 1.8rem;
+      mask: url(/img/icons/plus.svg);
+      mask-size: cover; 
+      background: var(--color-brand-primary);
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(calc(-100% - .8rem), -50%);
+      transition: all 250ms ease-out;
+      z-index: 1;
+    }
+
+    &:after {
+      content: "";
+      width: 3.6rem;
+      height: 3.6rem;
+      border-radius: var(--radius-max);
+      box-sizing: border-box;
+      border: .3rem solid var(--color-brand-primary);
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transition: all 250ms ease-out;
+      transform: translate(-100%, -50%);
+    }
+
+    &:hover {
+      &:before {
+        background: var(--color-surface-base);
+      }
+
+      &:after {
+        background: var(--color-brand-primary);
+      }
+    }
+  }
+
+  .answer {
+    position: relative;
+    padding: 1rem;
+
+    *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+/* FAQ Default Styles */
+
+
+
+/* Testimonials Default Styles */
+.testimonial {
+  font-size: 1.25em; /* 20/16 */
+  font-style: italic;
+  padding: 1em; /* 20/20 */
+  margin: 0 0 1em;
+  border-bottom: 1px solid var(--color-border-soft);
+  position: relative;
+}
+
+.testimonial:before {
+  content: "\201c";
+  color: var(--color-border-soft);
+  font-size: 10em;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: italic;
+  position: absolute;
+  z-index: -1;
+  top: -.125em;
+  left: -.125em; 
+}
+
+.testimonial:last-child {
+  border-bottom: none; 
+}
+
+.testimonial-citation {
+  text-align: right; 
+  font-style: normal;
+  line-height: 1.25em;
+  font-size: .8em; /* 16/20 */ 
+}
+
+.testimonial-citation span {
+  display: block; 
+}
+
+.testimonial-name {
+  font-weight: bold;
+}
+/* Testimonials Default Styles */
+
+.news h2 {
+  font-family: var(--font-sans);
+  text-transform: capitalize;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.news h2 a{
+  color: var(--color-legacy-prototype-accent);
+}
+
+.news h3 {
+  font-family: var(--font-sans);
+  text-transform: capitalize;
+  font-size: 1.1em;
+}
+
+.news {
+  border-bottom: 1px solid var(--color-legacy-prototype-border);
+  padding-bottom: 10px;
+}
+
+.news-img {
+  float: right;
+  border: 5px solid var(--color-surface-base);
+  margin: 0px 0px 10px 30px;
+  -moz-box-shadow: 0 0 20px var(--color-border-muted);
+  -webkit-box-shadow: 0 0 20px var(--color-border-muted);
+  box-shadow: 0 0 20px var(--color-border-muted);
+}
+
+.people {
+  float: left;
+  margin: 15px 0;
+  border: 1px dashed var(--color-surface-base);
+  padding: 8px;
+}
+
+.people img {
+  float: left; 
+  margin: 20px 10px 5px 0;
+}
+
+/*-- PROJECTS START --*/
+.projects {
+  .project {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 4rem 0;
+    picture,
+    .details {
+      flex: 1 1 500px;
+    }
+    .details {
+      margin-left: 4rem;
+    }
+  }
+
+}
+
+.proj-dtl {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .col {
+    flex: 1 1 500px;
+  }
+  .scnd-col {
+    margin-left: 4rem;
+  }
+}
+/*-- PROJECTS END --*/
