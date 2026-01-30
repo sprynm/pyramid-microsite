@@ -16,6 +16,9 @@ body {
   color: var(--color-ink-primary);
   accent-color: var(--color-brand-primary);
   font-family: var(--font-sans);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 
