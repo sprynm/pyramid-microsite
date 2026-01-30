@@ -4,12 +4,13 @@ echo $this->element('layout/nav');
 echo $this->element('layout/home_masthead', array(
 	'banner' => isset($banner) ? $banner : array(),
 	'page' => isset($page) ? $page : array(),
+	'pageHeading' => isset($pageHeading) ? $pageHeading : '',
 ));
 ?>
 <div id="content" class="site-wrapper site-wrapper--default">
 	<div class="c-container c-container--normal">
 		<section class="l-single">
-			<div class="home-content">
+		
 				<main class="home layout-home">
 					<?php
 					if (isset($pageHeading) && strlen($pageHeading) > 0) {
@@ -28,7 +29,7 @@ echo $this->element('layout/home_masthead', array(
 					}
 					?>
 				</main>
-			</div>
+		
 		</section>
 	</div>
 </div><!-- "content" ends -->
