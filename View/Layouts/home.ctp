@@ -1,35 +1,43 @@
 <?php // home.ctp
+
 echo $this->element('layout/head');
 echo $this->element('layout/nav');
+
+$banner      = !empty($banner) ? $banner : array();
+$page        = !empty($page) ? $page : array();
+$pageHeading = !empty($pageHeading) ? $pageHeading : '';
+$pageIntro   = !empty($pageIntro) ? $pageIntro : '';
+
 echo $this->element('layout/home_masthead', array(
-	'banner' => isset($banner) ? $banner : array(),
-	'page' => isset($page) ? $page : array(),
-	'pageHeading' => isset($pageHeading) ? $pageHeading : '',
+	'banner'      => $banner,
+	'page'        => $page,
+	'pageHeading' => $pageHeading,
 ));
 ?>
-<div id="content" class="site-wrapper site-wrapper--default">
+
+
+<div id="content" class="site-wrapper site-wrapper--default home">
 	<div class="c-container c-container--normal">
 		<section class="l-single">
-		
-				<main class="home layout-home">
-					<?php
-					if (isset($pageHeading) && strlen($pageHeading) > 0) {
-						echo $this->Html->tag('h1', $pageHeading);
-					}
+			<main>
 
-					if (isset($pageIntro) && strlen($pageIntro) > 0) {
-						echo $pageIntro;
-					}
+			    <?php if ($pageHeading !== ''): ?>
+					<h1><?php echo h($pageHeading); ?></h1>
+				<?php endif; ?>
+				
+				<?php
 
-					echo $this->Session->flash();
-					echo $this->fetch('content');
+				if ($pageIntro !== '') {
+					echo h($pageIntro);
+				}
 
-					if (CmsPlugin::isInstalled('Products')) {
-						echo $this->element('Products.products/featured');
-					}
-					?>
-				</main>
-		
+				echo $this->Session->flash();
+
+				echo $this->fetch('content');
+
+				?>
+
+			</main>
 		</section>
 	</div>
 </div><!-- "content" ends -->
