@@ -13,10 +13,11 @@ $subnav-max-width: 17.5rem;
 // 4px
 $subnav-row-gap: 0.25rem;
 // 2px
-$subnav-focus-outline: 0.125rem;
+$subnav-focus-outline: 2px;
 // 10px
 $subnav-arrow-size: 0.625rem;
 // -- NAV (GENERAL) START --
+@layer blocks {
 nav {
   ul {
     list-style-type: none;
@@ -185,4 +186,6 @@ nav {
       // }
     }
   }
+}
+
 }

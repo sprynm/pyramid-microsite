@@ -1,15 +1,15 @@
 @use "theme" as *;
 @use "base-utils" as *;
 // 10px / 30px
-$footer-cta-shadow-y: 0.625rem;
-$footer-cta-shadow-blur: 1.875rem;
+$footer-cta-shadow-y: 10px;
+$footer-cta-shadow-blur: 30px;
 // 16px -> 64px
 $footer-cta-text-pad: clamp(1rem, 4vw, 4rem);
 // 22px -> 42px
-$footer-cta-title-size: clamp(calc(2.2 * 0.625rem), 3.2vw, calc(4.2 * 0.625rem));
+$footer-cta-title-size: clamp(1.375rem, 3.2vw, 2.625rem);
 // 1px / 2px
-$footer-cta-text-shadow-y: 0.0625rem;
-$footer-cta-text-shadow-blur: 0.125rem;
+$footer-cta-text-shadow-y: 1px;
+$footer-cta-text-shadow-blur: 2px;
 // 14px -> 28px
 $footer-cta-text-pad-sm: clamp(0.875rem, 6vw, 1.75rem);
 // 16px -> 24px
@@ -27,12 +27,13 @@ $copyright-margin-top: clamp(0.875rem, 3vw, 1.375rem);
 // 12px -> 16px
 $copyright-pad-y: clamp(0.75rem, 2vw, 1rem);
 // 12px
-$copyright-font-size: calc(1.2 * 0.625rem);
+$copyright-font-size: 0.75rem;
 // 13px
-$footer-contact-font-size-sm: calc(1.3 * 0.625rem);
+$footer-contact-font-size-sm: 0.8125rem;
 // 16px
 $footer-nav-gap-sm: 1rem;
 /* === Footer CTA (hero-style) === */
+@layer blocks {
 .footer-cta {
   /* push away from footer edge a bit */
   @include wrapperMedium;
@@ -132,26 +133,27 @@ $footer-nav-gap-sm: 1rem;
   }
 }
 
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-  }
-}
-
-/* ===== Footer theme tokens (defined in stylesheet.scss :root) ===== */
 footer {
+  /* Footer-scoped tokens: keeps :root lean while staying easy to theme. */
+  --ftr-bg: #{$footerBg};
+  --ftr-fg: #{$footerText};
+  --ftr-muted: #{$footerMuted};
+  --ftr-link: var(--color-ink-on-dark);
+  --ftr-rule: rgb(255 255 255 / #{$footerRuleOpacity});
+  --ftr-maxw: 1200px;
+  --ftr-padY: clamp(1.125rem, 3.2vw, 2rem);
+  --ftr-gap: clamp(0.5rem, 2vw, 1.75rem);
+  --ftr-font: var(--step--1);
+
   background: var(--ftr-bg);
   color: var(--ftr-fg);
   font-size: var(--ftr-font);
 }
 
 footer a,
-footer a:link,
 footer a:visited {
   color: var(--ftr-link);
   text-decoration: none;
-  transition: none !important;
 }
 footer a:hover,
 footer a:focus {
@@ -246,9 +248,5 @@ footer a:focus {
   }
 }
 
-/* prefers-reduced-motion: keep it calm */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-  }
 }
+

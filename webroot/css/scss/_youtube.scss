@@ -1,6 +1,6 @@
 .youtube-player {
     position: relative;
-    padding-bottom: 56.07142857142857%; /* 314/560 */ 
+    padding-bottom: 56.07142857142857%; /* 314/560 */
     height: 0;
     overflow: hidden;
     max-width: 100%;
@@ -46,10 +46,11 @@
     max-height: 50vw;
     left: 50%;
     top: 50%;
-    margin-left: -2.25em; /* 36/16 */ 
-    margin-top: -2.25em; /* 36/16 */ 
+    margin-left: -2.25em; /* 36/16 */
+    margin-top: -2.25em; /* 36/16 */
     position: absolute;
     background: url("/img/icons/youtube-play.svg") no-repeat;
     background-size: cover;
     cursor: pointer;
 }
+

@@ -5,17 +5,18 @@ $feature-grid-gap: clamp(1rem, 3vw, 1.75rem);
 // 32px -> 56px
 $feature-margin-block: clamp(2rem, 3.30188679245283vw, 3.5rem);
 // 2px / 4px
-$feature-focus-ring-inner: 0.125rem;
-$feature-focus-ring-outer: 0.25rem;
+$feature-focus-ring-inner: 2px;
+$feature-focus-ring-outer: 4px;
 // 20px -> 34px
 $feature-text-inset: clamp(1.25rem, 3.6vw, 2.125rem);
 // 20px -> 40px
-$feature-title-size: clamp(calc(2 * 0.625rem), 3vw, calc(4 * 0.625rem));
+$feature-title-size: clamp(1.25rem, 3vw, 2.5rem);
 // 5px
 $feature-title-pad-bottom: 0.3125rem;
 // 3px
-$feature-underline-height: 0.1875rem;
+$feature-underline-height: 3px;
 /* ===== Layout for the pair ===== */
+@layer blocks {
 .feature-boxes {
   @include wrapperMedium;
   display: grid;
@@ -198,10 +199,5 @@ $feature-underline-height: 0.1875rem;
   display: none;
 }
 
-/* Motion respect */
-@media (prefers-reduced-motion: reduce) {
-  .feature-boxes > a *,
-  .feature-boxes > a::after {
-    transition: none !important;
-  }
 }
+

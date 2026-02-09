@@ -1,162 +1,217 @@
-@use "sass:map";
 @use "theme" as *;
-@use "base-utils" as *;
+@use "queries" as *;
 
-$layout-gap-default: clamp(1.5rem, 4vw, 2.25rem);
-$layout-pad-default: clamp(2rem, 5vw, 3rem);
-$subnav-width-default: clamp(12.5rem, 25vw, 200rem);
+/* Layout system (grid-first compositions + minimal explicit adaptation) */
 
-.site-wrapper {
-  background: var(
-    --wrapper-bg-default,
-    var(--color-surface-base) var(--bg-tile) repeat 0 0
-  );
-  min-height: 50vh;
-}
-.site-wrapper--default {
-  background: var(
-    --wrapper-bg-default,
-    var(--color-surface-base) var(--bg-tile) repeat 0 0
-  );
-}
-.site-wrapper--platter {
-  background: var(--wrapper-bg-platter, var(--platter-bg));
-}
-.site-wrapper--surface {
-  background: var(--wrapper-bg-surface, var(--color-surface-base));
-  background: var(--wrapper-bg-surface, var(--color-surface-base));
-}
-.site-wrapper--dark {
-  background: var(--wrapper-bg-dark, var(--color-surface-inverse));
-  color: var(--wrapper-color-dark, var(--color-ink-inverse));
-  background: var(--wrapper-bg-dark, var(--color-surface-inverse));
-  color: var(--wrapper-color-dark, var(--color-ink-inverse));
-}
+@layer compositions {
+  /* Container-query utilities (container-first layout contract) */
+  .cq { container-type: inline-size; }
+  .cq-main { container-type: inline-size; container-name: main; }
+  .cq-sidebar { container-type: inline-size; container-name: sidebar; }
+  .cq-card { container-type: inline-size; container-name: card; }
 
-#content {
-  scroll-margin-top: var(--nav-offset, 0px);
-  flex: 1;
-}
+  .site-wrapper {
+    --bg-tile: url(/img/bg.png);
+    --platter-bg: var(--color-brand-secondary);
+    --wrapper-bg-default: var(--color-surface-base) var(--bg-tile) repeat 0 0;
+    --wrapper-bg-platter: var(--platter-bg);
+    --wrapper-bg-surface: var(--color-surface-base);
+    --wrapper-bg-dark: var(--color-surface-inverse);
+    --wrapper-color-dark: var(--color-ink-inverse);
 
-.c-container {
-  --container-inner: var(--container-normal-inner);
-  width: 100%;
-  max-width: calc(var(--container-inner) + var(--container-gutter) * 2);
-  margin-inline: auto;
-  padding-inline: var(--container-gutter);
-  box-sizing: border-box;
-}
-.c-container--narrow {
-  --container-inner: var(--container-narrow-inner);
-}
-.c-container--full {
-  --container-inner: var(--container-full-inner);
-}
+    background: var(--wrapper-bg-default);
+    min-height: 50vh;
+  }
 
-.l-single {
-  display: flex;
-  flex-direction: column;
-  gap: var(--layout-gap, #{$layout-gap-default});
-  padding-block: var(--space-hero, #{$layout-pad-default});
-}
-.l-with-subnav {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) var(
-      --layout-subnav-width,
-      #{$subnav-width-default}
-    );
-  gap: var(--layout-gap, #{$layout-gap-default});
-  padding-block: var(--space-hero, #{$layout-pad-default});
-  align-items: start;
-}
-.l-with-subnav > main {
-  min-width: 0;
-}
-.l-with-subnav > .subnav--list {
-  &.subnav--sticky {
+  .site-wrapper--default { background: var(--wrapper-bg-default); }
+  .site-wrapper--platter { background: var(--wrapper-bg-platter); }
+  .site-wrapper--surface { background: var(--wrapper-bg-surface); }
+  .site-wrapper--dark {
+    background: var(--wrapper-bg-dark);
+    color: var(--wrapper-color-dark);
+  }
+
+  #content {
+    scroll-margin-top: var(--nav-offset, 0px);
+    flex: 1;
+  }
+
+  /*
+    Frame: a single, reusable page rail.
+    - Full width background lives on the wrapper.
+    - The frame defines gutters + a centered content column.
+  */
+  :where(.c-frame, .c-container) {
+    --frame-max: var(--container-normal-inner);
+    --frame-gutter: var(--container-gutter);
+
+    display: grid;
+    grid-template-columns:
+      [full-start] minmax(var(--frame-gutter), 1fr)
+      [content-start] minmax(0, var(--frame-max))
+      [content-end] minmax(var(--frame-gutter), 1fr)
+      [full-end];
+  }
+
+  :where(.c-frame, .c-container) > * {
+    grid-column: content;
+    min-width: 0;
+  }
+
+  .c-container--narrow { --frame-max: var(--container-narrow-inner); }
+  .c-container--full { --frame-max: var(--container-full-inner); }
+  .c-container--normal { --frame-max: var(--container-normal-inner); }
+
+  /* Region: consistent vertical padding for major sections */
+  .c-region {
+    padding-block: var(--region-space, var(--space-hero));
+  }
+
+  /* Stack: consistent vertical rhythm between direct children */
+  .c-stack {
+    --stack-space: var(--space-md);
+  }
+  .c-stack > * + * {
+    margin-block-start: var(--stack-space);
+  }
+
+  /* Grid: explicit, breakpoint-driven columns (no auto-fit magic) */
+  .c-grid {
+    --grid-gap: var(--space-lg);
+    --grid-cols: 1;
+    display: grid;
+    gap: var(--grid-gap);
+    grid-template-columns: repeat(var(--grid-cols), minmax(0, 1fr));
+  }
+  @include vp-min($vp-md) {
+    .c-grid[data-cols-sm="2"] { --grid-cols: 2; }
+  }
+  @include vp-min($vp-lg) {
+    .c-grid[data-cols-md="3"] { --grid-cols: 3; }
+    .c-grid[data-cols-md="2"] { --grid-cols: 2; }
+  }
+
+  /*
+    Sidebar layout: 1 column by default, switches at an explicit breakpoint.
+    This is the canonical “content + sidebar” pattern.
+  */
+  .c-sidebar {
+    --sidebar-width: var(--layout-subnav-width);
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--layout-gap);
+    padding-block: var(--space-hero);
+    align-items: start;
+  }
+
+  @include vp-min($vp-lg) {
+    .c-sidebar {
+      grid-template-columns: minmax(0, 1fr) minmax(0, var(--sidebar-width));
+    }
+  }
+
+  /* Legacy layout aliases (kept until templates are migrated) */
+  .l-single {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--layout-gap);
+    padding-block: var(--space-hero);
+  }
+
+  .l-with-subnav {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--layout-gap);
+    padding-block: var(--space-hero);
+    align-items: start;
+  }
+
+  @include vp-min($vp-lg) {
+    .l-with-subnav {
+      grid-template-columns: minmax(0, 1fr) minmax(0, var(--layout-subnav-width));
+    }
+  }
+
+  .l-with-subnav > main { min-width: 0; }
+  .l-with-subnav > .subnav--list { align-self: start; }
+
+  .l-with-subnav > .subnav--list.subnav--sticky {
     position: sticky;
     top: calc(var(--nav-offset, 0px) + 1rem);
   }
-  align-self: start;
 }
 
-@media (max-width: breakpoint("md")) {
-  .l-with-subnav {
-    grid-template-columns: 1fr;
+@layer utilities {
+  .visually-hidden,
+  .u-visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
   }
-  .l-with-subnav > .subnav--list {
-    position: static;
-    order: -1;
+
+  /* Spacing utilities (token-backed) */
+  $stack-sizes: (
+    sm: var(--space-sm),
+    md: var(--space-md),
+    lg: var(--space-lg),
+    xl: var(--space-xl),
+  );
+  @each $name, $size in $stack-sizes {
+    .u-stack-#{$name} > * + * {
+      margin-top: $size;
+    }
   }
-}
 
-.visually-hidden {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-}
-
-.c-select {
-  appearance: none;
-  appearance: base-select;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 100%;
-  font: inherit;
-  color: inherit;
-  background-color: var(--color-surface-base);
-  border: 1px solid rgb(var(--color-brand-primary-rgb) / 0.25);
-  border-radius: var(--radius-md);
-  padding: clamp(0.5625rem, 2.8vw, 0.6875rem) clamp(2rem, 6vw, 2.5rem)
-    clamp(0.5625rem, 2.8vw, 0.6875rem) clamp(0.875rem, 4vw, 1.5rem);
-  box-shadow: 0 0.25rem 0.75rem rgb(var(--color-surface-inverse-rgb) / 0.08);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='currentColor' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right clamp(0.75rem, 3vw, 1.125rem) center;
-  background-size: clamp(0.625rem, 2.5vw, 0.875rem);
-  transition: border-color 150ms ease, box-shadow 150ms ease;
-}
-.c-select:focus {
-  outline: none;
-  border-color: rgb(var(--color-brand-primary-rgb) / 0.6);
-  box-shadow: 0 0 0 0.1875rem rgb(var(--color-brand-primary-rgb) / 0.2);
-}
-
-/* Spacing utilities */
-$stack-sizes: (
-  sm: var(--space-sm),
-  md: var(--space-md),
-  lg: var(--space-lg),
-  xl: var(--space-xl),
-);
-@each $name, $size in $stack-sizes {
-  .u-stack-#{$name} > * + * {
-    margin-top: $size;
+  $pad-block-sizes: (
+    sm: var(--space-sm),
+    md: var(--space-md),
+    lg: var(--space-lg),
+    xl: var(--space-xl),
+    section: var(--space-section),
+  );
+  @each $name, $size in $pad-block-sizes {
+    .u-pad-block-#{$name} {
+      padding-block: $size;
+    }
   }
+
+  .u-pad-top-lg { padding-top: var(--space-lg); }
+  .u-pad-bottom-lg { padding-bottom: var(--space-lg); }
 }
 
-$pad-block-sizes: (
-  sm: var(--space-sm),
-  md: var(--space-md),
-  lg: var(--space-lg),
-  xl: var(--space-xl),
-  section: var(--space-section),
-);
-@each $name, $size in $pad-block-sizes {
-  .u-pad-block-#{$name} {
-    padding-block: $size;
+@layer blocks {
+  /* Generic select UI (used by subnav select, filters, etc.) */
+  .c-select {
+    appearance: none;
+    appearance: base-select;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    font: inherit;
+    color: inherit;
+    background-color: var(--color-surface-base);
+    border: 1px solid rgb(var(--color-brand-primary-rgb) / 0.25);
+    border-radius: var(--radius-md);
+    padding: clamp(0.5625rem, 2.8vw, 0.6875rem) clamp(2rem, 6vw, 2.5rem)
+      clamp(0.5625rem, 2.8vw, 0.6875rem) clamp(0.875rem, 4vw, 1.5rem);
+    box-shadow: 0 4px 12px rgb(var(--color-surface-inverse-rgb) / 0.08);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='currentColor' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right clamp(0.75rem, 3vw, 1.125rem) center;
+    background-size: clamp(0.625rem, 2.5vw, 0.875rem);
+    transition: border-color 150ms ease, box-shadow 150ms ease;
   }
-}
 
-.u-pad-top-lg {
-  padding-top: var(--space-lg);
-}
-.u-pad-bottom-lg {
-  padding-bottom: var(--space-lg);
+  .c-select:focus {
+    outline: none;
+    border-color: rgb(var(--color-brand-primary-rgb) / 0.6);
+    box-shadow: 0 0 0 3px rgb(var(--color-brand-primary-rgb) / 0.2);
+  }
 }

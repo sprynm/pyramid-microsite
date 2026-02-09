@@ -1,7 +1,7 @@
 @use "theme" as *;
 
 // 320px -> 820px
-$banner-min-height: clamp(calc(32 * 0.625rem), 70svh, calc(82 * 0.625rem));
+$banner-min-height: clamp(20rem, 70svh, 51.25rem);
 // 16px
 $banner-edge-min: 1rem;
 // 1200px
@@ -11,23 +11,24 @@ $banner-pad-top: clamp(1rem, 4vw, 2.25rem);
 // 10px
 $banner-text-gap: 0.625rem;
 // 21.875px -> 37.5px
-$banner-title-size: clamp(calc(3.5 * 0.625rem), 5vw, calc(6 * 0.625rem));
+$banner-title-size: clamp(2.1875rem, 5vw, 3.75rem);
 // 8.75px
 $banner-text-gap-sm: 0.546875rem;
 // 8px / 11px
 $banner-btn-pad-y-sm: 0.5rem;
 $banner-btn-pad-x-sm: 0.6875rem;
-/* === Banner base === */
-.banner {
+/* === Hero banner === */
+@layer blocks {
+.hero-banner {
   position: relative;
   min-height: $banner-min-height; /* tall enough on phones, capped on desktop */
   color: var(--color-ink-on-dark);
   isolation: isolate; /* keep overlay layers scoped */
 }
 
-/* Make the <picture>/<img> fully cover the banner area */
-.banner picture,
-.banner picture > img {
+/* Media fills the banner area */
+.hero-banner__media,
+.hero-banner__media > img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -37,7 +38,7 @@ $banner-btn-pad-x-sm: 0.6875rem;
 }
 
 /* Contrast gradient (image remains visible, text stays readable) */
-.banner::after {
+.hero-banner::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -50,7 +51,7 @@ $banner-btn-pad-x-sm: 0.6875rem;
 }
 
 /* === Overlay layout === */
-.banner .overlay {
+.hero-banner__overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -66,10 +67,10 @@ $banner-btn-pad-x-sm: 0.6875rem;
 }
 
 /* Lower-third option:
-.banner .overlay { align-items: end; padding-block-end: clamp(24px, 8vh, 96px); }
+.hero-banner__overlay { align-items: end; padding-block-end: clamp(24px, 8vh, 96px); }
 */
 
-.banner .text-block {
+.hero-banner__content {
   grid-column: content; /* keep text on the centered rail */
   display: flex;
   flex-direction: column;
@@ -78,10 +79,10 @@ $banner-btn-pad-x-sm: 0.6875rem;
 }
 
 /* Title */
-.banner .header-tagline {
+.hero-banner__title {
   display: block;
   font-weight: 700;
-  // font-family: var(--font-serif);
+  font-family: var(--font-sans);
   line-height: 1.08;
   font-size: $banner-title-size;
   text-wrap: balance; /* nicer multi-line breaks on supporting browsers */
@@ -91,25 +92,14 @@ $banner-btn-pad-x-sm: 0.6875rem;
   color: var(--color-ink-on-dark) !important;
 }
 
-/* Button */
-.banner .btn {
-  align-self: flex-start;
-  // display: inline-block;
-  // padding: 0.53125rem 0.75rem;
-  // border-radius: 0;
-  background: var(--color-brand-accent);
-  color: var(--color-ink-contrast);
-  // text-decoration: none;
-  // font-weight: 400;
-  // box-shadow: 0 6px 18px rgba(0,0,0,.25);
-}
-
 /* Small-screen refinements */
 @media (max-width: breakpoint("sm")) {
-  .banner .text-block {
+  .hero-banner__content {
     gap: $banner-text-gap-sm;
   }
-  .banner .btn {
+  .btn-primary {
     padding: $banner-btn-pad-y-sm $banner-btn-pad-x-sm;
   }
+}
+
 }

@@ -7,11 +7,11 @@ $gallery-gap: 1.5rem;
 // 32px -> 56px
 $gallery-margin-block: clamp(2rem, 3.30188679245283vw, 3.5rem);
 // 1px
-$gallery-outline-width: 0.0625rem;
+$gallery-outline-width: 1px;
 // -4px
-$gallery-outline-offset: -0.25rem;
+$gallery-outline-offset: -4px;
 // 2px
-$gallery-outline-offset-hover: 0.125rem;
+$gallery-outline-offset-hover: 2px;
 
 .gallery {
   display: grid;

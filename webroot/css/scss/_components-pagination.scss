@@ -10,10 +10,10 @@ $pagination-margin-bottom: 1.5rem;
 // 15px
 $pagination-link-pad-x: 0.9375rem;
 .pagination-top-text {
-  font-size: var(--font-compact);
+  font-size: var(--step--1);
   margin: 0 $pagination-top-margin-x;
   font-style: italic;
-  color: var(--color-ink-subtle);
+  color: var(--color-ink-muted);
 }
 
 .pagination {
@@ -41,7 +41,7 @@ $pagination-link-pad-x: 0.9375rem;
       border-radius: var(--radius-max);
     }
 
-    a:link,
+    a,
     a:visited {
       padding: 0;
       width: 1.75em;
@@ -49,11 +49,11 @@ $pagination-link-pad-x: 0.9375rem;
     }
   }
 
-  a:link,
+  a,
   a:visited {
-    background: var(--color-border-soft);
+    background: var(--color-surface-muted);
     text-decoration: none;
-    color: var(--color-ink-deep);
+    color: var(--color-ink-strong);
     display: inline-block;
     text-align: center;
     width: 100%;
@@ -65,7 +65,7 @@ $pagination-link-pad-x: 0.9375rem;
   a:hover,
   a:focus {
     color: var(--color-ink-on-dark);
-    background: var(--color-ink-deep);
+    background: var(--color-brand-primary);
   }
 
   a:empty {

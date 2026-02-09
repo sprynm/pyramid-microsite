@@ -8,7 +8,7 @@ $secondary-gap: clamp(1rem, 3.5vw, 2.25rem);
 // 8px -> 12px
 $secondary-title-margin-bottom: clamp(0.5rem, 2vw, 0.75rem);
 // 22px -> 36px
-$secondary-title-size: clamp(calc(2.2 * 0.625rem), 3.2vw, calc(3.6 * 0.625rem));
+$secondary-title-size: clamp(1.375rem, 3.2vw, 2.25rem);
 // 12px -> 20px
 $secondary-list-margin-bottom: clamp(0.75rem, 3vw, 1.25rem);
 // 7.5px
@@ -20,10 +20,9 @@ $secondary-cta-pad-x: 0.5625rem;
 $secondary-row-gap: clamp(1rem, 5vw, 1.5rem);
 /* ==== Section (full-width platter) ==== */
 .secondary-content {
-
   --frame: var(--color-ink-on-dark);
   --text: var(--color-ink-on-dark);
-  --text-muted: var(--color-ink-overlay);
+  --text-muted: rgb(var(--color-surface-base-rgb) / 0.78);
 
   padding-block: $secondary-pad-block;
   margin-bottom: $secondary-margin-bottom;
@@ -50,7 +49,7 @@ $secondary-row-gap: clamp(1rem, 5vw, 1.5rem);
   position: absolute;
   inset: 0;
   background: rgb(var(--color-surface-base-rgb) / 0.001); /* trigger backdrop pipeline */
-  backdrop-filter: contrast(3.75) brightness(9) ;
+  backdrop-filter: contrast(3.75) brightness(9);
   pointer-events: none;
   z-index: 0;
 }
@@ -74,7 +73,6 @@ $secondary-row-gap: clamp(1rem, 5vw, 1.5rem);
 }
 .secondary-content__copy h2 {
   margin: 0 0 $secondary-title-margin-bottom;
-  // font-family: var(--font-serif);
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: 0.02em;
@@ -159,3 +157,4 @@ $secondary-row-gap: clamp(1rem, 5vw, 1.5rem);
     justify-content: center; /* vertically center text */
   }
 }
+

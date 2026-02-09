@@ -4,6 +4,7 @@ This project mixes PHP templates, SCSS, and client-side assets. To keep syntax i
 
 ## PHP / CTP templates
 - Run `php -l` on any modified PHP or `.ctp` files (e.g. `php -l View/Layouts/default.ctp`). This catches stray `?>`/`<?php` transitions or other parse errors introduced while editing mixed PHP/HTML.
+- If PHP is unavailable locally, run the heuristic checker: `node tools/check-ctp-balance.cjs`. It flags unbalanced alt-syntax blocks (`if/endif`, `foreach/endforeach`, etc.) and mismatched PHP tag counts.
 - Keep template logic inside a single PHP block whenever possible to avoid accidental tag juggling.
 
 ## SCSS / CSS

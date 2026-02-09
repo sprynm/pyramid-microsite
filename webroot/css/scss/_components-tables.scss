@@ -5,7 +5,7 @@ $table-margin-bottom: 3rem;
 // 4px
 $table-corner-radius: var(--radius-sm);
 // 1px
-$table-border-width: 0.0625rem;
+$table-border-width: 1px;
 // 8px
 $table-cell-padding-y: 0.5rem;
 // 12px
@@ -56,7 +56,7 @@ th {
   background: var(--color-brand-primary);
   color: var(--color-ink-on-dark);
   padding: $table-cell-padding-y $table-cell-padding-x;
-  font-size: var(--font-label);
+  font-size: var(--step--1);
   text-align: left;
 }
 
@@ -93,7 +93,7 @@ tr {
 td {
   border-bottom: $table-border-width solid var(--color-border-muted);
   padding: $table-cell-padding-y $table-cell-padding-x;
-  font-size: var(--font-label);
+  font-size: var(--step--1);
 }
 
 tr:last-child {

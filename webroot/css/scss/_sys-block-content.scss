@@ -1,0 +1,114 @@
+@layer blocks {
+  blockquote {
+    margin-block: var(--space-lg);
+    padding: var(--space-md);
+    border-inline-start: 4px solid var(--color-brand-primary);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--color-brand-primary) 9%, transparent);
+  }
+
+  hr {
+    border: 0;
+    block-size: 1px;
+    background: rgb(var(--color-brand-primary-rgb) / 0.35);
+    margin-block: var(--space-xl);
+  }
+
+  details {
+    border: 1px solid var(--color-border-muted);
+    border-radius: var(--radius-sm);
+    margin-block-end: var(--space-xs);
+    background: var(--color-surface-base);
+  }
+
+  details > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: var(--space-sm);
+    font-weight: 600;
+    background: var(--color-surface-soft);
+  }
+
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details > :not(summary) {
+    padding: var(--space-sm);
+  }
+
+  .contact-content {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: 1fr;
+  }
+
+  @container main (min-width: 720px) {
+    .contact-content {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+
+  .pagination ul {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-lg) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .pagination a,
+  .pagination span {
+    display: inline-flex;
+    min-width: 2.2rem;
+    min-height: 2.2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border-muted);
+    padding-inline: 0.5rem;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    gap: var(--space-sm);
+  }
+
+  .subnav--list {
+    position: relative;
+  }
+
+  .subnav--list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .subnav--list a {
+    display: block;
+    padding: 0.6rem 0.75rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-soft);
+    color: var(--color-ink-primary);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .subnav--list a:hover,
+  .subnav--list a:focus-visible,
+  .subnav--list .current > a,
+  .subnav--list a[aria-current="page"] {
+    background: rgb(var(--color-brand-primary-rgb) / 0.12);
+    color: var(--color-brand-primary);
+  }
+
+  .subnav--sticky {
+    position: sticky;
+    top: calc(var(--nav-offset) + 1rem);
+  }
+}

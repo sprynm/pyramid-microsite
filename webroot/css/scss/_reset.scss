@@ -1,5 +1,7 @@
 /* Modern minimal reset (safe-by-default) */
 
+@layer reset {
+
 /* 1) Box sizing + margin reset */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
@@ -64,4 +66,6 @@ table { border-collapse: collapse; border-spacing: 0; }
   [tabindex="-1"]:focus-visible*
 ):focus-visible {
   outline: none !important;
+}
+
 }

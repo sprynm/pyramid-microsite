@@ -1,0 +1,116 @@
+@use "sys-queries" as *;
+
+@layer blocks {
+  .page-hero {
+    position: relative;
+    overflow: clip;
+    background: var(--color-surface-hero);
+    color: var(--color-ink-on-dark);
+    padding-top: calc(var(--hero-vspace) + var(--nav-offset));
+    padding-bottom: var(--hero-vspace);
+  }
+
+  .page-hero--home {
+    padding-top: calc(var(--hero-vspace) * 1.35 + var(--nav-offset));
+    padding-bottom: calc(var(--hero-vspace) * 1.2);
+  }
+
+  .page-hero__media,
+  .page-hero__overlay {
+    position: absolute;
+    inset: 0;
+  }
+
+  .page-hero__media img,
+  .page-hero__media picture {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .page-hero__overlay {
+    background: linear-gradient(
+      180deg,
+      rgb(var(--color-ink-absolute-rgb) / 0.22) 0%,
+      rgb(var(--color-ink-absolute-rgb) / 0.58) 100%
+    );
+  }
+
+  .page-hero__inner {
+    position: relative;
+    z-index: 1;
+    width: min(var(--hero-max), calc(100% - (var(--hero-inline) * 2)));
+    margin-inline: auto;
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: 1fr;
+    container-type: inline-size;
+    container-name: hero;
+  }
+
+  .page-hero--split .page-hero__inner {
+    grid-template-columns: 1fr;
+  }
+
+  @include cq-name-min(hero, $cq-c3) {
+    .page-hero--split .page-hero__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(9rem, 18rem);
+    }
+  }
+
+  .page-hero__title {
+    margin: 0;
+    color: var(--color-ink-on-dark);
+    font-size: var(--step-5);
+    letter-spacing: 0.01em;
+  }
+
+  .page-hero--home .page-hero__title {
+    font-size: clamp(2.8rem, 2.1rem + 3vw, 5.5rem);
+  }
+
+  .page-hero__eyebrow,
+  .page-hero__meta {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: var(--step--1);
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .page-hero__summary {
+    max-width: 62ch;
+    color: rgb(255 255 255 / 0.92);
+  }
+
+  .page-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .page-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.8rem;
+    padding-inline: 1.15rem;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    background: var(--color-brand-accent);
+    color: #1b1b1b;
+    text-decoration: none;
+  }
+
+  .page-hero__cta:hover,
+  .page-hero__cta:focus-visible {
+    background: var(--color-brand-accent-hover);
+  }
+
+  .page-hero__portrait {
+    inline-size: min(18rem, 100%);
+    border-radius: var(--radius-max);
+    overflow: hidden;
+    border: 6px solid rgb(255 255 255 / 0.75);
+  }
+}

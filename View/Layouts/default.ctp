@@ -18,10 +18,10 @@ if (isset($curTop['NavigationMenuItem']['id'])) {
 	}
 }
 
-$layoutClass = $hasSubNav ? 'l-with-subnav' : 'l-single';
+$layoutClass = $hasSubNav ? 'c-sidebar' : 'c-stack';
 ?>
 <div id="content" class="site-wrapper site-wrapper--default">
-	<div class="c-container c-container--normal">
+	<div class="c-frame c-container--normal cq-main c-region">
 		<div class="<?php echo $layoutClass; ?>">
 			<main class="default layout-default">
 				<?php

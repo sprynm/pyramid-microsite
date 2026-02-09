@@ -1,5 +1,6 @@
 @use "theme" as *;
 @use "base-utils" as *;
+@layer exceptions {
 .body-content {
   padding-bottom: clamp(2rem, 3.30189vw, 3.5rem);
 
@@ -18,4 +19,6 @@
 .home__title {
   margin: 0 0 clamp(1rem, 3vw, 2.5rem);
   color: var(--color-brand-primary);
+}
+
 }

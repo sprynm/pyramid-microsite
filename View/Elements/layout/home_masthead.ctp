@@ -39,13 +39,19 @@ $renderFallbackPicture = function ($src, $alt, $priorityHigh = false) {
 	return ob_get_clean();
 };
 
-$hasAnyHero = $hasBannerImage || $fallbackSrc !== '';
+$hasAnyHero = true;
+$heroHeading = $pageName !== '' ? $pageName : $siteName;
+$pageHeroClasses = array('page-hero', 'page-hero--single');
+if ($hasBannerImage || $fallbackSrc !== '') {
+	$pageHeroClasses[] = 'page-hero--has-media';
+}
 ?>
 
 <?php if ($hasAnyHero): ?>
-	<div class="banner">
-		<?php if ($hasBannerImage): ?>
-			<picture>
+	<section class="<?php echo h(implode(' ', $pageHeroClasses)); ?>">
+		<?php if ($hasBannerImage || $fallbackSrc !== ''): ?>
+			<div class="page-hero__media">
+				<picture>
 				<source srcset="<?php echo h($this->Media->getImage($bannerImage, array('version' => 'banner-xlrg'))); ?>"
 					media="(min-width: 1440px)">
 				<source
@@ -58,30 +64,43 @@ $hasAnyHero = $hasBannerImage || $fallbackSrc !== '';
 				<source srcset="<?php echo h($this->Media->getImage($bannerImage, array('version' => 'banner-xsm'))); ?>">
 				<img src="<?php echo h($this->Media->getImage($bannerImage, array('version' => 'banner-med'))); ?>" width="1920"
 					height="970" alt="<?php echo h($heroAlt); ?>" fetchpriority="high" decoding="async">
-			</picture>
-		<?php else: ?>
-			<?php echo $renderFallbackPicture($fallbackSrc, $heroAlt, true); ?>
+				</picture>
+			</div>
+		<?php endif; ?>
+		<?php if (!$hasBannerImage && $fallbackSrc !== ''): ?>
+			<div class="page-hero__media">
+				<?php echo $renderFallbackPicture($fallbackSrc, $heroAlt, true); ?>
+			</div>
 		<?php endif; ?>
 
-		<div class="overlay">
-			<div class="text-block">
+		<div class="page-hero__overlay"></div>
+
+		<div class="page-hero__inner">
+			<div class="page-hero__content">
 				<?php
-				// Trusted HTML allowed here (per your instruction)
 				if (!empty($pageData['Page']['banner_header'])) {
-					echo $this->Html->tag('span', $pageData['Page']['banner_header'], array(
-						'class' => 'header-tagline',
+					echo $this->Html->tag('p', $pageData['Page']['banner_header'], array(
+						'class' => 'page-hero__eyebrow',
 						'escape' => false,
 					));
 				}
+				?>
 
+				<h1 class="page-hero__title"><?php echo h($heroHeading); ?></h1>
+
+				<?php if (!empty($pageData['Page']['banner_summary'])): ?>
+					<p class="page-hero__summary"><?php echo h($pageData['Page']['banner_summary']); ?></p>
+				<?php endif; ?>
+
+				<?php
 				if (!empty($pageData['Page']['banner_cta']) && !empty($pageData['Page']['banner_cta_link'])) {
 					echo $this->Html->link($pageData['Page']['banner_cta'], $pageData['Page']['banner_cta_link'], array(
-						'class' => 'btn',
+						'class' => 'page-hero__cta',
 						'escape' => false,
 					));
 				}
 				?>
 			</div>
 		</div>
-	</div>
+	</section>
 <?php endif; ?>

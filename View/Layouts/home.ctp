@@ -17,14 +17,10 @@ echo $this->element('layout/home_masthead', array(
 
 
 <div id="content" class="site-wrapper site-wrapper--default home">
-	<div class="c-container c-container--normal">
-		<section class="l-single">
+	<div class="c-frame c-container--normal cq-main c-region">
+		<section class="c-stack">
 			<main>
 
-			    <?php if ($pageHeading !== ''): ?>
-					<h1><?php echo h($pageHeading); ?></h1>
-				<?php endif; ?>
-				
 				<?php
 
 				if ($pageIntro !== '') {

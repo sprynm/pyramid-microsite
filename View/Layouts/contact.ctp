@@ -8,8 +8,8 @@ echo $this->element('layout/body_masthead', array(
 ));
 ?>
 <div id="content" class="site-wrapper site-wrapper--default">
-	<div class="c-container c-container--normal">
-		<div class="l-single">
+	<div class="c-frame c-container--normal cq-main c-region">
+		<div class="c-stack">
 			<main class="contact layout-main">
 				<?php
 				if (!empty($pageIntro)) {

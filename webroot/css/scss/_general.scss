@@ -3,6 +3,7 @@
 @use "base-utils" as *;
 
 
+@layer base {
 
 /* -- GENERAL STYLES START -- */
 html {
@@ -29,8 +30,8 @@ a#skiplink {
   position: absolute;
   top: auto;
   left: -99999px;
-  height: calc(0.1 * 0.625rem);
-  width: calc(0.1 * 0.625rem);
+  height: 1px;
+  width: 1px;
   overflow: hidden;
 
   &:focus,
@@ -58,8 +59,7 @@ a#skiplink {
   color: var(--color-ink-on-dark);
 }
 
-a,
-a:link {
+a {
   color: var(--color-brand-primary-bright);
   transition: all 250ms ease-out;
 }
@@ -73,7 +73,7 @@ a:focus {
   color: var(--color-brand-primary-hover);
 }
 
-.btn:link,
+.btn,
 .btn:visited {
   @include btn;
 }
@@ -84,12 +84,11 @@ a:focus {
 }
 
 blockquote {
-  background: #{$brandPrimary}11;
-  font-style: italic;
-  padding: 2.5rem 1.5rem 2rem;
+  margin-block: var(--space-xl);
+  padding: var(--space-md) var(--space-lg);
+  border-left: 4px solid var(--color-brand-primary);
   border-radius: var(--radius-sm);
-  position: relative;
-  margin-block: 3.5rem;
+  background: color-mix(in srgb, var(--color-brand-primary) 8%, transparent);
 
   p:last-of-type {
     margin-bottom: 0;
@@ -97,39 +96,10 @@ blockquote {
 
   cite {
     display: block;
-    font-size: var(--font-label);
+    font-size: var(--step--1);
     font-style: normal;
-    color: var(--color-brand-primary);
-    padding-top: 0.75rem;
-  }
-
-  &:before {
-    content: open-quote;
-    font-family: "Georgia", "Times New Roman", serif;
-    font-style: normal;
-    font-size: calc(9.6 * 0.625rem);
-    line-height: 1;
-    color: var(--color-ink-on-dark);
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -25%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  &:after {
-    content: close-quote;
-    width: 3.5rem;
-    aspect-ratio: 1;
-    background: var(--color-brand-primary);
-    border-radius: var(--radius-max);
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: transparent;
-    outline: calc(0.4 * 0.625rem) solid var(--color-ink-on-dark);
+    color: var(--color-ink-muted);
+    margin-top: var(--space-sm);
   }
 }
 
@@ -139,9 +109,9 @@ hr {
   clear: both;
   color: var(--color-brand-primary);
   display: block;
-  margin-block: clamp(calc(3.2 * 0.625rem), 2.93040293040293vw, calc(4.8 * 0.625rem));
+  margin-block: clamp(2rem, 2.93040293040293vw, 3rem);
   margin-inline: auto;
-  height: 0.0625rem;
+  height: 1px;
   width: 65%;
 }
 
@@ -149,8 +119,8 @@ img[style*="float: right"],
 img[align="right"] {
   display: block;
   float: right;
-  margin: 0 0 clamp(calc(1.6 * 0.625rem), 1.8867924528301887vw, calc(3.2 * 0.625rem))
-    clamp(calc(1.6 * 0.625rem), 1.8867924528301887vw, calc(3.2 * 0.625rem)); /* 32/1696 */
+  margin: 0 0 clamp(1rem, 1.8867924528301887vw, 2rem)
+    clamp(1rem, 1.8867924528301887vw, 2rem); /* 32/1696 */
   max-width: 45%;
 }
 
@@ -158,8 +128,8 @@ img[style*="float: left"],
 img[align="left"] {
   display: block;
   float: left;
-  margin: 0 clamp(calc(1.6 * 0.625rem), 1.8867924528301887vw, calc(3.2 * 0.625rem))
-    clamp(calc(1.6 * 0.625rem), 1.8867924528301887vw, calc(3.2 * 0.625rem)) 0;
+  margin: 0 clamp(1rem, 1.8867924528301887vw, 2rem)
+    clamp(1rem, 1.8867924528301887vw, 2rem) 0;
   max-width: 45%;
 }
 
@@ -334,4 +304,6 @@ main {
     text-decoration: none;
     cursor: default;
   }
+}
+
 }

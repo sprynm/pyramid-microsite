@@ -8,9 +8,9 @@ $nav-sub-arrow-right: clamp(0.5rem, 2.5vw, 1rem);
 // 16px -> 20px
 $nav-sub-arrow-size: clamp(1rem, 3.5vw, 1.25rem);
 // 26.25rem (420px)
-$nav-dropdown-max-width: calc(42 * 0.625rem);
+$nav-dropdown-max-width: min(420px, 90vw);
 // -2px
-$nav-dropdown-right: calc(-0.2 * 0.625rem);
+$nav-dropdown-right: -0.125rem;
 // 10px
 $nav-dropdown-arrow-base: 0.625rem;
 // 10px / 12px
@@ -19,12 +19,12 @@ $nav-dropdown-pad-x: 0.75rem;
 $nav-dropdown-pad-bottom: 0.75rem;
 // 15px / 45px
 $hdr-notice-pad-y: 0.9375rem;
-$hdr-notice-pad-x: calc(4.5 * 0.625rem);
+$hdr-notice-pad-x: 2.8125rem;
 // 24px
-$hdr-close-size: calc(2.4 * 0.625rem);
+$hdr-close-size: 1.5rem;
 // -3px / 2px
-$hdr-close-margin-top: calc(-0.3 * 0.625rem);
-$hdr-close-margin-right: calc(0.2 * 0.625rem);
+$hdr-close-margin-top: -0.1875rem;
+$hdr-close-margin-right: 0.125rem;
 // 24px
 $primary-hdr-pad: 1.5rem;
 // 5px
@@ -37,6 +37,7 @@ $layout-rail-pad-inline: clamp(1.5rem, 6.5vw, 2.75rem);
 // 24px
 $hdr-container-gap: 1.5rem;
 // -- MAIN NAV START --
+@layer blocks {
 header {
   nav {
     display: inline-block;
@@ -44,14 +45,14 @@ header {
     position: relative;
     z-index: 100;
 
-    a:link,
+    a,
     a:visited {
       // font-family: var(--font-serif);
       position: relative;
       text-align: center;
       height: 100%;
     }
-    a:link,
+    a,
     a:visited,
     a:hover,
     a:focus,
@@ -130,7 +131,7 @@ header {
           );
         }
 
-        a:link,
+        a,
         a:visited {
           font-family: var(--font-sans);
           background: rgb(var(--color-surface-base-rgb) / 0.9);
@@ -144,12 +145,12 @@ header {
         li {
           display: block;
 
-          &:first-child a:link,
+          &:first-child a,
           &:first-child a:visited {
             border-radius: var(--radius-sm) var(--radius-sm) 0 0;
           }
 
-          &:last-child a:link,
+          &:last-child a,
           &:last-child a:visited {
             border-radius: 0 0 var(--radius-sm) var(--radius-sm);
           }
@@ -174,7 +175,7 @@ header {
 
   .hdr-notice-content {
     @include wrapperNarrow;
-    font-size: var(--font-label);
+    font-size: var(--step--1);
     position: relative;
     text-align: center;
   }
@@ -200,7 +201,7 @@ header {
     }
   }
 
-  .notice-btn:link,
+  .notice-btn,
   .notice-btn:visited {
     color: var(--color-ink-on-dark);
     font-weight: bold;
@@ -224,7 +225,7 @@ header {
     transition: padding-block 500ms ease-in-out;
     z-index: 100;
 
-    a:link,
+    a,
     a:visited,
     a:hover,
     a:focus,
@@ -257,7 +258,7 @@ header {
       &::after {
         opacity: 1;
       }
-      & a:link,
+      & a,
       & a:visited,
       & a:hover,
       & a:focus,
@@ -274,7 +275,7 @@ body:has(.page-hero) {
     background: transparent;
   }
 
-  header.primary-hdr a:link,
+  header.primary-hdr a,
   header.primary-hdr a:visited,
   header.primary-hdr a:hover,
   header.primary-hdr a:focus,
@@ -310,4 +311,5 @@ body:has(.page-hero) {
     width: var(--logo-width);
   }
 }
-:root{ --drift: 6px; --dur: 2.4s; --tilt: 5deg; }
+
+}

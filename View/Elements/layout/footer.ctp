@@ -1,19 +1,41 @@
 		<footer>
 			<div class="ftr-container">
 				<div class="ftr-top">
-					<nav>
-						<?php echo $this->Navigation->show(1, false); ?>
-					</nav>
-					<?php	echo $this->element('social-media'); ?>
-				</div>
-				<div class="ftr-contact">
-					<?php echo $siteContact['address']; ?> <span class="divider"></span> <?php echo $siteContact['city']; ?>, <?php echo $siteContact['province_state']; ?> <?php echo $siteContact['postal_zip']; ?> <span class="divider"></span>
 					<?php
-						$phone = $siteContact['phone'];
-						$phoneHTML = '<a href="tel:' . $phone . '">' . $phone . '</a>';
+						$footerNav = trim((string) $this->Navigation->show(1, false));
+						$footerSocial = trim((string) $this->element('social-media'));
 					?>
-					Tel: <?php echo $phoneHTML; ?>
+					<?php if ($footerNav !== '' && $footerNav !== '<ul></ul>'): ?>
+						<nav>
+							<?php echo $footerNav; ?>
+						</nav>
+					<?php endif; ?>
+					<?php if ($footerSocial !== ''): ?>
+						<?php echo $footerSocial; ?>
+					<?php endif; ?>
 				</div>
+				<?php
+					$contactBits = array();
+					if (!empty($siteContact['address'])) {
+						$contactBits[] = $siteContact['address'];
+					}
+					$city = isset($siteContact['city']) ? $siteContact['city'] : '';
+					$province = isset($siteContact['province_state']) ? $siteContact['province_state'] : '';
+					$postal = isset($siteContact['postal_zip']) ? $siteContact['postal_zip'] : '';
+					$cityLine = trim($city . ', ' . $province . ' ' . $postal);
+					if ($cityLine !== ',') {
+						$contactBits[] = $cityLine;
+					}
+					if (!empty($siteContact['phone'])) {
+						$phone = $siteContact['phone'];
+						$contactBits[] = 'Tel: <a href="tel:' . $phone . '">' . $phone . '</a>';
+					}
+				?>
+				<?php if (!empty($contactBits)): ?>
+					<div class="ftr-contact">
+						<?php echo implode(' <span class="divider"></span> ', $contactBits); ?>
+					</div>
+				<?php endif; ?>
 
 				<div class="copyright">
 					<?php
@@ -33,7 +55,7 @@
 		// add 'youtube' if you will be embedding youtube videos (http://labnol.org/?p=27941)
 		// add 'jquery.fancybox' and 'fancybox-init' if using fancybox, add _jquery.fancybox into stylesheet.scss
 		// add 'jquery.cookie' if easy jQuery cookie use is needed
-		$scriptArray = array('jquery.passive-listeners', 'jquery.sidr.min', 'custom', 'forms', 'observers');
+		$scriptArray = array('jquery.passive-listeners', 'custom', 'navigation-modern', 'forms', 'observers');
 		
 		echo $this->fetch('pluginScriptBottom');
 		// Un-remark this if the site needs the VrebListings plugin.

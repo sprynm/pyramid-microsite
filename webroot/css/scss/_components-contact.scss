@@ -2,6 +2,7 @@
 
 // 32px
 $contact-heading-size: 2rem;
+@layer blocks {
 .contact-text {
   main & {
     h2 {
@@ -12,4 +13,6 @@ $contact-heading-size: 2rem;
       } 
     }
   }
+}
+
 }

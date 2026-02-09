@@ -1,0 +1,44 @@
+@use "sys-queries" as *;
+
+@layer blocks {
+  .site-header,
+  .primary-hdr {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 80;
+    background: rgb(255 255 255 / 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgb(0 0 0 / 0.06);
+  }
+
+  .hdr-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    min-height: 6rem;
+    max-width: var(--frame-max);
+    margin-inline: auto;
+    padding-inline: var(--frame-gutter);
+  }
+
+  .primary-hdr .hdr-container {
+    width: 100%;
+  }
+
+  .logo {
+    margin-inline-end: auto;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .logo img {
+    width: clamp(10rem, 13vw, 16rem);
+    height: auto;
+  }
+
+  .hdr-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+}

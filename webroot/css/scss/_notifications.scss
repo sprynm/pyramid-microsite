@@ -1,5 +1,15 @@
 @use "theme" as *;
 
+:root {
+	/* Optional component: define its supporting tokens only when imported. */
+	--color-state-warning: #ffcc00;
+	--color-state-notice-error-bg: #ffeded;
+	--color-state-notice-attention-bg: #feefb3;
+	--color-state-notice-info-bg: #bde5f8;
+	--color-state-notice-success-bg: #dff2bf;
+	--color-ink-notice: #404040;
+}
+
 .notification {
 	border-radius: var(--radius-sm);
 	font-size: var(--step-0);
@@ -17,7 +27,7 @@
 .error-message {
 	position: relative;
 	margin: 0 0 1.875rem 0;
-	border: 0.125rem solid;
+	border: 2px solid;
 	background-position: 0.75rem 0.75rem !important;
 	background-repeat: no-repeat !important;
 }
@@ -25,7 +35,7 @@
 .notification.attention {
 	background-color: var(--color-state-notice-attention-bg);
 	background-image: url("/img/icons/exclamation.svg");
-	background-size: calc(2.1 * 0.625rem);
+	background-size: 1.3125rem;
 	border-color: color-mix(in srgb, var(--color-state-notice-attention-bg) 60%, var(--color-ink-absolute) 40%);
 	color: color-mix(in srgb, var(--color-state-notice-attention-bg) 25%, var(--color-ink-absolute) 75%);
 }
@@ -33,7 +43,7 @@
 .notification.information {
 	background-color: var(--color-state-notice-info-bg);
 	background-image: url("/img/icons/information.svg");
-	background-size: calc(2.1 * 0.625rem);
+	background-size: 1.3125rem;
 	border-color: color-mix(in srgb, var(--color-state-notice-info-bg) 60%, var(--color-ink-absolute) 40%);
 	color: color-mix(in srgb, var(--color-state-notice-info-bg) 25%, var(--color-ink-absolute) 75%);
 }
@@ -41,7 +51,7 @@
 .notification.success {
 	background-color: var(--color-state-notice-success-bg);
 	background-image: url("/img/icons/circle-check.svg");
-	background-size: calc(2.1 * 0.625rem);
+	background-size: 1.3125rem;
 	border-color: color-mix(in srgb, var(--color-state-notice-success-bg) 60%, var(--color-ink-absolute) 40%);
 	color: color-mix(in srgb, var(--color-state-notice-success-bg) 25%, var(--color-ink-absolute) 75%);
 }
@@ -50,7 +60,7 @@
 .error-message {
 	background-color: var(--color-state-notice-error-bg);
 	background-image: url("/img/icons/exclamation_circle.svg");
-	background-size: calc(2.1 * 0.625rem);
+	background-size: 1.3125rem;
 	border-color: var(--color-state-critical);
 	color: color-mix(in srgb, var(--color-state-notice-error-bg) 25%, var(--color-ink-absolute) 75%);
 }
@@ -123,7 +133,7 @@
 p.error,
 .error-message {
         background: var(--color-state-warning);
-        border: 0.0625rem solid rgb(var(--color-ink-absolute-rgb) / 0.2);
+        border: 1px solid rgb(var(--color-ink-absolute-rgb) / 0.2);
         margin-bottom: 1.875rem;
         padding: 0.625rem 0.9375rem;
         color: var(--color-ink-notice);
@@ -133,8 +143,8 @@ p.error,
 .success {
         clear: both;
         color: var(--color-ink-on-dark);
-        border: 0.0625rem solid rgb(var(--color-ink-absolute-rgb) / 0.5);
-        background: var(--color-ink-success);
+        border: 1px solid rgb(var(--color-ink-absolute-rgb) / 0.5);
+        background: var(--color-state-success);
 }
 
 p.error {

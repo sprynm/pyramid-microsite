@@ -1,0 +1,68 @@
+@use "sys-queries" as *;
+
+@layer blocks {
+  .feature-boxes {
+    display: grid;
+    gap: var(--space-md);
+    grid-template-columns: 1fr;
+    margin-block: var(--space-xl);
+    container-type: inline-size;
+    container-name: tiles;
+  }
+
+  @include cq-name-min(tiles, $cq-c2) {
+    .feature-boxes {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .feature-boxes > a,
+  .tile {
+    display: block;
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    color: var(--color-ink-on-dark);
+    text-decoration: none;
+    min-height: clamp(14rem, 42vw, 25rem);
+    box-shadow: var(--shadow-sm);
+    background: var(--color-surface-inverse);
+  }
+
+  .feature-boxes > a picture,
+  .feature-boxes > a picture > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .feature-boxes > a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(0 0 0 / 0.12) 0%, rgb(0 0 0 / 0.6) 100%);
+  }
+
+  .feature-text {
+    position: absolute;
+    inset: auto var(--space-md) var(--space-md);
+    z-index: 1;
+  }
+
+  .feature-text h2 {
+    margin: 0;
+    color: var(--color-ink-on-dark);
+    font-size: clamp(1.25rem, 2vw + 0.7rem, 2.2rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .feature-boxes > a:hover picture > img,
+  .feature-boxes > a:focus-visible picture > img {
+    transform: scale(1.045);
+    transition: transform 220ms ease;
+  }
+}
+

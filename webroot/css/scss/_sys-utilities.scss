@@ -1,0 +1,19 @@
+@layer utilities {
+  .u-visually-hidden {
+    position: absolute !important;
+    inline-size: 1px !important;
+    block-size: 1px !important;
+    clip: rect(0, 0, 0, 0) !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+  }
+
+  .u-text-center { text-align: center; }
+  .u-pad-block-lg { padding-block: var(--space-lg); }
+  .u-pad-block-xl { padding-block: var(--space-xl); }
+  .u-stack-sm > * + * { margin-top: var(--space-sm); }
+  .u-stack-md > * + * { margin-top: var(--space-md); }
+  .u-stack-lg > * + * { margin-top: var(--space-lg); }
+  .avoid-break { white-space: nowrap; }
+}
+
