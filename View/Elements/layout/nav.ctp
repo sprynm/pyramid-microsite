@@ -4,7 +4,8 @@ if ($this->Settings->show('HeaderNotice.display_header_notice') == 1) {
 }
 ?>
 <header class="site-header primary-hdr">
-	<div class="hdr-container">
+	<div class="c-frame c-container--normal">
+		<div class="hdr-container">
 		<a href="/" class="logo">
 			<img src="/img/logo.svg" width="275" height="28" alt="<?php echo $this->Settings->show('Site.name'); ?>" style="--logo-width: 27.5rem;">
 		</a>
@@ -29,6 +30,7 @@ if ($this->Settings->show('HeaderNotice.display_header_notice') == 1) {
 				echo $this->element('Products.cart/cart_count');
 				*/
 			?>
+		</div>
 		</div>
 	</div>
 </header>
