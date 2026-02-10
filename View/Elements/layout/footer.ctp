@@ -1,20 +1,8 @@
 		<footer>
 			<div class="ftr-container">
-				<div class="ftr-top">
-					<?php
-						$footerNav = trim((string) $this->Navigation->show(1, false));
-						$footerSocial = trim((string) $this->element('social-media'));
-					?>
-					<?php if ($footerNav !== '' && $footerNav !== '<ul></ul>'): ?>
-						<nav>
-							<?php echo $footerNav; ?>
-						</nav>
-					<?php endif; ?>
-					<?php if ($footerSocial !== ''): ?>
-						<?php echo $footerSocial; ?>
-					<?php endif; ?>
-				</div>
 				<?php
+					$footerNav = trim((string) $this->Navigation->show(1, false));
+					$footerSocial = trim((string) $this->element('social-media'));
 					$contactBits = array();
 					if (!empty($siteContact['address'])) {
 						$contactBits[] = $siteContact['address'];
@@ -31,11 +19,33 @@
 						$contactBits[] = 'Tel: <a href="tel:' . $phone . '">' . $phone . '</a>';
 					}
 				?>
-				<?php if (!empty($contactBits)): ?>
-					<div class="ftr-contact">
-						<?php echo implode(' <span class="divider"></span> ', $contactBits); ?>
+
+				<div class="ftr-grid">
+					<div class="ftr-brand">
+						<div class="ftr-logo"><?php echo h($this->Settings->show('Site.name')); ?></div>
 					</div>
-				<?php endif; ?>
+
+					<?php if ($footerNav !== '' && $footerNav !== '<ul></ul>'): ?>
+						<nav class="ftr-nav" aria-label="Footer navigation">
+							<h4 class="ftr-heading">Pages</h4>
+							<?php echo $footerNav; ?>
+						</nav>
+					<?php endif; ?>
+
+					<?php if ($footerSocial !== ''): ?>
+						<div class="ftr-social">
+							<h4 class="ftr-heading">Social</h4>
+							<?php echo $footerSocial; ?>
+						</div>
+					<?php endif; ?>
+
+					<?php if (!empty($contactBits)): ?>
+						<div class="ftr-contact">
+							<h4 class="ftr-heading">Contact</h4>
+							<?php echo implode('<br>', $contactBits); ?>
+						</div>
+					<?php endif; ?>
+				</div>
 
 				<div class="copyright">
 					<?php
@@ -44,11 +54,11 @@
 						} else {
 							$rhText = "Radar Hill Web Design";
 						}
-					?>  
+					?>
 					&copy; <?php echo $this->Copyright->year(); ?> <?php echo $this->Copyright->name(); ?> | A <?php echo $this->Settings->show('Site.Footer.industry_identifier'); ?> website by <span class="avoid-break"><?php echo $rhText; ?></span><br>
 					The content of this website is the responsibility of the website owner.
-				</div> 
-			</div>   
+				</div>
+			</div>
 		</footer>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 		<?php 
