@@ -7,6 +7,15 @@ $banner      = !empty($banner) ? $banner : array();
 $page        = !empty($page) ? $page : array();
 $pageHeading = !empty($pageHeading) ? $pageHeading : '';
 $pageIntro   = !empty($pageIntro) ? $pageIntro : '';
+$featureBoxesHtml = '';
+$featureBoxesPath = APP . 'Plugin' . DS . 'Prototype' . DS . 'View' . DS . 'feature-boxes';
+if (is_dir($featureBoxesPath)) {
+	$featureBoxesHtml = (string) $this->element('feature_boxes', array(
+		'featureInstanceId' => 1,
+		'numberOfFeaturesLimit' => 3,
+	));
+}
+$hasFeatureBoxes = trim($featureBoxesHtml) !== '';
 
 echo $this->element('layout/home_masthead', array(
 	'banner'      => $banner,
@@ -18,23 +27,47 @@ echo $this->element('layout/home_masthead', array(
 
 <div id="content" class="site-wrapper site-wrapper--default home">
 	<div class="c-frame c-container--normal cq-main c-region">
-		<section class="c-stack">
-			<main>
+		<?php if ($hasFeatureBoxes): ?>
+			<section class="c-sidebar">
+				<main>
 
-				<?php
+					<?php
 
-				if ($pageIntro !== '') {
-					echo h($pageIntro);
-				}
+					if ($pageIntro !== '') {
+						echo h($pageIntro);
+					}
 
-				echo $this->Session->flash();
+					echo $this->Session->flash();
 
-				echo $this->fetch('content');
+					echo $this->fetch('content');
 
-				?>
+					?>
 
-			</main>
-		</section>
+				</main>
+
+				<aside class="home-sidebar">
+					<?php echo $featureBoxesHtml; ?>
+				</aside>
+			</section>
+		<?php else: ?>
+			<section class="c-stack">
+				<main>
+
+					<?php
+
+					if ($pageIntro !== '') {
+						echo h($pageIntro);
+					}
+
+					echo $this->Session->flash();
+
+					echo $this->fetch('content');
+
+					?>
+
+				</main>
+			</section>
+		<?php endif; ?>
 	</div>
 </div><!-- "content" ends -->
 <?php
