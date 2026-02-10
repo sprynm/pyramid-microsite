@@ -21,19 +21,20 @@ This is an instance of the Radarhill "pyramid" CMS, built on CakePHP.
 - `docs/ai/context.md`
 - `docs/ai/decisions.md`
 
-## Primary References
+## Primary References to be used depending on the nature of the task
 - Architecture: `docs/architecture/`
 - Design system & layout: `docs/design/`
 - Quality/lint: `docs/quality/`
+
+## Historical context to be used if updating a core concept
 - Prompts/specs: `docs/prompts/`
 - History/legacy: `docs/history/`
 
-## Key Patterns to Follow
-- Spacing comes from `--space-*` tokens, not raw values.
-- Typography sizes come from `--step-*` tokens or `--fluid-body`.
-- Container widths come from `$containerWidths` or `.c-container` modifiers.
-- Hero layout is controlled via CSS custom properties on `.page-hero`, not inline styles.
-- Keep template logic in a single PHP block per section to avoid tag-juggling bugs.
+## Atomic Reuse Priority
+- Reuse utilities and atom-sized blocks before creating new, context-specific components.
+- Extend `.btn` and other atoms with modifiers or scoped wrappers instead of inventing new hero-only classes.
+- Tradeoff: accept less prototype-level control if it improves cross-site cohesion.
+- See `docs/architecture/atomic-reuse.md`.
 
 ## Build & Lint (Common)
 - `npm run css:build`

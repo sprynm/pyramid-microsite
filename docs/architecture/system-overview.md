@@ -1,0 +1,33 @@
+# System Overview
+
+## Platform
+- CMS: Radarhill "pyramid" CMS.
+- Framework: CakePHP (legacy MVC).
+- Templates: `.ctp` under `View/Layouts` and `View/Elements`.
+- Assets: SCSS in `webroot/css/scss`, compiled to `webroot/css/stylesheet.css`.
+- JavaScript in `webroot/js`.
+- Runtime PHP is believed to be 5.x (minor unknown).
+
+## Prototype System (How It Works)
+- Core source templates live in `Plugin/Prototype/CorePlugin/View/...`.
+- Site-level overrides live in `Plugin/Prototype/View/...` and are created on install.
+- The plugin may be available even when a specific prototype is not installed.
+
+### Admin Flow (High Level)
+- Prototypes are initiated in the CMS admin by installing/activating a prototype.
+- Installation creates the site-level override tree under `Plugin/Prototype/View/<slug>/...`.
+- After install, edits should be made in the site-level override tree, not CorePlugin.
+
+## Folder Organization (Meaning)
+- `View/Layouts/`: page layouts (default, home, contact, offline).
+- `View/Elements/layout/`: shared layout partials (head, nav, body_masthead, footer).
+- `Plugin/Prototype/CorePlugin/`: vendor-like core templates.
+- `Plugin/Prototype/View/`: site-level override templates created on install.
+- `webroot/css/scss/`: SCSS sources (authoritative).
+- `webroot/css/stylesheet.css`: compiled output (do not edit directly).
+- `docs/`: documentation grouped by purpose.
+
+## Edit Boundaries
+- Prefer site-level overrides in `Plugin/Prototype/View/` after a prototype is installed.
+- Avoid touching CorePlugin files unless strictly necessary and tracked in Git.
+- Follow `docs/architecture/atomic-reuse.md` for reuse-first styling.

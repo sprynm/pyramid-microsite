@@ -38,6 +38,7 @@ Keep this short, current, and durable. Avoid repeating details that are already 
 ## 7) Document Map
 - `docs/ai/context.md`: concise project context and links.
 - `docs/ai/decisions.md`: dated decision log (authoritative).
+- `docs/architecture/atomic-reuse.md`: reuse utilities + atom-sized blocks before new components.
 - `docs/history/`: historical logs and migration docs.
 - `docs/architecture/`: system structure + layout architecture.
 - `docs/design/`: tokens, typography, layout guidelines, hero.

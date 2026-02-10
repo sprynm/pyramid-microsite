@@ -3,6 +3,7 @@
 Use this file as the minimum viable context. It is intentionally short.
 
 ## Stack Summary
+- CMS: Radarhill "pyramid" CMS.
 - Framework: CakePHP (legacy MVC).
 - Templates: `.ctp` under `View/Layouts` and `View/Elements`.
 - Assets: SCSS in `webroot/css/scss`, compiled to `webroot/css/stylesheet.css`.
@@ -21,6 +22,12 @@ Use this file as the minimum viable context. It is intentionally short.
 - Prototype styles must live in `webroot/css/scss/_prototype-<slug>.scss`.
 - Do not edit `webroot/css/stylesheet.css` directly.
 
+## Atomic Reuse Priority (CUBE-Aligned)
+- Reuse utilities and atom-sized blocks before creating new context-specific components.
+- Extend existing atoms (e.g., `.btn`) via modifiers or scoped wrappers.
+- Accept reduced prototype-level control if it improves cohesion.
+- See `docs/architecture/atomic-reuse.md`.
+
 ## Build & Lint
 - SCSS build: `npm run css:build`.
 - PHP lint: `php -l <file>`.
@@ -31,6 +38,9 @@ Use this file as the minimum viable context. It is intentionally short.
 - Keep CTP logic in a single PHP block per section when possible.
 
 ## Where To Go Next
+- System overview: `docs/architecture/system-overview.md`.
+- Atomic reuse policy: `docs/architecture/atomic-reuse.md`.
+- Style system rules: `docs/design/style-system.md`.
 - Layout architecture: `docs/architecture/layout-system.md`.
 - Frontend structure: `docs/architecture/frontend-structure.md`.
 - Design system details: `docs/design/`.
