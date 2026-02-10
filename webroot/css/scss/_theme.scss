@@ -1,74 +1,121 @@
-// A collection of SASS variables for consistent styling across the application
-// This file should not create any CSS on its own.
-@use "sass:map";
+@use "sass:color";
 
+/* SCSS theme primitives (single source of truth). */
 $fontSans: "Open Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-$fontSerif: Georgia, "Times New Roman", Times, serif;
+$fontSerif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 
-// Shadows are "chrome", not typography; keep them stable under browser font-size changes.
-$textShadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
-$boxShadow: 1px 1px 16px 0 rgba(0, 0, 0, 0.25);
-$boxShadowSubtle: 1px 1px 8px 0 rgba(0, 0, 0, 0.15);
+$colorSurfaceBase: #ffffff;
+$colorSurfaceMuted: #f6f8fb;
+$colorSurfaceSoft: #eef3f8;
+$colorSurfaceInverse: #111a2d;
+$colorSurfaceInverseRgb: 17 26 45;
+$colorSurfaceDark: #0b2446;
 
-// Core palette — neutral professional theme
-$surfaceBody: #fff;
-$textPrimary: #535353;
-$brandPrimary: #2c5282;        // Muted slate blue
-$brandSecondary: #3d5a80;      // Soft navy
-$brandDark: #2b3e50;           // Deep slate
-$brandAccent: #4a7ba7;         // Subdued blue accent
-$brandAccentHover: #5a8bb7;    // Lighter blue hover
-$brandPrimaryBright: #3d6ba3;  // Brighter slate
-$brandPrimaryHover: #234164;   // Darker slate hover
-$brandPrimaryVisited: #4d6d94; // Visited link blue-gray
-$inkStrong: #010101;
-$inkNeutral: #333333;
-$borderMuted: #cccccc;
-$surfaceDark: #2b3e50;         // Matches brandDark
-$surfaceNeutral: #f7f7f7;
-$surfaceNeutralSoft: #f5f5f5;
+$colorInkAbsolute: #000000;
+$colorInkAbsoluteRgb: 0 0 0;
+$colorInkPrimary: #2f3a45;
+$colorInkStrong: #101828;
+$colorInkMuted: #5b6675;
+$colorInkMeta: #707a89;
+$colorInkOnDark: #f8fbff;
+$colorInkInverse: #e8eef8;
 
-// Component states
-$focusRing: #ffbb33;
-$stateSuccess: #7aac41;
-$stateCritical: #bc0000;
-$noticeErrorBg: #ffeded;
-$noticeAttentionBg: #feefb3;
-$noticeInformationBg: #bde5f8;
-$noticeSuccessBg: #dff2bf;
+$colorBorderMuted: #cfd8e3;
+$colorBrandPrimary: #1e4f7a;
+$colorBrandPrimaryRgb: 30 79 122;
+$colorBrandPrimaryBright: #2f6ea3;
+$colorBrandPrimaryHover: #173d5f;
+$colorBrandPrimaryVisited: #5d658f;
+$colorBrandSecondary: #233a54;
+$colorBrandAccent: #e0b14b;
+$colorBrandAccentHover: #efc56f;
+$colorFocusRing: #f59f00;
 
-// Footer accents
-$footerBg: #2e3a4a;
-$footerText: #e7eef6;
-$footerMuted: #c7cfda;
-$footerRuleOpacity: 0.35;
+$radiusXs: 2px;
+$radiusSm: 6px;
+$radiusMd: 12px;
+$radiusLg: 18px;
+$radiusMax: 999px;
 
-// Shared responsive breakpoints captured from existing media queries
-$breakpoints: (
-  "xs": 576px,
-  "sm": 768px,
-  "md": 992px,
-  "lg": 1024px,
-  "xl": 1440px
-);
+$frameMax: 75rem;
+$navOffset: 6rem;
+$heroMax: 75rem;
 
-@function breakpoint($key) {
-  $value: map.get($breakpoints, $key);
+@layer tokens {
+  :root {
+    --font-sans: #{$fontSans};
+    --font-serif: #{$fontSerif};
 
-  @if $value == null {
-    @error 'Breakpoints: token "#{$key}" is not defined.';
+    --color-surface-base: #{$colorSurfaceBase};
+    --color-surface-muted: #{$colorSurfaceMuted};
+    --color-surface-soft: #{$colorSurfaceSoft};
+    --color-surface-inverse: #{$colorSurfaceInverse};
+    --color-surface-inverse-rgb: #{$colorSurfaceInverseRgb};
+    --color-surface-dark: #{$colorSurfaceDark};
+    --color-surface-hero: var(--color-surface-dark);
+    --color-surface-footer: var(--color-surface-dark);
+
+    --color-ink-absolute: #{$colorInkAbsolute};
+    --color-ink-absolute-rgb: #{$colorInkAbsoluteRgb};
+    --color-ink-primary: #{$colorInkPrimary};
+    --color-ink-strong: #{$colorInkStrong};
+    --color-ink-muted: #{$colorInkMuted};
+    --color-ink-meta: #{$colorInkMeta};
+    --color-ink-on-dark: #{$colorInkOnDark};
+    --color-ink-inverse: #{$colorInkInverse};
+
+    --color-border-muted: #{$colorBorderMuted};
+    --color-brand-primary: #{$colorBrandPrimary};
+    --color-brand-primary-rgb: #{$colorBrandPrimaryRgb};
+    --color-brand-primary-bright: #{$colorBrandPrimaryBright};
+    --color-brand-primary-hover: #{$colorBrandPrimaryHover};
+    --color-brand-primary-visited: #{$colorBrandPrimaryVisited};
+    --color-brand-secondary: #{$colorBrandSecondary};
+    --color-brand-accent: #{$colorBrandAccent};
+    --color-brand-accent-hover: #{$colorBrandAccentHover};
+    --color-focus-ring: #{$colorFocusRing};
+
+    --fluid-body: clamp(1.0625rem, 0.9rem + 0.45vw, 1.25rem);
+    --step--1: clamp(0.875rem, 0.83rem + 0.2vw, 1rem);
+    --step-0: var(--fluid-body);
+    --step-1: clamp(1rem, 0.9rem + 0.5vw, 1.3rem);
+    --step-2: clamp(1.25rem, 1rem + 0.95vw, 1.8rem);
+    --step-3: clamp(1.5rem, 1.1rem + 1.55vw, 2.4rem);
+    --step-4: clamp(1.95rem, 1.2rem + 2.8vw, 3.4rem);
+    --step-5: clamp(2.5rem, 1.25rem + 4.8vw, 5rem);
+    --lh-body: 1.58;
+    --lh-title: 1.15;
+
+    --space-2xs: clamp(0.35rem, 0.31rem + 0.2vw, 0.5rem);
+    --space-xs: clamp(0.5rem, 0.45rem + 0.25vw, 0.7rem);
+    --space-sm: clamp(0.75rem, 0.66rem + 0.5vw, 1rem);
+    --space-md: clamp(1rem, 0.88rem + 0.75vw, 1.5rem);
+    --space-lg: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+    --space-xl: clamp(2rem, 1.55rem + 2vw, 3.25rem);
+    --space-2xl: clamp(3rem, 2.3rem + 3vw, 4.75rem);
+
+    --radius-xs: #{$radiusXs};
+    --radius-sm: #{$radiusSm};
+    --radius-md: #{$radiusMd};
+    --radius-lg: #{$radiusLg};
+    --radius-max: #{$radiusMax};
+
+    --shadow-sm: 0 4px 16px rgb(var(--color-surface-inverse-rgb) / 0.1);
+    --shadow-md: 0 14px 36px rgb(var(--color-surface-inverse-rgb) / 0.18);
+
+    --surface-gradient-dark: linear-gradient(
+      180deg,
+      rgb(var(--color-ink-absolute-rgb) / 0.08) 0%,
+      rgb(var(--color-ink-absolute-rgb) / 0.28) 100%
+    );
+
+    --frame-max: #{$frameMax};
+    --frame-gutter: clamp(1rem, 1.3vw + 0.7rem, 2rem);
+    --region-space: var(--space-xl);
+    --nav-offset: #{$navOffset};
+    --sidebar-col: clamp(14rem, 25vw, 20rem);
+    --hero-max: #{$heroMax};
+    --hero-inline: clamp(1rem, 3vw, 3rem);
+    --hero-vspace: clamp(3.5rem, 9vw, 6rem);
   }
-
-  @return $value;
 }
-
-// Common container widths used across layout wrappers
-$containerWidths: (
-  "wrapper-wide": 1440px,
-  "wrapper-medium": 1200px,    // 75rem × 16px
-  "wrapper-narrow": 996px,
-  "hero-max": 1200px,
-  "directory-max": 1120px,
-  "directory-fluid-max": 1100px,
-  "hero-copy-max": 700px
-);

@@ -39,6 +39,8 @@ Keep this short, current, and durable. Avoid repeating details that are already 
 - `docs/ai/context.md`: concise project context and links.
 - `docs/ai/decisions.md`: dated decision log (authoritative).
 - `docs/architecture/atomic-reuse.md`: reuse utilities + atom-sized blocks before new components.
+- `docs/architecture/agent-first.md`: strict workflow when agents make most changes.
+- `docs/architecture/optional-components.md`: CSS size control via optional `@use` gates.
 - `docs/history/`: historical logs and migration docs.
 - `docs/architecture/`: system structure + layout architecture.
 - `docs/design/`: tokens, typography, layout guidelines, hero.

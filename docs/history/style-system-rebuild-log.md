@@ -6,7 +6,7 @@ Scope: Full replacement of active style/runtime system while preserving legacy f
 ## 1. Strategy Applied
 
 - Treated prior SCSS partials as legacy/backups by removing them from the active entrypoint.
-- Introduced a new `sys-*` style system that follows the migration docs:
+- Introduced a new layered style system that follows the migration docs:
   - CUBE-oriented layers
   - container-first compositions
   - px switch points + `rem`/`clamp()` sizing
@@ -18,23 +18,23 @@ Scope: Full replacement of active style/runtime system while preserving legacy f
 Active SCSS entry:
 - `webroot/css/scss/stylesheet.scss`
 
-New SCSS partials:
-- `webroot/css/scss/_sys-layers.scss`
-- `webroot/css/scss/_sys-queries.scss`
-- `webroot/css/scss/_sys-tokens.scss`
-- `webroot/css/scss/_sys-reset.scss`
-- `webroot/css/scss/_sys-base.scss`
-- `webroot/css/scss/_sys-compositions.scss`
-- `webroot/css/scss/_sys-utilities.scss`
-- `webroot/css/scss/_sys-block-nav.scss`
-- `webroot/css/scss/_sys-block-header.scss`
-- `webroot/css/scss/_sys-block-hero.scss`
-- `webroot/css/scss/_sys-block-tiles.scss`
-- `webroot/css/scss/_sys-block-footer.scss`
-- `webroot/css/scss/_sys-block-forms.scss`
-- `webroot/css/scss/_sys-block-content.scss`
+New SCSS partials (current names after 2026-02-10 rename):
+- `webroot/css/scss/_layers.scss`
+- `webroot/css/scss/_queries.scss`
+- `webroot/css/scss/_theme.scss`
+- `webroot/css/scss/_reset.scss`
+- `webroot/css/scss/_base.scss`
+- `webroot/css/scss/_compositions.scss`
+- `webroot/css/scss/_utilities.scss`
+- `webroot/css/scss/_block-nav.scss`
+- `webroot/css/scss/_block-header.scss`
+- `webroot/css/scss/_block-hero.scss`
+- `webroot/css/scss/_block-tiles.scss`
+- `webroot/css/scss/_block-footer.scss`
+- `webroot/css/scss/_block-forms.scss`
+- `webroot/css/scss/_block-content.scss`
 - `webroot/css/scss/_prototype-feature-boxes.scss`
-- `webroot/css/scss/_sys-exceptions.scss`
+- `webroot/css/scss/_exceptions.scss`
 
 New JS:
 - `webroot/js/navigation-modern.js`
@@ -50,20 +50,20 @@ Adjusted legacy JS:
 
 | Legacy concern | New owner |
 |---|---|
-| Layer orchestration from mixed imports | `stylesheet.scss` + `_sys-layers.scss` |
-| Breakpoint/query sprawl | `_sys-queries.scss` |
-| Token sprawl in entrypoint | `_sys-tokens.scss` |
-| Global reset/base spread across files | `_sys-reset.scss`, `_sys-base.scss` |
-| Wrapper/container/layout shell | `_sys-compositions.scss` |
-| Utility classes spread across layout/general | `_sys-utilities.scss` |
-| Header/nav + Sidr CSS | `_sys-block-header.scss`, `_sys-block-nav.scss` |
-| Hero/banner styles | `_sys-block-hero.scss` |
-| Feature tiles/card-like links | `_sys-block-tiles.scss` |
-| Footer surface/nav/contact styles | `_sys-block-footer.scss` |
-| Forms baseline + controls | `_sys-block-forms.scss` |
-| Content blocks (details, blockquote, pagination/gallery/contact grid) | `_sys-block-content.scss` |
+| Layer orchestration from mixed imports | `stylesheet.scss` + `_layers.scss` |
+| Breakpoint/query sprawl | `_queries.scss` |
+| Token sprawl in entrypoint | `_theme.scss` |
+| Global reset/base spread across files | `_reset.scss`, `_base.scss` |
+| Wrapper/container/layout shell | `_compositions.scss` |
+| Utility classes spread across layout/general | `_utilities.scss` |
+| Header/nav + Sidr CSS | `_block-header.scss`, `_block-nav.scss` |
+| Hero/banner styles | `_block-hero.scss` |
+| Feature tiles/card-like links | `_block-tiles.scss` |
+| Footer surface/nav/contact styles | `_block-footer.scss` |
+| Forms baseline + controls | `_block-forms.scss` |
+| Content blocks (details, blockquote, pagination/gallery/contact grid) | `_block-content.scss` |
 | Prototype feature boxes | `_prototype-feature-boxes.scss` |
-| Page-only tweaks | `_sys-exceptions.scss` |
+| Page-only tweaks | `_exceptions.scss` |
 
 ## 4. Navigation Modernization Applied
 
@@ -110,7 +110,7 @@ Applied new system styling to major existing component surfaces present in sourc
 ## 6. Build/Validation
 
 - Rebuilt CSS successfully via `npm run css:build`.
-- Confirmed active stylesheet imports only `sys-*` files plus `fonts`.
+- Confirmed active stylesheet imports only the current layered files plus `fonts`.
 - Confirmed Sidr is no longer loaded by `View/Elements/layout/footer.ctp`.
 - Adjusted `--nav-offset` + header height to prevent heading clipping in the new fixed header.
 - Added a template-syntax check step (see Section 8).
@@ -119,7 +119,7 @@ Applied new system styling to major existing component surfaces present in sourc
 ## 7. Known Follow-Ups
 
 - Some old files still exist on disk (intentional backup) and are no longer imported by `stylesheet.scss`.
-- `webroot/css/scss/_jquery.sidr.bare.scss` remains as a legacy artifact; safe to remove once fully retired.
+- `webroot/css/scss/_jquery.sidr.bare.scss` was a legacy artifact; removed on 2026-02-10 after retirement.
 - Additional page templates (outside default/home/contact flow) should be spot-checked for visual regressions against the new system.
   - Spot-checked `flash`, `referrals`, `maintenance-mode`, and `offline` layouts; these remain intentionally standalone.
 

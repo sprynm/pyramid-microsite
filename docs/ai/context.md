@@ -17,8 +17,8 @@ Use this file as the minimum viable context. It is intentionally short.
 
 ## Design System / SCSS
 - Entry point: `webroot/css/scss/stylesheet.scss`.
-- System partials: `webroot/css/scss/_sys-*.scss`.
-- Tokens: `webroot/css/scss/_sys-tokens.scss`.
+- System partials: `webroot/css/scss/_*.scss` (layered by purpose).
+- Theme: `webroot/css/scss/_theme.scss` (SCSS-first primitives + emitted tokens).
 - Prototype styles must live in `webroot/css/scss/_prototype-<slug>.scss`.
 - Do not edit `webroot/css/stylesheet.css` directly.
 
@@ -40,7 +40,10 @@ Use this file as the minimum viable context. It is intentionally short.
 ## Where To Go Next
 - System overview: `docs/architecture/system-overview.md`.
 - Atomic reuse policy: `docs/architecture/atomic-reuse.md`.
+- Agent-first rules: `docs/architecture/agent-first.md`.
+- Optional components: `docs/architecture/optional-components.md`.
 - Style system rules: `docs/design/style-system.md`.
+- Theme system: `docs/design/theme.md`.
 - Layout architecture: `docs/architecture/layout-system.md`.
 - Frontend structure: `docs/architecture/frontend-structure.md`.
 - Design system details: `docs/design/`.

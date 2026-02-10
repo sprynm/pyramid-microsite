@@ -13,12 +13,15 @@ Use it for runtime behavior, system organization, and platform-specific rules.
 2. `docs/architecture/frontend-structure.md`
 3. `docs/architecture/layout-system.md`
 4. `docs/architecture/atomic-reuse.md`
+5. `docs/architecture/agent-first.md`
+6. `docs/architecture/optional-components.md`
 
 ## Scope (What belongs here)
 - CakePHP stack overview and CMS behavior.
 - Prototype system lifecycle (admin install/enable/override flow).
 - Directory structure and ownership (Core vs site overrides).
 - Non-UI runtime constraints.
+- Agent-first workflow constraints and optional component policy.
 
 ## Out of Scope
 - Detailed styling rules (see `docs/design/`).

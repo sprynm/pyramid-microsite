@@ -1,0 +1,53 @@
+@layer blocks {
+  blockquote {
+    margin-block: var(--space-lg);
+    padding: var(--space-md);
+    border-inline-start: 4px solid var(--color-brand-primary);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--color-brand-primary) 9%, transparent);
+  }
+
+  hr {
+    border: 0;
+    block-size: 1px;
+    background: rgb(var(--color-brand-primary-rgb) / 0.35);
+    margin-block: var(--space-xl);
+  }
+
+  details {
+    border: 1px solid var(--color-border-muted);
+    border-radius: var(--radius-sm);
+    margin-block-end: var(--space-xs);
+    background: var(--color-surface-base);
+  }
+
+  details > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: var(--space-sm);
+    font-weight: 600;
+    background: var(--color-surface-soft);
+  }
+
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details > :not(summary) {
+    padding: var(--space-sm);
+  }
+
+  .contact-content {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: 1fr;
+  }
+
+  @container main (min-width: 720px) {
+    .contact-content {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+
+}

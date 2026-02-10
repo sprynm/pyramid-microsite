@@ -6,7 +6,7 @@ This document explains the shared interior hero component (`.page-hero`), the la
 
 | Layer | Responsibility | Key selectors / files |
 |-------|----------------|------------------------|
-| **Layout Wrapper** | Full-width hero section with navy background and optional media. | `.page-hero` in `_page-hero.scss`; rendered by `View/Elements/layout/body_masthead.ctp` |
+| **Layout Wrapper** | Full-width hero section with navy background and optional media. | `.page-hero` in `_block-hero.scss`; rendered by `View/Elements/layout/body_masthead.ctp` |
 | **Media Layer** | Responsive `<picture>` element and fallback imagery. | `.page-hero__media` |
 | **Overlay Layer** | Navy gradient drawn above the media for legibility. | `.page-hero__overlay` |
 | **Content Rail** | Grid-aligned container that keeps hero text locked to the navigation rails. | `.page-hero__inner`, `.page-hero__content` |
@@ -15,7 +15,7 @@ This document explains the shared interior hero component (`.page-hero`), the la
 
 ## 2. Core CSS Settings
 
-Important custom properties declared in `stylesheet.scss` and `_page-hero.scss`:
+Important custom properties declared in `stylesheet.scss` and `_block-hero.scss`:
 
 - `--nav-offset`: pushes the hero below the fixed navigation (defaults to `96px`).
 - `--page-hero-padding`: symmetric top/bottom padding for hero content (`clamp(72px, 13vw, 140px)`).

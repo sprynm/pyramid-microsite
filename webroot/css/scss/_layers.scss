@@ -1,3 +1,2 @@
-/* Cascade layer order (declare before any layered CSS is emitted). */
-@layer legacy-js, reset, tokens, base, compositions, utilities, blocks, exceptions;
+@layer reset, tokens, base, compositions, utilities, blocks, exceptions;
 

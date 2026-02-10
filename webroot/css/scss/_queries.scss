@@ -1,12 +1,8 @@
-/* Query system (single source of truth) */
+$cq-c2: 480px;
+$cq-c3: 720px;
 
-/* Container query bands */
-$cq-c2: 480px; // ≈ 30rem @ 16px root
-$cq-c3: 720px; // ≈ 45rem @ 16px root
-
-/* Viewport orchestration (macro layout only) */
-$vp-md: 48rem; // 768px
-$vp-lg: 64rem; // 1024px
+$vp-md: 48rem;
+$vp-lg: 64rem;
 
 @mixin cq-min($min) {
   @container (min-width: #{$min}) { @content; }

@@ -1,8 +1,8 @@
 # Typography & Spacing Refactor
 
 ## Snapshot / Audit
-- Removed duplicate content blocks (`main p`, `main ul`, etc.) in `webroot/css/scss/_general.scss`, consolidating them under the global `:where(main) :is(...)` rule from `webroot/css/scss/stylesheet.scss`.
-- Collapsed bespoke hero + feature heading `clamp()` definitions into named tokens (`--hero-title`, `--hero-name`, etc.), eliminating ad-hoc font-size overrides in `webroot/css/scss/_general.scss`.
+- Removed duplicate content blocks (`main p`, `main ul`, etc.) in `webroot/css/scss/_base.scss` (previously `_general.scss`), consolidating them under the global `:where(main) :is(...)` rule from `webroot/css/scss/stylesheet.scss`.
+- Collapsed bespoke hero + feature heading `clamp()` definitions into named tokens (`--hero-title`, `--hero-name`, etc.), eliminating ad-hoc font-size overrides in `webroot/css/scss/_base.scss` (previously `_general.scss`).
 - Replaced ad-hoc spacing variables (`--space-080`, `--space-150`, etc.) with the `base-step()` helper and `@include base-space(...)`, keeping only semantic tokens (`--space-2xs`/`--space-section`).
 - Legacy `rem` math that influenced paddings, radii, and outlines now uses `base-step(multiplier)` so every raw size derives from `--base-10`.
 
