@@ -2,99 +2,15 @@
   .feature-boxes {
     display: grid;
     gap: var(--space-md);
+    grid-template-columns: 1fr;
+    margin-block: var(--space-xl);
+    container-type: inline-size;
+    container-name: tiles;
   }
 
-  .feature-box {
-    position: relative;
-    --feature-box-radius: var(--radius-sm);
-    border-radius: var(--feature-box-radius);
-    border: 1px solid var(--color-border-muted);
-    background: var(--color-surface-hero);
-    box-shadow: var(--shadow-sm);
-    display: grid;
-    min-height: 14rem;
-    overflow: hidden;
-    text-decoration: none;
-    color: var(--color-ink-on-dark);
-    isolation: isolate;
-  }
-
-  .feature-box__bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    filter: saturate(1.05);
-    border-radius: inherit;
-  }
-
-  .feature-box__overlay {
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(
-      180deg,
-      rgb(var(--color-ink-absolute-rgb) / 0.12) 0%,
-      rgb(var(--color-ink-absolute-rgb) / 0.72) 100%
-    );
-  }
-
-  .feature-box__caption {
-    font-size: var(--step--1);
-    color: var(--color-ink-muted);
-  }
-
-  .feature-box__content {
-    position: relative;
-    z-index: 1;
-    padding: var(--space-md);
-    display: grid;
-    gap: 0.35rem;
-  }
-
-  .feature-box__heading,
-  .feature-box__title,
-  .feature-box__subheading,
-  .feature-box__text {
-    line-height: 1.25;
-  }
-
-  .feature-box__title {
-    margin: 0;
-    font-weight: 600;
-    font-size: var(--step--1);
-    color: rgb(255 255 255 / 0.85);
-  }
-
-  .feature-box__subheading {
-    margin: 0 0 var(--space-sm);
-    font-weight: 600;
-    font-size: var(--step--1);
-    color: rgb(255 255 255 / 0.8);
-  }
-
-  .feature-box__cta {
-    margin-top: var(--space-sm);
-    align-self: start;
-  }
-
-  .feature-box--linked:hover,
-  .feature-box--linked:focus-visible {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .feature-box__heading {
-    margin: 0;
-    font-size: var(--step-2);
-    font-weight: 700;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  .feature-box__text {
-    font-size: var(--step-0);
-    color: rgb(255 255 255 / 0.9);
+  @container tiles (min-width: 480px) {
+    .feature-boxes {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 }

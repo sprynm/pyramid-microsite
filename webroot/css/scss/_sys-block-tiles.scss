@@ -1,22 +1,4 @@
-@use "sys-queries" as *;
-
 @layer blocks {
-  .feature-boxes {
-    display: grid;
-    gap: var(--space-md);
-    grid-template-columns: 1fr;
-    margin-block: var(--space-xl);
-    container-type: inline-size;
-    container-name: tiles;
-  }
-
-  @include cq-name-min(tiles, $cq-c2) {
-    .feature-boxes {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  .feature-boxes > a,
   .tile {
     display: block;
     position: relative;
@@ -27,31 +9,52 @@
     min-height: clamp(14rem, 42vw, 25rem);
     box-shadow: var(--shadow-sm);
     background: var(--color-surface-inverse);
+    isolation: isolate;
   }
 
-  .feature-boxes > a picture,
-  .feature-boxes > a picture > img {
+  .tile__bg,
+  .tile__media {
     position: absolute;
     inset: 0;
+  }
+
+  .tile__bg {
+    background-size: cover;
+    background-position: center;
+    filter: saturate(1.05);
+  }
+
+  .tile__media picture,
+  .tile__media picture > img,
+  .tile__media img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  .feature-boxes > a::after {
-    content: "";
+  .tile__overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg, rgb(0 0 0 / 0.12) 0%, rgb(0 0 0 / 0.6) 100%);
   }
 
-  .feature-text {
-    position: absolute;
-    inset: auto var(--space-md) var(--space-md);
+  .tile__content {
+    position: relative;
     z-index: 1;
+    padding: var(--space-md);
+    display: grid;
+    gap: 0.35rem;
   }
 
-  .feature-text h2 {
+  .tile__heading,
+  .tile__title,
+  .tile__subheading,
+  .tile__text {
+    line-height: 1.25;
+  }
+
+  .tile__heading {
     margin: 0;
     color: var(--color-ink-on-dark);
     font-size: clamp(1.25rem, 2vw + 0.7rem, 2.2rem);
@@ -59,10 +62,51 @@
     letter-spacing: 0.02em;
   }
 
-  .feature-boxes > a:hover picture > img,
-  .feature-boxes > a:focus-visible picture > img {
+  .tile__title {
+    margin: 0;
+    font-weight: 600;
+    font-size: var(--step--1);
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .tile__subheading {
+    margin: 0 0 var(--space-sm);
+    font-weight: 600;
+    font-size: var(--step--1);
+    color: rgb(255 255 255 / 0.8);
+  }
+
+  .tile__text {
+    font-size: var(--step-0);
+    color: rgb(255 255 255 / 0.9);
+  }
+
+  .tile__cta {
+    margin-top: var(--space-sm);
+    align-self: start;
+  }
+
+  .tile__caption {
+    font-size: var(--step--1);
+    color: var(--color-ink-muted);
+  }
+
+  .tile--linked:hover,
+  .tile--linked:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .tile--linked:hover .tile__media picture > img,
+  .tile--linked:focus-visible .tile__media picture > img,
+  .tile--linked:hover .tile__bg,
+  .tile--linked:focus-visible .tile__bg {
     transform: scale(1.045);
     transition: transform 220ms ease;
   }
-}
 
+  .tile--linked .tile__media picture > img,
+  .tile--linked .tile__bg {
+    transition: transform 220ms ease;
+  }
+}
