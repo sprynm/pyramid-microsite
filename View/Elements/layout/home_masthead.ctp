@@ -93,11 +93,23 @@ if ($hasBannerImage || $fallbackSrc !== '') {
 				<?php endif; ?>
 
 				<?php
-				if (!empty($pageData['Page']['banner_cta']) && !empty($pageData['Page']['banner_cta_link'])) {
-					echo $this->Html->link($pageData['Page']['banner_cta'], $pageData['Page']['banner_cta_link'], array(
-						'class' => 'page-hero__cta',
-						'escape' => false,
-					));
+				$primaryCta = !empty($pageData['Page']['banner_cta']) && !empty($pageData['Page']['banner_cta_link']);
+				$secondaryCta = !empty($pageData['Page']['banner_cta_secondary']) && !empty($pageData['Page']['banner_cta_secondary_link']);
+				if ($primaryCta || $secondaryCta) {
+					echo '<div class="page-hero__actions">';
+					if ($primaryCta) {
+						echo $this->Html->link($pageData['Page']['banner_cta'], $pageData['Page']['banner_cta_link'], array(
+							'class' => 'page-hero__cta',
+							'escape' => false,
+						));
+					}
+					if ($secondaryCta) {
+						echo $this->Html->link($pageData['Page']['banner_cta_secondary'], $pageData['Page']['banner_cta_secondary_link'], array(
+							'class' => 'page-hero__cta page-hero__cta--secondary',
+							'escape' => false,
+						));
+					}
+					echo '</div>';
 				}
 				?>
 			</div>
