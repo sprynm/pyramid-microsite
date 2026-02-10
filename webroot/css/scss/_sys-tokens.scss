@@ -10,7 +10,9 @@
     --color-surface-soft: #eef3f8;
     --color-surface-inverse: #111a2d;
     --color-surface-inverse-rgb: 17 26 45;
-    --color-surface-hero: #0b2446;
+    --color-surface-dark: #0b2446;
+    --color-surface-hero: var(--color-surface-dark);
+    --color-surface-footer: var(--color-surface-dark);
 
     --color-ink-absolute: #000000;
     --color-ink-absolute-rgb: 0 0 0;
@@ -59,6 +61,12 @@
 
     --shadow-sm: 0 4px 16px rgb(var(--color-surface-inverse-rgb) / 0.1);
     --shadow-md: 0 14px 36px rgb(var(--color-surface-inverse-rgb) / 0.18);
+
+    --surface-gradient-dark: linear-gradient(
+      180deg,
+      rgb(var(--color-ink-absolute-rgb) / 0.08) 0%,
+      rgb(var(--color-ink-absolute-rgb) / 0.28) 100%
+    );
 
     --frame-max: 75rem;
     --frame-gutter: clamp(1rem, 1.3vw + 0.7rem, 2rem);

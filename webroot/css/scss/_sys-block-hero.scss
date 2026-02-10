@@ -4,14 +4,14 @@
   .page-hero {
     position: relative;
     overflow: clip;
-    background: var(--color-surface-hero);
+    background: var(--color-surface-footer);
     color: var(--color-ink-on-dark);
     padding-top: calc(var(--hero-vspace) + var(--nav-offset));
     padding-bottom: var(--hero-vspace);
   }
 
   .page-hero--home {
-    padding-top: calc(var(--hero-vspace) * 1.35 + var(--nav-offset));
+    padding-top: calc((var(--hero-vspace) * 1.35) + var(--nav-offset));
     padding-bottom: calc(var(--hero-vspace) * 1.2);
   }
 
@@ -29,11 +29,7 @@
   }
 
   .page-hero__overlay {
-    background: linear-gradient(
-      180deg,
-      rgb(var(--color-ink-absolute-rgb) / 0.22) 0%,
-      rgb(var(--color-ink-absolute-rgb) / 0.58) 100%
-    );
+    background: var(--surface-gradient-dark);
   }
 
   .page-hero__inner {
@@ -102,9 +98,20 @@
     text-decoration: none;
   }
 
+  .page-hero__cta--secondary {
+    background: transparent;
+    color: var(--color-ink-on-dark);
+    border: 1px solid rgb(255 255 255 / 0.6);
+  }
+
   .page-hero__cta:hover,
   .page-hero__cta:focus-visible {
     background: var(--color-brand-accent-hover);
+  }
+
+  .page-hero__cta--secondary:hover,
+  .page-hero__cta--secondary:focus-visible {
+    background: rgb(255 255 255 / 0.12);
   }
 
   .page-hero__portrait {

@@ -49,6 +49,11 @@
     color: var(--color-ink-on-dark);
     font-weight: 700;
     text-decoration: none;
+    cursor: pointer;
+  }
+
+  .btn:visited {
+    color: var(--color-ink-on-dark);
   }
 
   .btn:hover,
@@ -60,9 +65,14 @@
     background: var(--color-brand-primary-hover);
   }
 
+  .btn:active,
+  button:active,
+  input[type="submit"]:active {
+    transform: translateY(1px);
+  }
+
   .error-message {
     color: #b91c1c;
     font-size: var(--step--1);
   }
 }
-
