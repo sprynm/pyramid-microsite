@@ -57,7 +57,10 @@ The codebase intentionally uses both SCSS variables and CSS custom properties. T
 ## Reference Docs
 | Doc | Purpose |
 |-----|---------|
-| `docs/context.md` | Project mission, content map, stack overview, layout schema |
+| `docs/context.md` | Context index that points to focused docs |
+| `docs/context-design-system.md` | Design system tokens, SCSS architecture, layout primitives |
+| `docs/context-components.md` | Component structure, layout usage, and prototype hardening |
+| `docs/context-framework.md` | CakePHP stack details, runtime notes, build and lint |
 | `docs/frontend-structure.md` | Layout entry points, wrapper/container/layout schema, SCSS architecture |
 | `docs/scss-modernization-log.md` | SCSS refactor decisions, component split map, action log |
 | `docs/fonts.md` | Typography tokens, fluid sizing, `base-step` system, heading scale |

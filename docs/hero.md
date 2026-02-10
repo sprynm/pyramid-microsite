@@ -74,7 +74,7 @@ When the hero uses a non-zero overlap (`--page-hero-overlap`), downstream sectio
 
 - Layout: `default`
 - Hero classes: `page-hero page-hero--single`
-- Optional metadata: `banner_header` (eyebrow), `banner_summary` (body copy), `banner_cta` + `banner_cta_link` (orange CTA)
+- Optional metadata: `banner_header` (eyebrow), `banner_summary` (body copy), `banner_cta` + `banner_cta_link` (primary CTA), `banner_cta_secondary` + `banner_cta_secondary_link` (secondary CTA)
 
 ### B. Home Page
 
