@@ -7,7 +7,7 @@ Non-goals (for this phase):
 - Adopting utility frameworks with build-time function generation (e.g., Tailwind).
 
 Planned later (explicitly deferred):
-- Replace Sidr with a modern, dependency-free navigation system (see `docs/navigation.md`).
+- Replace Sidr with a modern, dependency-free navigation system (see `docs/prompts/navigation.md`).
 
 ---
 
@@ -43,9 +43,9 @@ Principles:
 - **One canonical layout API**: new page and component layouts should be built from a small set of compositions (frame/region/grid/sidebar/stack).
 - **No “antiquated” patterns by default**: retire ad-hoc wrappers/rails and re-introduce only if they remain necessary under CUBE.
 
-### 1.3 Container-First Responsiveness (from `docs/layout-system.md`)
+### 1.3 Container-First Responsiveness (from `docs/architecture/layout-system.md`)
 
-We are adopting the “container-centric” layout architecture described in `docs/layout-system.md`.
+We are adopting the “container-centric” layout architecture described in `docs/architecture/layout-system.md`.
 
 Key rules to integrate:
 - **Container queries are baseline** (evergreen browsers current−2).
@@ -59,7 +59,7 @@ Key rules to integrate:
 - **Lint/enforcement target** (eventual): no viewport `@media` inside “components”; viewport queries live only in layout compositions.
 
 Blockers / inconsistencies to resolve up-front:
-- Query thresholds can’t use `clamp()`. To satisfy “typography scales” + “reflow logic is stable”, we use **px for switch points** and use `rem`/container units/`clamp()` inside styles for smooth adaptation (as now specified in `docs/layout-system.md`).
+- Query thresholds can’t use `clamp()`. To satisfy “typography scales” + “reflow logic is stable”, we use **px for switch points** and use `rem`/container units/`clamp()` inside styles for smooth adaptation (as now specified in `docs/architecture/layout-system.md`).
 - Current repo uses `breakpoint()` values in `px` (`webroot/css/scss/_theme.scss`) and many component partials contain viewport `@media` rules. Under the new strategy, `webroot/css/scss/_queries.scss` becomes the source of truth and component-level viewport queries should be migrated to `@container` (or moved into layout compositions if they are macro orchestration).
 
 ### 1.4 Naming Conventions
@@ -106,7 +106,7 @@ These decisions survive the rebuild even if we replace the implementation detail
 - **Mobile-first** and **token-driven** spacing/typography (semantic `--space-*`, `--step-*` patterns), not scattered hard-coded values.
 - **Breakpoints are centralized** (single source of truth; today via `breakpoint()` map).
 - **Do not rewrite JS components yet**; isolate their CSS via `@layer legacy-js` to prevent conflicts.
-- **Container-first adaptation** is the target architecture (per `docs/layout-system.md`): prefer `@container` for component responsiveness.
+- **Container-first adaptation** is the target architecture (per `docs/architecture/layout-system.md`): prefer `@container` for component responsiveness.
 
 ---
 
@@ -200,7 +200,7 @@ Success criteria:
 - On small screens: toggle visible, top-level `<nav>` list hidden, Sidr drawer works.
 - On wide screens: toggle hidden, `<nav>` list visible, dropdowns behave.
 
-Planned Sidr replacement (post-CUBE, per `docs/navigation.md`):
+Planned Sidr replacement (post-CUBE, per `docs/prompts/navigation.md`):
 - Mobile (<768px): slide-in drawer built on `<dialog>` (`showModal()`), with nested submenus via `<details>`.
 - Desktop (≥768px): horizontal nav with dropdowns using the Popover API.
 - Progressive enhancement + vanilla JS only; strong accessibility (focus management, Escape-to-close, ARIA state sync).
@@ -257,7 +257,7 @@ Rules for quarantined CSS:
 
 ### Phase 2.4 — Container-query scaffolding (container-first baseline)
 - Add container utilities (`.cq`, `.cq-main`, `.cq-sidebar`, `.cq-card`) and apply them to a small number of key layout boundaries (page main rail + sidebar rail + tiles/cards).
-- Implement the SCSS query system described in `docs/layout-system.md` (single source of truth for container bands + viewport orchestration):
+- Implement the SCSS query system described in `docs/architecture/layout-system.md` (single source of truth for container bands + viewport orchestration):
   - `$cq-c2: 480px; $cq-c3: 720px;`
   - `$vp-md: 48rem; $vp-lg: 64rem;` (or confirmed values)
   - `cq-min`, `cq-name-min`, `vp-min` mixins
@@ -297,7 +297,7 @@ Container-first requirement during Phase 4:
 - Remove dead code and commented-out blocks after verification.
 
 ### Phase 7 — Replace Sidr navigation (JS modernization, contained scope)
-- Replace Sidr + jQuery-dependent drawer with the system described in `docs/navigation.md`:
+- Replace Sidr + jQuery-dependent drawer with the system described in `docs/prompts/navigation.md`:
   - `<dialog>` mobile drawer (`showModal()`), slide-in transitions, light dismiss, focus trap/return.
   - Desktop dropdowns via Popover API, positioned via `getBoundingClientRect()` and reflow on resize/scroll.
   - `<details>/<summary>` for mobile submenu accordions (close siblings when opening).

@@ -27,19 +27,19 @@ The global spacing tokens are now defined in `webroot/css/scss/stylesheet.scss:2
 
 2. **Global components**
    - **Forms** (`webroot/css/scss/_forms.scss`): replace ad-hoc pixel margins (e.g., `.contact-form label { margin-bottom: 10px; }`) with `--space-sm` or `--space-md`.
-   - **Prototype FAQ/Testimonial blocks** (`webroot/css/scss/_prototype.scss`): swap `padding: 1rem` and `margin: 0 0 1em;` for token equivalents.
+   - **Prototype FAQ/Testimonial blocks** (`webroot/css/scss/_prototype-faq.scss`, `webroot/css/scss/_prototype-testimonials.scss`): swap `padding: 1rem` and `margin: 0 0 1em;` for token equivalents.
    - **Footer + nav spacing**: evaluate the nav padding in `View/Elements/layout/nav.ctp` and footer rules in `webroot/css/scss/_general.scss` to transition to `--space-lg` / `--space-md`.
 
 ## Implementation Steps
 
-1. Sweep existing SCSS files (`_general.scss`, `_prototype.scss`, `_forms.scss`) for `margin`/`padding` declarations that match prior values (1rem, 4rem, 10px, 32px) and map them to the closest token.
+1. Sweep existing SCSS files (`_general.scss`, `_prototype-faq.scss`, `_prototype-testimonials.scss`, `_prototype-news.scss`, `_prototype-projects.scss`, `_prototype-staff.scss`, `_forms.scss`) for `margin`/`padding` declarations that match prior values (1rem, 4rem, 10px, 32px) and map them to the closest token.
 2. Update view templates if they embed inline spacing attributes; move those values into the SCSS layer using the token system.
 3. After refactors, recompile the stylesheet and visually QA key pages: home hero, priority pages, candidate pages, forms, and footer to confirm rhythm consistency.
 
 ## Porting Notes for Archived Stash
 
 1. **Forms (`webroot/css/scss/_forms.scss`)** - Reapply the stash spacing adjustments (label padding, checkbox margins, search bar spacing) using `var(--space-*)` while keeping typography and color hooks mapped to `$fontSerif`, `$fontSans`, `$inkStrong`, `$surfaceNeutral`, `$stateCritical`, and `$stateSuccess`.
-2. **Prototype partial (`webroot/css/scss/_prototype.scss`)** - Reinstate the FAQ/testimonial/project spacing updates with the shared spacing scale and swap any palette references to `$brandPrimary`, `$brandAccent`, or `$surfaceNeutral*` as needed.
+2. **Prototype partials (`webroot/css/scss/_prototype-*.scss`)** - Reinstate the FAQ/testimonial/project spacing updates with the shared spacing scale and swap any palette references to `$brandPrimary`, `$brandAccent`, or `$surfaceNeutral*` as needed.
 3. **Global styles (`webroot/css/scss/_general.scss`)** - Reintroduce blockquote and layout rhythm tweaks with the new theme accents (`$brandPrimary`, `$brandAccent`) and larger spacing tokens such as `var(--space-3xl)`.
 4. **Token definitions (`webroot/css/scss/stylesheet.scss`)** - Confirm `--space-3xl` remains documented and add examples or comments for oversized callouts that depend on it.
 5. Update this document as items are ported so the audit trail stays accurate after the stash is removed.

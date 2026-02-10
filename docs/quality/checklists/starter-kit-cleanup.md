@@ -19,7 +19,7 @@ Date: 2026-02-05
 - [x] Remove/move non-starter SCSS:
   - [x] Deleted: `webroot/css/scss/_member-directory.scss`
   - [x] Deleted: `webroot/css/scss/_jquery.fancybox.scss`
-  - [x] Kept as component: `webroot/css/scss/_prototype.scss`
+  - [x] Kept as component: `webroot/css/scss/_prototype-*.scss`
   - [x] Kept as component: `webroot/css/scss/_youtube.scss`
   - [x] Kept as component: `webroot/css/scss/_components-secondary-content.scss`
 

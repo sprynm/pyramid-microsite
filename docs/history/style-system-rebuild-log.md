@@ -33,6 +33,7 @@ New SCSS partials:
 - `webroot/css/scss/_sys-block-footer.scss`
 - `webroot/css/scss/_sys-block-forms.scss`
 - `webroot/css/scss/_sys-block-content.scss`
+- `webroot/css/scss/_prototype-feature-boxes.scss`
 - `webroot/css/scss/_sys-exceptions.scss`
 
 New JS:
@@ -61,6 +62,7 @@ Adjusted legacy JS:
 | Footer surface/nav/contact styles | `_sys-block-footer.scss` |
 | Forms baseline + controls | `_sys-block-forms.scss` |
 | Content blocks (details, blockquote, pagination/gallery/contact grid) | `_sys-block-content.scss` |
+| Prototype feature boxes | `_prototype-feature-boxes.scss` |
 | Page-only tweaks | `_sys-exceptions.scss` |
 
 ## 4. Navigation Modernization Applied
