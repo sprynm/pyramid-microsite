@@ -1,47 +1,48 @@
-<?php 
-	$socialMediaHTML = "";
-	if($this->Settings->show('Site.SocialMedia.facebook') != "") {
-		$socialMediaHTML .= $this->Html->link(
-			'Facebook',
-			$this->Settings->show('Site.SocialMedia.facebook'),
-			array('class' => 'social-icon facebook', 'target' => '_blank', 'rel' => 'noopener')
-		);
-	}
-	if($this->Settings->show('Site.SocialMedia.twitter') != "") {
-		$socialMediaHTML .= $this->Html->link(
-			'Twitter',
-			$this->Settings->show('Site.SocialMedia.twitter'),
-			array('class' => 'social-icon twitter', 'target' => '_blank', 'rel' => 'noopener')
-		);
-	}
-	if($this->Settings->show('Site.SocialMedia.instagram') != "") {
-		$socialMediaHTML .= $this->Html->link(
-			'Instagram',
-			$this->Settings->show('Site.SocialMedia.instagram'),
-			array('class' => 'social-icon instagram', 'target' => '_blank', 'rel' => 'noopener')
-		);
-	}
-	if($this->Settings->show('Site.SocialMedia.youtube') != "") {
-		$socialMediaHTML .= $this->Html->link(
-			'YouTube',
-			$this->Settings->show('Site.SocialMedia.youtube'),
-			array('class' => 'social-icon youtube', 'target' => '_blank', 'rel' => 'noopener')
-		);
-	}
-	if($this->Settings->show('Site.SocialMedia.linkedin') != "") {
-		$socialMediaHTML .= $this->Html->link(
-			'LinkedIn',
-			$this->Settings->show('Site.SocialMedia.linkedin'),
-			array('class' => 'social-icon linkedin', 'target' => '_blank', 'rel' => 'noopener')
-		);
-	}
+<?php
+$socialMediaHTML = "";
+$iconRoot = 'icons/social-media/';
 
-	if($socialMediaHTML != "") {
-		?>
-		<div class="social-media">	
-			<?php echo $socialMediaHTML; ?>		
-		</div>
-		<?php
+$links = array(
+	'facebook' => $this->Settings->show('Site.SocialMedia.facebook'),
+	'twitter' => $this->Settings->show('Site.SocialMedia.twitter'),
+	'instagram' => $this->Settings->show('Site.SocialMedia.instagram'),
+	'youtube' => $this->Settings->show('Site.SocialMedia.youtube'),
+	'linkedin' => $this->Settings->show('Site.SocialMedia.linkedin'),
+);
 
+foreach ($links as $key => $url) {
+	if ($url == '') {
+		continue;
 	}
+	$label = ucfirst($key);
+	$iconPath = WWW_ROOT . 'img' . DS . $iconRoot . $key . '.svg';
+	$icon = '';
+	if (file_exists($iconPath)) {
+		$icon = file_get_contents($iconPath);
+		$icon = preg_replace('/<\?xml.*?\?>/i', '', $icon);
+		if (preg_match('/<svg\\b[^>]*\\bclass=/i', $icon)) {
+			$icon = preg_replace('/<svg\\b([^>]*?)\\bclass=(["\'])([^"\']*)(\\2)([^>]*)>/i', '<svg$1 class="$3 social-icon__svg" aria-hidden="true" focusable="false"$5>', $icon, 1);
+		} else {
+			$icon = preg_replace('/<svg\\b([^>]*)>/i', '<svg$1 class="social-icon__svg" aria-hidden="true" focusable="false">', $icon, 1);
+		}
+	}
+	$socialMediaHTML .= $this->Html->link(
+		$icon . '<span class="u-visually-hidden">' . $label . '</span>',
+		$url,
+		array(
+			'class' => 'social-icon social-icon--' . $key,
+			'target' => '_blank',
+			'rel' => 'noopener',
+			'escape' => false,
+		)
+	);
+}
+
+if ($socialMediaHTML != "") {
+	?>
+	<div class="social-media">
+		<?php echo $socialMediaHTML; ?>
+	</div>
+	<?php
+}
 ?>
