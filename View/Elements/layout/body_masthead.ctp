@@ -98,9 +98,18 @@ if ($shouldRenderHero):
 				<p class="page-hero__summary"><?php echo h($pageData['Page']['banner_summary']); ?></p>
 			<?php endif; ?>
 
-			<?php if (!empty($pageData['Page']['banner_cta']) && !empty($pageData['Page']['banner_cta_link'])): ?>
+			<?php
+			$primaryCta = !empty($pageData['Page']['banner_cta']) && !empty($pageData['Page']['banner_cta_link']);
+			$secondaryCta = !empty($pageData['Page']['banner_cta_secondary']) && !empty($pageData['Page']['banner_cta_secondary_link']);
+			?>
+			<?php if ($primaryCta || $secondaryCta): ?>
 				<div class="page-hero__actions">
-					<?php echo $this->Html->link($pageData['Page']['banner_cta'], $pageData['Page']['banner_cta_link'], array('class' => 'page-hero__cta', 'escape' => false)); ?>
+					<?php if ($primaryCta): ?>
+						<?php echo $this->Html->link($pageData['Page']['banner_cta'], $pageData['Page']['banner_cta_link'], array('class' => 'page-hero__cta', 'escape' => false)); ?>
+					<?php endif; ?>
+					<?php if ($secondaryCta): ?>
+						<?php echo $this->Html->link($pageData['Page']['banner_cta_secondary'], $pageData['Page']['banner_cta_secondary_link'], array('class' => 'page-hero__cta page-hero__cta--secondary', 'escape' => false)); ?>
+					<?php endif; ?>
 				</div>
 			<?php endif; ?>
 		</div>
