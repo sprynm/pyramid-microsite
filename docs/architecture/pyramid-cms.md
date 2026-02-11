@@ -94,6 +94,180 @@ Key routing fields:
 - Site-level overrides live in `Plugin/Prototype/View/<slug>/...` and are created when a prototype is installed.
 - Guidance in `docs/architecture/system-overview.md`: edit site-level overrides, avoid CorePlugin unless necessary.
 
+## Prototype System (Expanded)
+
+### Admin workflow (observed + inferred from layout)
+1. Admin creates a **Prototype Instance** from a core type (or custom prototype).
+2. Each instance gets a unique **slug** (required for multiple installs of the same core type).
+3. On install, the system creates a site‑level override tree under:
+   - `Plugin/Prototype/View/<slug>/...`
+4. Rendering uses the site‑level override if it exists; otherwise it falls back to CorePlugin views.
+
+### Where rendering happens
+- **Instance summary/list view**: `Plugin/Prototype/*/View/<slug>/PrototypeInstances/view.ctp`
+- **Category view** (if categories enabled): `.../PrototypeCategories/view.ctp`
+- **Item detail view**: `.../PrototypeItems/view.ctp`
+- Shared elements used by core templates live in:
+  - `Plugin/Prototype/CorePlugin/View/Elements/` (e.g., `item_summary.ctp`, `category_summary.ctp`, `item_search.ctp`)
+
+### Instance assets (CSS/JS)
+`CmsPrototypeHelper::instanceCss()` and `instanceJs()` look for assets named by **instance slug** in:
+- `APP/Plugin/Prototype/webroot/css/<slug>.css`
+- `APP/Plugin/Prototype/webroot/js/<slug>.js`
+(and fall back to CMS core paths if present)
+
+### Core prototype types (how the CorePlugin templates use data)
+These are the built‑in types listed in `Plugin/Prototype/CorePlugin/View/`:
+
+- **Document Repositories**  
+  File: `document_repositories/PrototypeInstances/view.ctp`  
+  Renders a list of items linking to the first `ItemDocument` attachment; prints `footer_text`.
+
+- **FAQ**  
+  File: `faq/PrototypeInstances/view.ctp`  
+  Renders each item’s `name` as a question and `answer` as the toggle body; uses inline JS to expand/collapse.
+
+- **Feature Boxes**  
+  Files:  
+  - `feature_boxes/PrototypeInstances/view.ctp` (summary list or category summary)  
+  - `feature_boxes/PrototypeCategories/view.ctp`  
+  - `feature_boxes/PrototypeItems/view.ctp` (tile‑style card)  
+  Item view uses `heading`, `title`, `subheading`, `text/content`, `cta_link_text/cta_text`, `cta_link`, and optional image/caption.
+
+- **Links**  
+  File: `links/PrototypeInstances/view.ctp`  
+  Lists item name + URL and description.
+
+- **News**  
+  Files:  
+  - `news/PrototypeInstances/view.ctp` (summary list with image, date, excerpt)  
+  - `news/PrototypeItems/view.ctp` (detail with date, description, custom fields, images/documents)  
+
+- **Staff**  
+  File: `staff/PrototypeInstances/view.ctp`  
+  Lists item `name`, `position`, optional image, and description.
+
+- **Testimonials**  
+  File: `testimonials/PrototypeInstances/view.ctp`  
+  Renders testimonial text, name, optional byline and link in a blockquote.
+
+### Local overrides in this repo
+This repo already has site‑level overrides:
+- `Plugin/Prototype/View/feature-boxes/...`
+- `Plugin/Prototype/View/service-boxes/...`
+These override the CorePlugin templates for those instance slugs.
+
+## Pages: Concept to Rendered Output
+
+### Page concept (admin UI)
+At creation time, a page starts with:
+- **Page Title**
+- **Content (WYSIWYG)**
+
+Common tabs in the editor include:
+- **Banner Image**
+- **Schema Code**
+- **Advanced**
+  - Head title override
+  - IA placement (parent + URL slug)
+  - Layout template
+  - Header + footer code additions
+- **Metas**
+  - Description
+  - Application name
+  - Robots
+  - OG image
+- **Super Admin**
+  - Advanced routing fields
+  - Internal Name
+  - Custom Fields
+
+### What Plugin / Controller / Action / Extra do (Observed)
+These fields map the page to a **controller action** instead of a standard CMS page path.
+In code, `Page.action_map` is computed as:
+```
+plugin/controller/action/extra
+```
+When **action_map is present**, `Page::pageLink()` returns a route to that controller action.  
+When **action_map is empty**, the page renders the normal CMS path via `PagesController::view`.
+
+Practical meaning:
+- **Plugin**: the Cake plugin name that owns the controller.
+- **Controller**: the controller name (without `Controller` suffix).
+- **Action**: the method to call.
+- **Extra**: an optional parameter appended to the route.
+
+This is used to create “pages” that actually run a controller action (e.g., a custom page type) instead of the default WYSIWYG page.
+
+### Internal Name (Observed)
+UI note in the admin view indicates that **Internal Name is shown in the admin page index**.  
+It is useful for human‑friendly labels that don’t affect the public URL.
+
+### Custom Fields (How they fit)
+Custom fields are suitable for **single‑value content** tied to a page (e.g., `page_subtitle` for a hero).
+Prototypes are better for **collections** that can appear on multiple pages (e.g., staff lists, testimonials).
+
+### Better ways to keep fields consistent across pages
+If you want the same custom fields on every page:
+- Use the **Default Fields** admin workflow (`CmsPagesController::admin_default_fields`) to define fields that apply to all pages.
+- Use a **shared element** (e.g., `View/Elements/layout/body_masthead.ctp`) and pull from a common field name or site setting.
+
+This avoids adding fields manually per page while still keeping templates consistent.
+
+### Default Page Fields (UI Confirmation)
+The **Pages → Manage Default Page Fields** screen is the UI for `admin_default_fields`.
+Fields defined here become **defaults for all pages**, and the form supports the same field types shown in the editor
+(text, textarea, WYSIWYG, checkbox, radio, select, image, document, read‑only, email, telephone, URL, date, file).
+
+## Layouts: When, Why, How
+
+### What a layout does
+Layouts are the **page‑level wrappers** that assemble shared elements (head, nav, masthead, footer) and define the main structure of the page.  
+They live in `View/Layouts/` and are selected per page in the **Advanced → Layout** field.
+
+### Available layouts (observed in this repo)
+- `default.ctp` — standard interior pages with optional sub‑navigation.
+- `home.ctp` — homepage layout with the legacy masthead and optional feature boxes.
+- `contact.ctp` — contact page layout with main content + form.
+- `offline.ctp` / `maintenance-mode.ctp` — special system states.
+
+### When you need a new layout
+Create a new layout only when the **page‑level structure** differs in a way that cannot be handled by:
+- Shared elements (e.g., `layout/body_masthead.ctp`)
+- Composition classes in the template
+- Optional sections injected via elements
+
+Examples that justify a new layout:
+- A page needs a **different wrapper structure** (e.g., no nav, alternate content rail).
+- A page needs **different header/footer orchestration** (e.g., microsite landing page).
+- A page is a **system state** (offline/maintenance) that should ignore normal chrome.
+
+Examples that do **not** justify a new layout:
+- Different hero content or variant (use masthead element + custom fields).
+- Section ordering or additions (use elements in the existing layout).
+- One‑off styling (use blocks/modifiers).
+
+### How layouts are used
+1. In the admin page editor, choose the layout in **Advanced → Layout**.
+2. The layout renders:
+   - `layout/head`, `layout/nav`, `layout/body_masthead`, and `layout/footer` as needed.
+   - A container wrapper (e.g., `.c-frame`, `.c-container`).
+   - The page content via `echo $this->fetch('content');`.
+3. If the layout expects certain elements or variables (`$pageIntro`, `$banner`, `$pageHeading`), ensure the controller/page data provides them.
+
+### Routing: CMS Page vs Controller Action
+```
+Page.action_map present?
+├─ Yes → route: plugin/controller/action/extra
+│       → controller action renders (custom page type)
+└─ No  → route: /<page path>
+        → PagesController::view renders the CMS page
+```
+
+### Plugins for Specialized Collections
+The CMS can install **feature plugins** that provide specialized collection types and admin tools beyond standard pages and prototypes. The admin UI includes an “Add Plugins” screen for installing these (examples shown in the UI include Blog, Calendars, Header Slideshow, Products, Property Listings, Rentals, RETS/VREB listings).  
+These are separate from Prototypes: plugins typically introduce their own controllers, models, and admin workflows, while prototypes are content collections rendered through the Prototype system.
+
 ## Known Unknowns / Need Confirmation
 - Where CMS core classes live in `...\pyramidcms\V2\lib\Cms\` (outside this repo).
 - How `Settings` and `CustomFields` are surfaced in the admin UI (field groups, UI layout).
