@@ -18,7 +18,7 @@ echo $this->element('layout/body_masthead', array(
 
 				echo $this->Session->flash();
 				?>
-				<div class="contact-content">
+				<div class="c-grid" data-cols-c3="2">
 					<div class="contact-text">
 						<?php
 						echo $this->fetch('content');
@@ -31,7 +31,7 @@ echo $this->element('layout/body_masthead', array(
 							<?php
 							if ($this->Settings->show('Site.Contact.phone') != '') {
 								$phone = $this->Settings->show('Site.Contact.phone');
-								$phoneHTML = '<a href="tel:' . $phone . '">' . $phone . '</a>';
+								$phoneHTML = '<a class="u-tel-static" href="tel:' . $phone . '">' . $phone . '</a>';
 								?>
 								Phone: <?php echo $phoneHTML; ?>
 								<?php
@@ -39,7 +39,7 @@ echo $this->element('layout/body_masthead', array(
 
 							if ($this->Settings->show('Site.Contact.toll_free') != '') {
 								$toolFreePhone = $this->Settings->show('Site.Contact.toll_free');
-								$toolFreePhoneHTML = '<a href="tel:' . $toolFreePhone . '">' . $toolFreePhone . '</a>';
+								$toolFreePhoneHTML = '<a class="u-tel-static" href="tel:' . $toolFreePhone . '">' . $toolFreePhone . '</a>';
 								?>
 								<br>Toll-Free: <?php echo $toolFreePhoneHTML; ?>
 								<?php

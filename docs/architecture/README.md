@@ -10,11 +10,12 @@ Use it for runtime behavior, system organization, and platform-specific rules.
 
 ## Recommended Reading Order
 1. `docs/architecture/system-overview.md`
-2. `docs/architecture/frontend-structure.md`
-3. `docs/architecture/layout-system.md`
-4. `docs/architecture/atomic-reuse.md`
-5. `docs/architecture/agent-first.md`
-6. `docs/architecture/optional-components.md`
+2. `docs/architecture/pyramid-cms.md`
+3. `docs/architecture/frontend-structure.md`
+4. `docs/architecture/layout-system.md`
+5. `docs/architecture/atomic-reuse.md`
+6. `docs/architecture/agent-first.md`
+7. `docs/architecture/optional-components.md`
 
 ## Scope (What belongs here)
 - CakePHP stack overview and CMS behavior.

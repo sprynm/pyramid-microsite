@@ -7,13 +7,71 @@
     overflow: hidden !important;
     white-space: nowrap !important;
   }
+  .u-sr-only { @extend .u-visually-hidden; }
 
+  .u-text-left { text-align: left; }
   .u-text-center { text-align: center; }
+  .u-text-right { text-align: right; }
+  .u-text-uppercase { text-transform: uppercase; }
+
+  .u-font-sans { font-family: var(--font-sans); }
+  .u-font-serif { font-family: var(--font-serif); }
+  .u-step-0 { font-size: var(--step-0); }
+  .u-step-1 { font-size: var(--step-1); }
+  .u-step-2 { font-size: var(--step-2); }
+
+  .u-pad-block-sm { padding-block: var(--space-sm); }
+  .u-pad-block-md { padding-block: var(--space-md); }
   .u-pad-block-lg { padding-block: var(--space-lg); }
   .u-pad-block-xl { padding-block: var(--space-xl); }
+
+  .u-pad-inline-sm { padding-inline: var(--space-sm); }
+  .u-pad-inline-md { padding-inline: var(--space-md); }
+  .u-pad-inline-lg { padding-inline: var(--space-lg); }
+
+  .u-gap-sm { gap: var(--space-sm); }
+  .u-gap-md { gap: var(--space-md); }
+  .u-gap-lg { gap: var(--space-lg); }
+
+  .u-mt-sm { margin-top: var(--space-sm); }
+  .u-mt-md { margin-top: var(--space-md); }
+  .u-mt-lg { margin-top: var(--space-lg); }
+  .u-pt-2xl { padding-top: var(--space-2xl); }
+  .u-mb-sm { margin-bottom: var(--space-sm); }
+  .u-mb-md { margin-bottom: var(--space-md); }
+  .u-mb-lg { margin-bottom: var(--space-lg); }
+
+  .u-full-width { width: 100%; }
+  .u-max-w-narrow { max-width: 70ch; }
+  .u-max-w-normal { max-width: 75rem; }
+  .u-max-w-full { max-width: 90rem; }
+
+  .u-flex { display: flex; }
+  .u-inline-flex { display: inline-flex; }
+  .u-block { display: block; }
+  .u-inline { display: inline; }
+  .u-hidden { display: none; }
+
+  .u-img-cover {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+  .u-img-contain {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: contain;
+  }
+
+  .u-tel-static {
+    @include vp-min($vp-lg) {
+      text-decoration: none;
+      cursor: default;
+    }
+  }
+
   .u-stack-sm > * + * { margin-top: var(--space-sm); }
   .u-stack-md > * + * { margin-top: var(--space-md); }
   .u-stack-lg > * + * { margin-top: var(--space-lg); }
   .avoid-break { white-space: nowrap; }
 }
-

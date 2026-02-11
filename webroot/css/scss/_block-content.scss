@@ -37,17 +37,4 @@
     padding: var(--space-sm);
   }
 
-  .contact-content {
-    display: grid;
-    gap: var(--space-lg);
-    grid-template-columns: 1fr;
-  }
-
-  @container main (min-width: 720px) {
-    .contact-content {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      align-items: start;
-    }
-  }
-
 }

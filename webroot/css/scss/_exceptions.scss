@@ -1,14 +1,5 @@
 @use "queries" as *;
 
 @layer exceptions {
-  .home .l-single {
-    padding-top: var(--space-2xl);
-  }
-
-  @include vp-min($vp-lg) {
-    a[href^="tel:"] {
-      text-decoration: none;
-      cursor: default;
-    }
-  }
+ // no expections are needed at this time
 }

@@ -19,3 +19,15 @@ These are short, durable rules for styling and layout consistency.
 
 ## Templates
 - Keep template logic in a single PHP block per section to avoid tag-juggling bugs.
+
+## Token-Driven Components
+- Use spacing and typography tokens (`--space-*`, `--step-*`, `--lh-*`) instead of raw values.
+- Prefer color tokens from theme (`--color-*`, `--shadow-*`, `--radius-*`).
+- Avoid raw values. If a token does not exist, create a **semantic token** (e.g., `--cta-pad-y`, `--card-gap`, `--hero-cut-angle`) in the theme/token layer so intent is explicit and can map to theme primitives later.
+
+## Related
+- `docs/design/style-system-gaps.md` (known documentation gaps and suggested additions)
+- `docs/design/layers.md` (CSS layer responsibilities)
+- `docs/design/utilities.md` (utility class catalog)
+- `docs/design/compositions.md` (layout primitives)
+- `docs/design/components.md` (block component index)
