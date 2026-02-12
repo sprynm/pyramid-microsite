@@ -41,8 +41,14 @@ This document describes layout‑level composition classes defined in `webroot/c
 - `.c-grid[data-cols-c2="2"]`
   - 2 columns from c2 and up.
 
+- `.c-grid[data-cols-c2="3"]`
+  - 3 columns from c2 and up.
+
 - `.c-grid[data-cols-c3="3"]`
   - 3 columns from c3 and up.
+
+- `.c-grid[data-cols-c3="4"]`
+  - 4 columns from c3 and up.
 
 ## Sidebar Layouts
 - `.c-sidebar`, `.l-with-subnav`

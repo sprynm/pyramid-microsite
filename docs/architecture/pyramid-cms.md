@@ -219,6 +219,19 @@ The **Pages → Manage Default Page Fields** screen is the UI for `admin_default
 Fields defined here become **defaults for all pages**, and the form supports the same field types shown in the editor
 (text, textarea, WYSIWYG, checkbox, radio, select, image, document, read‑only, email, telephone, URL, date, file).
 
+### Default Site Settings (Built‑In)
+The Settings plugin ships with a **default schema**. The following keys are available by default (partial list, see `Plugin/Settings/CorePlugin/Config/Schema/schema.php`):
+- `Site.name`, `Site.title_separator`, `Site.common_head_title`
+- `Site.status` (Site Online), `Site.maintenance_mode`
+- `Site.copyright_name`, `Site.copyright_start_year`
+- `Site.email`
+- `Site.Contact.name`, `Site.Contact.address`, `Site.Contact.city`, `Site.Contact.province_state`, `Site.Contact.postal_zip`, `Site.Contact.country`, `Site.Contact.phone`, `Site.Contact.toll_free`, `Site.Contact.fax`, `Site.Contact.email`
+- `Site.Google.maps_api_key`, `Site.Google.gtm_association_code`
+- `Site.Bing.verification_code`
+- `Site.SocialMedia.*` (facebook, twitter, instagram, youtube, linkedin)
+
+Use these built‑in keys before adding custom settings.
+
 ## Layouts: When, Why, How
 
 ### What a layout does
