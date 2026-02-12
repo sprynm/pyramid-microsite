@@ -17,7 +17,7 @@ function toast(message) {
     notifier.notify({
       title: 'CSS Uploaded',
       message,
-      appID: 'AMSBC Watch',   // shown in Windows notifications
+      appID: 'Poland Crane Watch',   // shown in Windows notifications
       wait: false,            // we don’t handle click/timeout events
       sound: false            // set true if you want a chime
     });
