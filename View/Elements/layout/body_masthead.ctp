@@ -66,23 +66,23 @@ $shouldRenderHero = $showHeroHeading || $hasBannerImage || $fallbackWebp !== '' 
 if ($shouldRenderHero):
 ?>
 <section class="<?php echo h(implode(' ', $pageHeroClasses)); ?>">
+	<div class="page-hero__bg"></div>
 	<?php if ($hasBannerImage || $fallbackWebp !== '' || $fallbackPng !== ''): ?>
-		<div class="page-hero__media">
+		<div class="page-hero__image-bg">
 			<?php if ($hasBannerImage): ?>
 				<picture>
-					<source srcset="<?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-xlrg')); ?>" media="(min-width: 1981px)">
-					<source srcset="<?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-lrg')); ?> 1x, <?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-xlrg')); ?> 2x" media="(min-width: 1441px)">
+					<source srcset="<?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-fhdl')); ?>" media="(min-width: 1441px)">
 					<source srcset="<?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-med')); ?>" media="(min-width: 801px)">
 					<source srcset="<?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-sm')); ?>" media="(min-width: 641px)">
 					<source srcset="<?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-xsm')); ?>">
-					<img src="<?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-lrg')); ?>" width="1920" height="970" alt="<?php echo h($heroAlt); ?>" loading="lazy" decoding="async">
+					<img src="<?php echo $this->Media->getImage($bannerImage, array('version' => 'banner-fhdl')); ?>" width="1980" height="300" alt="<?php echo h($heroAlt); ?>" loading="lazy" decoding="async">
 				</picture>
 			<?php else: ?>
 				<?php echo $renderFallbackPicture($heroAlt); ?>
 			<?php endif; ?>
 		</div>
 	<?php endif; ?>
-	<div class="page-hero__overlay"></div>
+	<div class="page-hero__diagonal"></div>
 
 	<div class="page-hero__inner">
 		<div class="page-hero__content">

@@ -383,7 +383,7 @@ body.fancybox-iosfix {
   height: 30px;
   font: 22px/30px Arial,"Helvetica Neue",Helvetica,sans-serif;
   color: var(--color-ink-neutral);
-  font-weight: 300;
+  font-weight: var(--font-weight-light);
   text-align: center;
   border-radius: var(--radius-max);
   border-width: 0;
@@ -594,7 +594,7 @@ body.fancybox-iosfix {
   color: var(--color-ink-deep);
   margin: 0 0 20px 0;
   font-size: calc(3.5 * 0.625rem);
-  font-weight: 700; }
+  font-weight: var(--font-weight-bold); }
 
 .fancybox-share p {
   margin: 0;
@@ -614,7 +614,7 @@ p.fancybox-share__links {
   background: var(--color-surface-base);
   white-space: nowrap;
   font-size: calc(1.4 * 0.625rem);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   line-height: 40px;
   -webkit-user-select: none;
   -moz-user-select: none;

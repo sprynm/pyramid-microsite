@@ -1,13 +1,14 @@
 <?php
-if ($this->Settings->show('HeaderNotice.display_header_notice') == 1) {
+$showHeaderNotice = ((int) $this->Settings->show('HeaderNotice.display_header_notice') === 1);
+if ($showHeaderNotice) {
 	echo $this->element('header-notice');
 }
 ?>
-<header class="site-header primary-hdr">
+<header class="site-header primary-hdr<?php echo $showHeaderNotice ? ' site-header--with-notice' : ''; ?>">
 	<div class="c-frame c-container--normal">
 		<div class="hdr-container">
 		<a href="/" class="logo">
-			<img src="/img/logo.svg" width="275" height="28" alt="<?php echo $this->Settings->show('Site.name'); ?>" style="--logo-width: 27.5rem;">
+			<img src="/img/poland-logo.svg" width="150" height="69" alt="<?php echo $this->Settings->show('Site.name'); ?>">
 		</a>
 
 		<div class="hdr-links">
@@ -24,6 +25,7 @@ if ($this->Settings->show('HeaderNotice.display_header_notice') == 1) {
 			</button>
 			<nav class="site-nav" role="navigation" aria-label="Main navigation" data-site-nav>
 				<?php echo $this->Navigation->show(1); ?>
+				
 			</nav>
 			<?php
 				/* Remove comment if using Products plugin

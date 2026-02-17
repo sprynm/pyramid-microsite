@@ -1,7 +1,7 @@
 @use "sass:color";
 
 /* SCSS theme primitives (single source of truth). */
-$fontSans: "Open Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$fontSans: "Barlow", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 $fontSerif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 
 $colorSurfaceBase: #ffffff;
@@ -27,8 +27,9 @@ $colorBrandPrimaryBright: #2f6ea3;
 $colorBrandPrimaryHover: #173d5f;
 $colorBrandPrimaryVisited: #5d658f;
 $colorBrandSecondary: #233a54;
-$colorBrandAccent: #e0b14b;
-$colorBrandAccentHover: #efc56f;
+$colorBrandAccent: #ffd100;
+$colorBrandAccentHover: #e6bc00;
+$colorBrandNotice: #ffd100;
 $colorFocusRing: #f59f00;
 
 $radiusXs: 2px;
@@ -73,10 +74,18 @@ $heroMax: 75rem;
     --color-brand-secondary: #{$colorBrandSecondary};
     --color-brand-accent: #{$colorBrandAccent};
     --color-brand-accent-hover: #{$colorBrandAccentHover};
+    --color-brand-notice: #{$colorBrandNotice};
     --color-focus-ring: #{$colorFocusRing};
 
-    --fluid-body: clamp(1.0625rem, 0.9rem + 0.45vw, 1.25rem);
-    --step--1: clamp(0.875rem, 0.83rem + 0.2vw, 1rem);
+    --fluid-body: clamp(1rem, 1rem + 0.45vw, 1.5rem);
+    --font-weight-light: 53;
+    --font-weight-regular: 71;
+    --font-weight-medium: 96;
+    --font-weight-semibold: 116;
+    --font-weight-strong: 130;
+    --font-weight-bold: 141;
+    --font-weight-black: 166;
+    --step--1: clamp(0.9rem, 0.86rem + 0.2vw, 1.05rem);
     --step-0: var(--fluid-body);
     --step-1: clamp(1rem, 0.9rem + 0.5vw, 1.3rem);
     --step-2: clamp(1.25rem, 1rem + 0.95vw, 1.8rem);
@@ -116,6 +125,6 @@ $heroMax: 75rem;
     --sidebar-col: clamp(14rem, 25vw, 20rem);
     --hero-max: #{$heroMax};
     --hero-inline: clamp(1rem, 3vw, 3rem);
-    --hero-vspace: clamp(3.5rem, 9vw, 6rem);
+    --hero-vspace: 0;
   }
 }

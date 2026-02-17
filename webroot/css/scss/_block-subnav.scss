@@ -18,7 +18,7 @@
     background: var(--color-surface-soft);
     color: var(--color-ink-primary);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
   }
 
   .subnav--list a:hover,

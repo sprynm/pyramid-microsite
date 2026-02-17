@@ -3,11 +3,10 @@
 /* Scss Document */
 @layer base {
 @font-face {
-  font-family: "Open Sans";
-  src: url("/fonts/open-sans-vf.woff2") format("woff2-variations");
-  font-stretch: 75% 100%;
-  font-weight: 300 800;
+  font-family: "Barlow";
+  src: url("/fonts/barlow-vf.woff2") format("woff2-variations");
+  font-weight: 22 188;
+  font-stretch: 300% 500%;
   font-style: normal;
   font-display: swap; }
-
 }

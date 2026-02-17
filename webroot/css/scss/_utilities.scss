@@ -1,3 +1,7 @@
+
+
+@use "queries" as *;
+
 @layer utilities {
   .u-visually-hidden {
     position: absolute !important;
@@ -45,6 +49,7 @@
   .u-max-w-narrow { max-width: 70ch; }
   .u-max-w-normal { max-width: 75rem; }
   .u-max-w-full { max-width: 90rem; }
+  .u-bg-muted { background: var(--color-surface-muted); }
 
   .u-flex { display: flex; }
   .u-inline-flex { display: inline-flex; }
@@ -73,5 +78,25 @@
   .u-stack-sm > * + * { margin-top: var(--space-sm); }
   .u-stack-md > * + * { margin-top: var(--space-md); }
   .u-stack-lg > * + * { margin-top: var(--space-lg); }
+
+  .anim {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .anim.vis {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
   .avoid-break { white-space: nowrap; }
 }

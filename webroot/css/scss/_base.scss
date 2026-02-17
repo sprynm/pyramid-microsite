@@ -10,10 +10,12 @@
     background: var(--color-surface-base);
     color: var(--color-ink-primary);
     font-family: var(--font-sans);
+    font-weight: var(--font-weight-regular);
     font-size: var(--step-0);
     line-height: var(--lh-body);
     display: flex;
     flex-direction: column;
+    --nav-offset: 0px;
   }
 
   :where(main) :is(p, ul, ol, dl, pre, code, table) {
@@ -24,7 +26,12 @@
   h1, h2, h3, h4, h5, h6 {
     color: var(--color-brand-primary);
     line-height: var(--lh-title);
+    font-weight: var(--font-weight-bold);
     text-wrap: balance;
+  }
+
+  strong, b {
+    font-weight: var(--font-weight-semibold);
   }
 
   h1 { font-size: var(--step-5); }
@@ -63,4 +70,3 @@
     outline-offset: 2px;
   }
 }
-

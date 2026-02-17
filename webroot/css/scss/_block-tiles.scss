@@ -6,7 +6,7 @@
     overflow: hidden;
     color: var(--color-ink-on-dark);
     text-decoration: none;
-    min-height: clamp(14rem, 42vw, 25rem);
+    min-height: clamp(14rem, 12vw, 17rem);
     box-shadow: var(--shadow-sm);
     background: var(--color-surface-inverse);
     isolation: isolate;
@@ -57,6 +57,7 @@
   .tile__heading {
     margin: 0;
     color: var(--color-ink-on-dark);
+    font-weight: var(--font-weight-semibold);
     font-size: clamp(1.25rem, 2vw + 0.7rem, 2.2rem);
     text-transform: uppercase;
     letter-spacing: 0.02em;
@@ -64,14 +65,14 @@
 
   .tile__title {
     margin: 0;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     font-size: var(--step--1);
     color: rgb(255 255 255 / 0.85);
   }
 
   .tile__subheading {
     margin: 0 0 var(--space-sm);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     font-size: var(--step--1);
     color: rgb(255 255 255 / 0.8);
   }
@@ -97,16 +98,4 @@
     box-shadow: var(--shadow-md);
   }
 
-  .tile--linked:hover .tile__media picture > img,
-  .tile--linked:focus-visible .tile__media picture > img,
-  .tile--linked:hover .tile__bg,
-  .tile--linked:focus-visible .tile__bg {
-    transform: scale(1.045);
-    transition: transform 220ms ease;
-  }
-
-  .tile--linked .tile__media picture > img,
-  .tile--linked .tile__bg {
-    transition: transform 220ms ease;
-  }
 }

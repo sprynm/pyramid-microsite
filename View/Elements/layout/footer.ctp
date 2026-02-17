@@ -1,61 +1,70 @@
 		<footer>
 			<div class="ftr-container">
 				<?php
-					$footerNav = trim((string) $this->Navigation->show(1, false));
+					$siteName = trim((string) $this->Settings->show('Site.name'));
+					$siteEmail = trim((string) $this->Settings->show('Site.email'));
 					$footerSocial = trim((string) $this->element('social-media'));
-					$contactBits = array();
-					if (!empty($siteContact['address'])) {
-						$contactBits[] = $siteContact['address'];
-					}
-					$city = isset($siteContact['city']) ? $siteContact['city'] : '';
-					$province = isset($siteContact['province_state']) ? $siteContact['province_state'] : '';
-					$postal = isset($siteContact['postal_zip']) ? $siteContact['postal_zip'] : '';
-					$cityLine = trim($city . ', ' . $province . ' ' . $postal);
-					if ($cityLine !== ',') {
-						$contactBits[] = $cityLine;
-					}
-					if (!empty($siteContact['phone'])) {
-						$phone = $siteContact['phone'];
-						$contactBits[] = 'Tel: <a href="tel:' . $phone . '">' . $phone . '</a>';
-					}
+					$footerDescription = 'Since 2002, providing reliable crane and transport services for residential and commercial projects across Vancouver Island.';
+					$phone = !empty($siteContact['phone']) ? trim((string) $siteContact['phone']) : '';
+					$address = !empty($siteContact['address']) ? trim((string) $siteContact['address']) : '';
+					$city = !empty($siteContact['city']) ? trim((string) $siteContact['city']) : '';
+					$province = !empty($siteContact['province_state']) ? trim((string) $siteContact['province_state']) : '';
+					$postal = !empty($siteContact['postal_zip']) ? trim((string) $siteContact['postal_zip']) : '';
+					$cityLine = trim(preg_replace('/\s+/', ' ', $city . ', ' . $province . ' ' . $postal));
 				?>
 
 				<div class="ftr-grid">
 					<div class="ftr-brand">
-						<div class="ftr-logo"><?php echo h($this->Settings->show('Site.name')); ?></div>
+						<a class="ftr-logo-link" href="<?php echo $this->Html->url('/'); ?>" aria-label="<?php echo h($siteName !== '' ? $siteName : 'Home'); ?>">
+							<img class="ftr-logo-img" src="/img/poland-logo.png" alt="<?php echo h($siteName); ?>">
+						</a>
+						<p class="ftr-brand-copy"><?php echo h($footerDescription); ?></p>
 					</div>
 
-					<?php if ($footerNav !== '' && $footerNav !== '<ul></ul>'): ?>
-						<nav class="ftr-nav" aria-label="Footer navigation">
-							<h4 class="ftr-heading">Pages</h4>
-							<?php echo $footerNav; ?>
-						</nav>
-					<?php endif; ?>
+					<nav class="ftr-nav" aria-label="Footer services">
+						<h4 class="ftr-heading">Services</h4>
+						<?php
+						$footerServicesMenu = trim((string)$this->Navigation->show(3));
+						if ($footerServicesMenu !== '') {
+							echo $footerServicesMenu;
+						}
+						?>
+					</nav>
 
-					<?php if ($footerSocial !== ''): ?>
-						<div class="ftr-social">
-							<h4 class="ftr-heading">Social</h4>
-							<?php echo $footerSocial; ?>
-						</div>
-					<?php endif; ?>
+					<nav class="ftr-nav" aria-label="Footer company">
+						<h4 class="ftr-heading">Company</h4>
+						<?php
+						$footerCompanyMenu = trim((string)$this->Navigation->show(4));
+						if ($footerCompanyMenu !== '') {
+							echo $footerCompanyMenu;
+						}
+						?>
+					</nav>
 
-					<?php if (!empty($contactBits)): ?>
-						<div class="ftr-contact">
-							<h4 class="ftr-heading">Contact</h4>
-							<?php echo implode('<br>', $contactBits); ?>
-						</div>
-					<?php endif; ?>
+					<div class="ftr-contact">
+						<h4 class="ftr-heading">Contact</h4>
+						<?php if ($phone !== ''): ?>
+							<div class="ftr-contact-line"><?php echo $this->Html->link(h($phone), 'tel:' . $phone, array('escape' => false)); ?></div>
+						<?php endif; ?>
+						<?php if ($siteEmail !== ''): ?>
+							<div class="ftr-contact-line"><?php echo $this->Html->link(h($siteEmail), 'mailto:' . $siteEmail, array('escape' => false)); ?></div>
+						<?php endif; ?>
+						<?php if ($address !== ''): ?>
+							<div class="ftr-contact-line"><?php echo h($address); ?></div>
+						<?php endif; ?>
+						<?php if ($cityLine !== '' && $cityLine !== ','): ?>
+							<div class="ftr-contact-line"><?php echo h($cityLine); ?></div>
+						<?php endif; ?>
+						<?php if ($footerSocial !== ''): ?>
+							<div class="ftr-contact-social">
+								<?php echo $footerSocial; ?>
+							</div>
+						<?php endif; ?>
+					</div>
 				</div>
 
 				<div class="copyright">
-					<?php
-						if(isset($page) && $page['Page']['id'] == 1) {
-							$rhText = $this->Html->link('Radar Hill Web Design', $this->Settings->show('Site.Footer.portfolio_link'), array('rel' => 'nofollow'));
-						} else {
-							$rhText = "Radar Hill Web Design";
-						}
-					?>
-					&copy; <?php echo $this->Copyright->year(); ?> <?php echo $this->Copyright->name(); ?> | A <?php echo $this->Settings->show('Site.Footer.industry_identifier'); ?> website by <span class="avoid-break"><?php echo $rhText; ?></span><br>
+					&copy; 2026 | A website by <?php echo $this->Html->link('Radar Hill Web Design', $this->Settings->show('Site.Footer.portfolio_link'), array('rel' => 'nofollow')); ?><br>
 					The content of this website is the responsibility of the website owner.
 				</div>
 			</div>

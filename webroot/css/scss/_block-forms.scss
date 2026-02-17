@@ -23,7 +23,7 @@
   .radios legend {
     display: block;
     max-width: max-content;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     font-size: var(--step--1);
     font-family: var(--font-serif);
     color: var(--color-ink-strong);
@@ -58,7 +58,7 @@
     }
 
     label {
-      font-weight: 400;
+      font-weight: var(--font-weight-regular);
       font-family: var(--font-sans);
     }
   }
@@ -136,7 +136,7 @@
     border: 1px solid transparent;
     background: var(--color-brand-primary);
     color: var(--color-ink-on-dark);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     text-decoration: none;
     cursor: pointer;
     appearance: none;
@@ -229,7 +229,7 @@
   .optional {
     font-size: var(--step--1);
     font-style: italic;
-    font-weight: 400;
+    font-weight: var(--font-weight-regular);
     margin-left: 0.3125rem;
   }
 
@@ -388,7 +388,7 @@
   }
 
   .tooltip {
-    font-weight: 400;
+    font-weight: var(--font-weight-regular);
     font-style: italic;
     font-size: var(--step--1);
     padding: 0.3125rem;

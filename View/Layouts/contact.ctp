@@ -18,7 +18,7 @@ echo $this->element('layout/body_masthead', array(
 
 				echo $this->Session->flash();
 				?>
-				<div class="c-grid" data-cols-c3="2">
+				<div class="c-grid layout-contact-grid">
 					<div class="contact-text">
 						<?php
 						echo $this->fetch('content');

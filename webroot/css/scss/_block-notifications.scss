@@ -92,7 +92,7 @@
   .notification .close {
     color: color-mix(in srgb, var(--color-state-critical) 80%, var(--color-ink-absolute) 20%);
     font-size: var(--step--1);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     text-transform: uppercase;
     position: absolute;
     text-decoration: none;
@@ -135,7 +135,7 @@
   .message {
     clear: both;
     color: var(--color-ink-on-dark);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     margin: 0 0 0.9375rem 0;
     padding: 0.3125rem;
   }
@@ -167,7 +167,7 @@
   }
 
   p.error em {
-    font-weight: 400;
+    font-weight: var(--font-weight-regular);
     line-height: 1.4;
   }
 
