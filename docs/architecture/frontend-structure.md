@@ -37,9 +37,16 @@ Examples that do **not** justify a new layout:
 ## Hero / banner behavior
 - `body_masthead.ctp` renders the legacy `.banner` when `$banner['Image']` exists.
 - Interior hero patterns use shared token spacing and should align to the container rail.
+- Home hero (`View/Elements/layout/home_masthead.ctp`) uses a standardized `<picture>` source order for banner images:
+  - `banner-lrg` at `(min-width: 1441px)`
+  - `banner-med` at `(min-width: 801px)`
+  - `banner-sm` at `(min-width: 641px)`
+  - `banner-xsm` default source
+  - fallback `<img>` points to `banner-lrg`
+- Service/feature tiles may define custom image versions when their layout needs different crops.
+- Unless a component has a defined exception, follow the same banner version pattern as the default responsive standard.
 
 ## Build tooling
 - `npm run css:build` compiles SCSS into `webroot/css/stylesheet.css`.
 - `npm run css:watch` watches for changes.
 - Optional deploy tooling lives in `tools/` (upload + FTP test).
-

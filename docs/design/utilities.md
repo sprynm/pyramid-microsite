@@ -46,6 +46,7 @@ This document lists the current utility classes defined in `webroot/css/scss/_ut
 - `.u-max-w-narrow` — apply `max-width: 70ch`.
 - `.u-max-w-normal` — apply `max-width: 75rem`.
 - `.u-max-w-full` — apply `max-width: 90rem`.
+- `.u-bg-muted` — apply `background: var(--color-surface-muted)`.
 - `.u-flex` — apply `display: flex`.
 - `.u-inline-flex` — apply `display: inline-flex`.
 - `.u-block` — apply `display: block`.
@@ -61,6 +62,11 @@ This document lists the current utility classes defined in `webroot/css/scss/_ut
 
 ## Misc
 - `.avoid-break` — prevents line breaks (uses `white-space: nowrap`).
+- `.anim` — initial reveal-on-scroll state (hidden + translate).
+- `.anim.vis` — visible state after observer activation.
+
+## Motion Accessibility
+- `.anim` automatically disables transition and starts visible under `prefers-reduced-motion: reduce`.
 
 ## Notes
 - Utilities should remain single‑purpose and safe to apply in any context.

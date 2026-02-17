@@ -219,6 +219,35 @@ The **Pages → Manage Default Page Fields** screen is the UI for `admin_default
 Fields defined here become **defaults for all pages**, and the form supports the same field types shown in the editor
 (text, textarea, WYSIWYG, checkbox, radio, select, image, document, read‑only, email, telephone, URL, date, file).
 
+### Banner Image Renditions (Observed)
+The banner image attachment generates the following versions (based on current CMS settings). These are the sizes to expect for `<picture>` sources:
+- `thumb` — 100x100 (Crop & Fit, `image/jpeg`)
+- `banner-lrg` — 1920x700 (Crop & Fit, `image/jpeg`)
+- `banner-med` — 1440x700 (Crop & Fit, `image/jpeg`)
+- `banner-sm` — 800x450 (Crop & Fit, `image/jpeg`)
+- `banner-xsm` — 540x375 (Crop & Fit, `image/jpeg`)
+All versions share a background color of `#0f2744`.
+
+### Standard Hero `<picture>` Source Pattern (Production)
+Use this source order for hero/banner contexts:
+
+```php
+<picture>
+  <source srcset="...banner-lrg..." media="(min-width: 1441px)">
+  <source srcset="...banner-med..." media="(min-width: 801px)">
+  <source srcset="...banner-sm..." media="(min-width: 641px)">
+  <source srcset="...banner-xsm...">
+  <img src="...banner-lrg..." alt="..." loading="lazy" decoding="async">
+</picture>
+```
+
+Observed hero usage:
+- `View/Elements/layout/home_masthead.ctp` (hero background)
+
+Feature/service tile usage:
+- Components such as `View/Elements/feature_boxes.ctp` may use custom image versions when the layout needs different crop behavior.
+- Default policy for general CMS responsive image rendering remains the banner version pattern above unless a component-specific exception is defined.
+
 ### Default Site Settings (Built‑In)
 The Settings plugin ships with a **default schema**. The following keys are available by default (partial list, see `Plugin/Settings/CorePlugin/Config/Schema/schema.php`):
 - `Site.name`, `Site.title_separator`, `Site.common_head_title`
