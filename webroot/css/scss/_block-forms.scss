@@ -1,3 +1,5 @@
+@use "queries" as *;
+
 @layer blocks {
   form {
     display: grid;
@@ -221,7 +223,7 @@
       color: color-mix(
         in srgb,
         var(--color-state-critical, #b91c1c) 85%,
-        var(--color-ink-on-dark, #ffffff) 15%
+        var(--color-ink-on-dark, rgb(var(--white-rgb))) 15%
       );
     }
   }
@@ -267,43 +269,33 @@
     outline: none;
   }
 
-  input:invalid,
-  input:focus,
-  input:valid,
-  textarea:invalid,
-  textarea:focus,
-  textarea:valid {
+  :is(input, textarea):is(:invalid, :focus, :valid) {
     background-position: calc(100% - 0.375em) 0.55em;
     background-repeat: no-repeat;
     background-size: 1.125rem;
   }
 
-  input:invalid,
-  textarea:invalid {
+  :is(input, textarea):invalid {
     background-image: url(/img/icons/circle-x.svg);
     border-color: var(--color-state-critical, #b91c1c);
   }
 
-  input.invalid:not(:focus),
-  textarea.invalid:not(:focus) {
+  :is(input, textarea).invalid:not(:focus) {
     animation: shake-horizontal 1s cubic-bezier(0.455, 0.03, 0.515, 0.955) both !important;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    input.invalid:not(:focus),
-    textarea.invalid:not(:focus) {
+    :is(input, textarea).invalid:not(:focus) {
       animation: none !important;
     }
   }
 
-  input:placeholder-shown,
-  textarea:placeholder-shown {
+  :is(input, textarea):placeholder-shown {
     background-image: none;
     border-color: var(--color-border-muted);
   }
 
-  input:placeholder-shown:not(:focus),
-  textarea:placeholder-shown:not(:focus) {
+  :is(input, textarea):placeholder-shown:not(:focus) {
     animation: none;
   }
 
@@ -315,30 +307,24 @@
     box-shadow: var(--shadow-sm);
   }
 
-  input:focus,
-  textarea:focus,
-  input.invalid:focus,
-  textarea.invalid:focus {
+  :is(input, textarea):focus,
+  :is(input, textarea).invalid:focus {
     background-image: url(/img/icons/circle-exclamation.svg);
     border-color: var(--color-focus-ring);
   }
 
-  input:valid,
-  textarea:valid,
-  input.invalid:valid,
-  textarea.invalid:valid {
+  :is(input, textarea):valid,
+  :is(input, textarea).invalid:valid {
     background-image: url(/img/icons/circle-check.svg);
     border-color: var(--color-state-success, #15803d);
   }
 
-  input.invalid,
-  textarea.invalid {
+  :is(input, textarea).invalid {
     background-image: url(/img/icons/circle-x.svg);
     border-color: var(--color-state-critical, #b91c1c);
   }
 
-  input:not(:required),
-  textarea:not(:required) {
+  :is(input, textarea):not(:required) {
     background-image: none;
     border-color: var(--color-border-muted);
   }
@@ -393,7 +379,7 @@
     font-size: var(--step--1);
     padding: 0.3125rem;
     border-radius: var(--radius-sm);
-    background: rgb(255 255 255 / 0.95);
+    background: rgb(var(--white-rgb) / var(--alpha-95));
     box-shadow: var(--shadow-sm);
     position: absolute;
     top: 50%;
@@ -414,7 +400,7 @@
     display: none;
   }
 
-  @media (max-width: 48rem) {
+  @include vp-max($vp-md) {
     #UserLoginForm {
       .input.text,
       .input.password {
@@ -423,7 +409,7 @@
     }
   }
 
-  @media (max-width: 30rem) {
+  @include vp-max($vp-xs) {
     label {
       .tooltip {
         display: none;
@@ -431,3 +417,6 @@
     }
   }
 }
+
+
+

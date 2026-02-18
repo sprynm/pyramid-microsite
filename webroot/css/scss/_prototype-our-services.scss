@@ -1,3 +1,5 @@
+@use "queries" as *;
+
 @layer blocks {
   .service-platters {
     margin-top: var(--space-xl);
@@ -52,7 +54,7 @@
     object-position: center;
   }
 
-  @media (max-width: 47.99rem) {
+  @include vp-max($vp-md - 0.01rem) {
     .c-split-platter,
     .c-split-platter--flip {
       grid-template-columns: 1fr;
@@ -66,3 +68,4 @@
     }
   }
 }
+

@@ -19,6 +19,7 @@ $colorInkMuted: #5b6675;
 $colorInkMeta: #707a89;
 $colorInkOnDark: #f8fbff;
 $colorInkInverse: #e8eef8;
+$colorInkOnAccent: #1b1b1b;
 
 $colorBorderMuted: #cfd8e3;
 $colorBrandPrimary: #1e4f7a;
@@ -27,9 +28,9 @@ $colorBrandPrimaryBright: #2f6ea3;
 $colorBrandPrimaryHover: #173d5f;
 $colorBrandPrimaryVisited: #5d658f;
 $colorBrandSecondary: #233a54;
-$colorBrandAccent: #ffd100;
+$colorBrandAccentRgb: 255 209 0;
 $colorBrandAccentHover: #e6bc00;
-$colorBrandNotice: #ffd100;
+$colorBrandNoticeRgb: 255 209 0;
 $colorFocusRing: #f59f00;
 
 $radiusXs: 2px;
@@ -64,6 +65,20 @@ $heroMax: 75rem;
     --color-ink-meta: #{$colorInkMeta};
     --color-ink-on-dark: #{$colorInkOnDark};
     --color-ink-inverse: #{$colorInkInverse};
+    --color-ink-on-accent: #{$colorInkOnAccent};
+
+    --white-rgb: 255 255 255;
+    --alpha-95: 0.95;
+    --alpha-85: 0.85;
+    --alpha-75: 0.75;
+    --alpha-60: 0.6;
+    --alpha-42: 0.42;
+    --alpha-35: 0.35;
+    --alpha-25: 0.25;
+    --alpha-16: 0.16;
+    --alpha-10: 0.1;
+    --alpha-04: 0.04;
+    --alpha-02: 0.02;
 
     --color-border-muted: #{$colorBorderMuted};
     --color-brand-primary: #{$colorBrandPrimary};
@@ -72,10 +87,19 @@ $heroMax: 75rem;
     --color-brand-primary-hover: #{$colorBrandPrimaryHover};
     --color-brand-primary-visited: #{$colorBrandPrimaryVisited};
     --color-brand-secondary: #{$colorBrandSecondary};
-    --color-brand-accent: #{$colorBrandAccent};
+    --color-brand-accent-rgb: #{$colorBrandAccentRgb};
+    --color-brand-accent: rgb(var(--color-brand-accent-rgb));
     --color-brand-accent-hover: #{$colorBrandAccentHover};
-    --color-brand-notice: #{$colorBrandNotice};
+    --color-brand-notice-rgb: #{$colorBrandNoticeRgb};
+    --color-brand-notice: rgb(var(--color-brand-notice-rgb));
     --color-focus-ring: #{$colorFocusRing};
+
+    --color-nav-backdrop-rgb: 7 12 24;
+    --color-hero-overlay-start-rgb: 13 36 64;
+    --color-hero-overlay-end-rgb: 37 80 131;
+    --color-footer-muted-rgb: 223 232 244;
+    --color-footer-soft-rgb: 230 239 248;
+    --color-footer-meta-rgb: 200 211 226;
 
     --fluid-body: clamp(1rem, 1rem + 0.45vw, 1.5rem);
     --font-weight-light: 53;
@@ -128,3 +152,4 @@ $heroMax: 75rem;
     --hero-vspace: 0;
   }
 }
+

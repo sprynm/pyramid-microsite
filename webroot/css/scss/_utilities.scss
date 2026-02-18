@@ -53,9 +53,26 @@
 
   .u-flex { display: flex; }
   .u-inline-flex { display: inline-flex; }
+  .u-flex-center {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
   .u-block { display: block; }
   .u-inline { display: inline; }
   .u-hidden { display: none; }
+  .u-overlay {
+    position: absolute;
+    inset: 0;
+  }
+  .u-cover {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+  .u-lift:hover,
+  .u-lift:focus-visible {
+    transform: translateY(-1px);
+  }
 
   .u-img-cover {
     inline-size: 100%;
@@ -100,3 +117,4 @@
 
   .avoid-break { white-space: nowrap; }
 }
+

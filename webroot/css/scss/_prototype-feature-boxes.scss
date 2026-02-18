@@ -1,3 +1,5 @@
+@use "queries" as *;
+
 @layer blocks {
   .home-service-boxes .feature-boxes,
   .home-service-boxes .service-boxes {
@@ -32,17 +34,21 @@
   .feature-boxes .tile--linked:focus-visible .tile__overlay,
   .service-boxes .tile--linked:hover .tile__overlay,
   .service-boxes .tile--linked:focus-visible .tile__overlay {
-    background: linear-gradient(180deg, rgb(0 0 0 / 0.02) 0%, rgb(0 0 0 / 0.42) 100%);
+    background: linear-gradient(
+      180deg,
+      rgb(var(--color-ink-absolute-rgb) / var(--alpha-02)) 0%,
+      rgb(var(--color-ink-absolute-rgb) / var(--alpha-42)) 100%
+    );
   }
 
-  @media (min-width: 48rem) {
+  @include vp-min($vp-md) {
     .feature-boxes,
     .service-boxes {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
-  @media (min-width: 64rem) {
+  @include vp-min($vp-lg) {
     .feature-boxes,
     .service-boxes {
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -56,3 +62,4 @@
     }
   }
 }
+

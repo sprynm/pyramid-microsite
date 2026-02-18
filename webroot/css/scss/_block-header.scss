@@ -13,7 +13,7 @@
     color: var(--color-ink-absolute);
     min-block-size: var(--hdr-notice-height);
     padding-block: 0;
-    border-bottom: 1px solid rgb(0 0 0 / 0.08);
+    border-bottom: 1px solid rgb(var(--color-ink-absolute-rgb) / var(--alpha-10));
   }
 
   #hdr-notice .hdr-notice-content {
@@ -63,10 +63,10 @@
     left: 0;
     right: 0;
     z-index: 80;
-    background: rgb(255 255 255 / 0.98);
+    background: rgb(var(--white-rgb) / var(--alpha-95));
     backdrop-filter: blur(6px);
-    border-bottom: 1px solid rgb(0 0 0 / 0.06);
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+    border-bottom: 1px solid rgb(var(--color-ink-absolute-rgb) / var(--alpha-04));
+    box-shadow: 0 2px 8px rgb(var(--color-ink-absolute-rgb) / var(--alpha-10));
   }
 
   .hdr-container {
@@ -94,7 +94,7 @@
     gap: var(--space-sm);
   }
 
-  @media (max-width: 47.99rem) {
+  @include vp-max($vp-md - 0.01rem) {
     #hdr-notice {
       padding-block: 0;
     }
@@ -121,3 +121,5 @@
     }
   }
 }
+
+

@@ -1,3 +1,5 @@
+@use "queries" as *;
+
 @layer blocks {
   footer {
     background: var(--color-surface-footer);
@@ -56,7 +58,7 @@
   .ftr-brand-copy {
     margin: 0;
     max-width: 32ch;
-    color: rgb(223 232 244 / 0.72);
+    color: rgb(var(--color-footer-muted-rgb) / var(--alpha-75));
     font-size: clamp(1rem, 0.88rem + 0.28vw, 1.15rem);
     line-height: 1.55;
   }
@@ -87,7 +89,7 @@
   }
 
   .ftr-nav a {
-    color: rgb(230 239 248 / 0.85);
+    color: rgb(var(--color-footer-soft-rgb) / var(--alpha-85));
     text-decoration: none;
     font-weight: var(--font-weight-medium);
     font-size: clamp(1rem, 0.88rem + 0.24vw, 1.15rem);
@@ -96,12 +98,12 @@
 
   .ftr-nav a:hover,
   .ftr-nav a:focus-visible {
-    color: #ffffff;
+    color: rgb(var(--white-rgb));
     text-decoration: none;
   }
 
   .ftr-contact {
-    color: rgb(223 232 244 / 0.8);
+    color: rgb(var(--color-footer-muted-rgb) / var(--alpha-85));
     font-size: clamp(0.98rem, 0.86rem + 0.24vw, 1.12rem);
     line-height: 1.45;
   }
@@ -135,14 +137,14 @@
     border-radius: 0.35rem;
     border: 0;
     background: transparent;
-    color: rgb(230 239 248 / 0.92);
+    color: rgb(var(--color-footer-soft-rgb) / var(--alpha-95));
     text-decoration: none;
     transition: color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
   }
 
   .social-icon:hover,
   .social-icon:focus-visible {
-    color: #ffffff;
+    color: rgb(var(--white-rgb));
     background: transparent;
     transform: translateY(-1px);
   }
@@ -166,7 +168,7 @@
     stroke: currentColor;
   }
 
-  @media (max-width: 47.99rem) {
+  @include vp-max($vp-md - 0.01rem) {
     .ftr-grid {
       gap: var(--space-lg);
     }
@@ -177,13 +179,13 @@
     }
   }
 
-  @media (max-width: 31.99rem) {
+  @include vp-max($vp-sm - 0.01rem) {
     .ftr-brand {
       grid-template-columns: 1fr;
     }
   }
 
-  @media (min-width: 720px) {
+  @include vp-min($vp-c3) {
     .ftr-brand {
       grid-column: auto;
       grid-template-columns: 1fr;
@@ -194,7 +196,7 @@
     }
   }
 
-  @media (min-width: 1024px) {
+  @include vp-min($vp-lg) {
     .ftr-grid {
       grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr));
       align-items: start;
@@ -204,8 +206,8 @@
   .copyright {
     margin-top: clamp(1.5rem, 2.2vw, 2.2rem);
     padding-top: var(--space-md);
-    border-top: 1px solid rgb(255 255 255 / 0.16);
-    color: rgb(200 211 226 / 0.72);
+    border-top: 1px solid rgb(var(--white-rgb) / var(--alpha-16));
+    color: rgb(var(--color-footer-meta-rgb) / var(--alpha-75));
     font-size: 0.93rem;
     line-height: 1.5;
   }
@@ -214,3 +216,6 @@
     color: inherit;
   }
 }
+
+
+
