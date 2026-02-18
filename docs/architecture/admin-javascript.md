@@ -75,6 +75,34 @@ These files exist in the repo and should be treated as legacy unless explicitly 
 2. Migrate plugin script paths only when those plugins/features are being touched.
 3. Delete legacy files only after grep confirms no references in layouts, elements, plugins, or admin templates.
 
+## Tech Debt: Close Behavior Standardization
+
+`webroot/js/library.js` now provides the shared close handler baseline.
+
+Close target priority:
+1. `data-close-target`
+2. `[data-close-container]`
+3. `.notification`
+4. `.legal-notice`
+5. `.notice`
+6. `.message`
+7. `.error-message`
+
+Trigger support baseline:
+- Preferred: `.js-close` or `data-function="close"`
+- Legacy compatibility: `.close`
+
+Migration policy for components:
+1. If templates are in our control, migrate to preferred triggers and explicit targets (`data-close-target` / `data-close-container`) during touch-work.
+2. If templates are not in our control (third-party/plugin/core ownership), keep legacy `.close` support and log the component as an exception.
+3. Re-check exceptions when ownership changes or templates become editable.
+
+Exception logging requirement:
+- Record each non-migrated close interaction in the relevant component/layout doc and state:
+  - why it cannot migrate yet,
+  - expected owner,
+  - removal/migration condition.
+
 ## QA Checklist After JS Changes
 1. Mobile nav drawer works with mouse, touch, and keyboard.
 2. Desktop submenu popovers open/close correctly and are keyboard reachable.
