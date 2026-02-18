@@ -24,6 +24,20 @@ docs/customer images/*
 /Plugin/Prototype/CorePlugin/View/PrototypeItems/*
 !/Plugin/Prototype/CorePlugin/View/PrototypeItems/admin_edit.ctp
 
+# expose select ReCaptcha callback files
+!/Plugin/ReCaptcha
+/Plugin/ReCaptcha/*
+!/Plugin/ReCaptcha/webroot/
+/Plugin/ReCaptcha/webroot/*
+!/Plugin/ReCaptcha/webroot/js/
+!/Plugin/ReCaptcha/webroot/js/recaptcha_callback.js
+!/Plugin/ReCaptcha/CorePlugin/
+/Plugin/ReCaptcha/CorePlugin/*
+!/Plugin/ReCaptcha/CorePlugin/webroot/
+/Plugin/ReCaptcha/CorePlugin/webroot/*
+!/Plugin/ReCaptcha/CorePlugin/webroot/js/
+!/Plugin/ReCaptcha/CorePlugin/webroot/js/recaptcha_callback.js
+
 # expose select folder in View
 !/View/
 /View/*
