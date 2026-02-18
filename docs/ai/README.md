@@ -7,6 +7,7 @@ Keep this short, current, and durable. Avoid repeating details that are already 
 - Read `docs/ai/context.md` for the minimum viable project context.
 - If the task touches architecture or design, jump to the linked docs listed there.
 - If you add decisions, record them in `docs/ai/decisions.md` (date + intent + impact).
+- For end-of-project guardrails, use `docs/ai/closeout-rules.md` as the compact philosophy/rules baseline.
 
 ## 2) Context Hygiene (Avoid Context Rot)
 - Prefer short, task-scoped context. Do not load multiple long docs unless needed.
@@ -38,9 +39,14 @@ Keep this short, current, and durable. Avoid repeating details that are already 
 ## 7) Document Map
 - `docs/ai/context.md`: concise project context and links.
 - `docs/ai/decisions.md`: dated decision log (authoritative).
-- `docs/architecture/atomic-reuse.md`: reuse utilities + atom-sized blocks before new components.
+- `docs/ai/closeout-rules.md`: compact learnings, philosophy, and final working rules.
+- `docs/design/atomic-reuse.md`: reuse utilities + atom-sized blocks before new components.
 - `docs/architecture/agent-first.md`: strict workflow when agents make most changes.
 - `docs/architecture/optional-components.md`: CSS size control via optional `@use` gates.
+- `docs/architecture/admin-javascript.md`: frontend JS loading policy and migration backlog.
+- `docs/architecture/script-loading-map.md`: where scripts are loaded by layout.
+- `docs/architecture/prototype-catalog.md`: core prototypes and migration status.
+- `docs/architecture/new-site-playbook.md`: platform-level checklist for launching a new site.
 - `docs/history/`: historical logs and migration docs.
 - `docs/architecture/`: system structure + layout architecture.
 - `docs/design/`: tokens, typography, layout guidelines, hero.

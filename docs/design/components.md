@@ -22,6 +22,7 @@ These are prototype‑specific blocks and should only be enabled when the protot
 - `_prototype-faq.scss`
 - `_prototype-feature-boxes.scss`
 - `_prototype-news.scss`
+- `_prototype-our-services.scss`
 - `_prototype-projects.scss`
 - `_prototype-staff.scss`
 - `_prototype-testimonials.scss`

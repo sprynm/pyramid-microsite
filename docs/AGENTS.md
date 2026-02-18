@@ -23,6 +23,10 @@ This is an instance of the Radarhill "pyramid" CMS, built on CakePHP.
 
 ## Primary References to be used depending on the nature of the task
 - Architecture: `docs/architecture/`
+- Frontend JS behavior/load policy: `docs/architecture/admin-javascript.md`
+- Frontend script sources by layout: `docs/architecture/script-loading-map.md`
+- Prototype migration/status matrix: `docs/architecture/prototype-catalog.md`
+- New site baseline checklist: `docs/architecture/new-site-playbook.md`
 - Design system & layout: `docs/design/`
 - Quality/lint: `docs/quality/`
 
@@ -34,7 +38,7 @@ This is an instance of the Radarhill "pyramid" CMS, built on CakePHP.
 - Reuse utilities and atom-sized blocks before creating new, context-specific components.
 - Extend `.btn` and other atoms with modifiers or scoped wrappers instead of inventing new hero-only classes.
 - Tradeoff: accept less prototype-level control if it improves cross-site cohesion.
-- See `docs/architecture/atomic-reuse.md`.
+- See `docs/design/atomic-reuse.md`.
 
 ## Build & Lint (Common)
 - `npm run css:build`

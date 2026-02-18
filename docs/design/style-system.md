@@ -28,12 +28,22 @@ These are short, durable rules for styling and layout consistency.
 ## Token-Driven Components
 - Use spacing and typography tokens (`--space-*`, `--step-*`, `--lh-*`) instead of raw values.
 - Prefer color tokens from theme (`--color-*`, `--shadow-*`, `--radius-*`).
+- For transparent colors, use RGB + alpha tokens:
+  - `rgb(var(--white-rgb) / var(--alpha-85))`
+  - `rgb(var(--color-brand-primary-rgb) / var(--alpha-16))`
 - Avoid raw values. If a token does not exist, create a **semantic token** (e.g., `--cta-pad-y`, `--card-gap`, `--hero-cut-angle`) in the theme/token layer so intent is explicit and can map to theme primitives later.
+- Use `color-mix()` when intentionally blending two colors, not as a replacement for simple opacity.
 
 ## Motion
-- Use `.anim` + `.vis` for simple reveal-on-scroll transitions.
-- `.anim` defines the initial hidden/offset state; `.vis` is added by JS (`webroot/js/observers.js`) when the element enters the viewport.
-- Respect accessibility: under `prefers-reduced-motion: reduce`, `.anim` renders immediately with no transition.
+- Observer state should be generic:
+  - `.observe` = managed by observer script
+  - `.visible` = currently in viewport
+- Animation is opt-in and declarative in CSS:
+  - `.observe.animate` = neutral/pre-entry state
+  - `.observe.animate.visible` = animated/entered state
+- Progressive enhancement:
+  - animation-only hidden states should be gated by `.js-observers` on `<html>` so content remains visible with JS disabled.
+- Reduced-motion handling belongs in CSS only (`prefers-reduced-motion`), not in observer JS.
 
 ## Related
 - `docs/design/style-system-gaps.md` (known documentation gaps and suggested additions)
@@ -41,3 +51,16 @@ These are short, durable rules for styling and layout consistency.
 - `docs/design/utilities.md` (utility class catalog)
 - `docs/design/compositions.md` (layout primitives)
 - `docs/design/components.md` (block component index)
+- `docs/design/prototypes.md` (prototype styling rules)
+- `docs/design/accessibility.md` (interaction and accessibility checklist)
+
+## Normalized Legacy Decisions
+- Keep SCSS partial responsibilities clear: tokens/base/compositions/utilities/blocks/exceptions.
+- Do not reintroduce broad global component selectors where block roots exist.
+- Avoid one-off values in components when an equivalent token exists.
+- Keep exception styles narrowly scoped and easy to remove.
+
+Source normalization:
+- Derived from `docs/history/cube-migration.md`
+- Derived from `docs/history/style-system-rebuild-log.md`
+- Derived from `docs/history/starter-kit-cleanup.md`

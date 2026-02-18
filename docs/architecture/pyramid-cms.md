@@ -229,7 +229,7 @@ The banner image attachment generates the following versions (based on current C
 All versions share a background color of `#0f2744`.
 
 ### Standard Hero `<picture>` Source Pattern (Production)
-Use this source order for hero/banner contexts:
+Use this source order for homepage hero contexts (`home_masthead.ctp`):
 
 ```php
 <picture>
@@ -241,8 +241,21 @@ Use this source order for hero/banner contexts:
 </picture>
 ```
 
+For interior hero contexts (`body_masthead.ctp`), current usage is:
+
+```php
+<picture>
+  <source srcset="...banner-fhdl..." media="(min-width: 1441px)">
+  <source srcset="...banner-med..." media="(min-width: 801px)">
+  <source srcset="...banner-sm..." media="(min-width: 641px)">
+  <source srcset="...banner-xsm...">
+  <img src="...banner-fhdl..." alt="..." loading="lazy" decoding="async">
+</picture>
+```
+
 Observed hero usage:
 - `View/Elements/layout/home_masthead.ctp` (hero background)
+- `View/Elements/layout/body_masthead.ctp` (interior hero background)
 
 Feature/service tile usage:
 - Components such as `View/Elements/feature_boxes.ctp` may use custom image versions when the layout needs different crop behavior.
@@ -269,7 +282,7 @@ They live in `View/Layouts/` and are selected per page in the **Advanced → Lay
 
 ### Available layouts (observed in this repo)
 - `default.ctp` — standard interior pages with optional sub‑navigation.
-- `home.ctp` — homepage layout with the legacy masthead and optional feature boxes.
+- `home.ctp` — homepage layout with `home_masthead.ctp` hero and optional feature boxes.
 - `contact.ctp` — contact page layout with main content + form.
 - `offline.ctp` / `maintenance-mode.ctp` — special system states.
 
@@ -324,4 +337,5 @@ These are separate from Prototypes: plugins typically introduce their own contro
 ## Related Docs
 - `docs/architecture/system-overview.md`
 - `docs/architecture/frontend-structure.md`
+- `docs/architecture/prototype-catalog.md`
 - `docs/design/style-system.md`

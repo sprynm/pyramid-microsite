@@ -1,5 +1,11 @@
 # CUBE CSS Migration Map (Poland_crane)
 
+Status: historical planning record. Core active rules from this file are normalized into:
+- `docs/history/decision-ledger.md`
+- `docs/architecture/system-overview.md`
+- `docs/architecture/frontend-structure.md`
+- `docs/design/style-system.md`
+
 Goal: migrate the microsite styling to a **CUBE CSS** approach (Composition / Utility / Block / Exception) while **keeping existing JavaScript behavior** (jQuery + Sidr, etc.) for now.
 
 Non-goals (for this phase):

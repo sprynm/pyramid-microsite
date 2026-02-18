@@ -30,4 +30,18 @@
 ## Edit Boundaries
 - Prefer site-level overrides in `Plugin/Prototype/View/` after a prototype is installed.
 - Avoid touching CorePlugin files unless strictly necessary and tracked in Git.
-- Follow `docs/architecture/atomic-reuse.md` for reuse-first styling.
+- Follow `docs/design/atomic-reuse.md` for reuse-first styling.
+
+## Operational Rules (Going Forward)
+- Treat `webroot/css/scss/_theme.scss` as the theme source of truth.
+- Keep CSS layer responsibilities stable; avoid cross-layer leakage of responsibilities.
+- Prefer composition/layout reuse (`.c-*`, `.l-*`) before adding page-specific wrappers.
+- Prefer block modifiers over new blocks unless DOM structure actually changes.
+- Keep prototype-specific styles in `webroot/css/scss/_prototype-<slug>.scss`.
+- Keep template control flow concise and local to one PHP section block when feasible.
+- Use modern frontend JS modules as default behavior; keep legacy dependencies only when required by admin/debug/runtime constraints.
+
+Source normalization:
+- Derived from `docs/history/cube-migration.md`
+- Derived from `docs/history/style-system-rebuild-log.md`
+- Derived from `docs/history/starter-kit-cleanup.md`

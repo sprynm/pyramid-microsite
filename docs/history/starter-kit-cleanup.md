@@ -1,5 +1,10 @@
 # Starter Kit Cleanup Checklist
 
+Status: historical cleanup checklist. Active token/layout rules are normalized into:
+- `docs/history/decision-ledger.md`
+- `docs/design/style-system.md`
+- `docs/design/tokens.md`
+
 Date: 2026-02-05
 
 - [x] Resolve residual `calc(N * 0.625rem)` arithmetic into plain values (readability pass).

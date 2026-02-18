@@ -62,11 +62,12 @@ This document lists the current utility classes defined in `webroot/css/scss/_ut
 
 ## Misc
 - `.avoid-break` — prevents line breaks (uses `white-space: nowrap`).
-- `.anim` — initial reveal-on-scroll state (hidden + translate).
-- `.anim.vis` — visible state after observer activation.
+- `.observe.animate` — initial reveal-on-scroll state (hidden + translate) when JS observer is active.
+- `.observe.animate.visible` — visible state after observer activation.
 
 ## Motion Accessibility
-- `.anim` automatically disables transition and starts visible under `prefers-reduced-motion: reduce`.
+- `.observe.animate` disables transition and renders visible under `prefers-reduced-motion: reduce`.
+- Without JS, `.observe.animate` remains visible (animation state is gated by `.js-observers` on `<html>`).
 
 ## Notes
 - Utilities should remain single‑purpose and safe to apply in any context.

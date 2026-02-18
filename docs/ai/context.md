@@ -26,7 +26,7 @@ Use this file as the minimum viable context. It is intentionally short.
 - Reuse utilities and atom-sized blocks before creating new context-specific components.
 - Extend existing atoms (e.g., `.btn`) via modifiers or scoped wrappers.
 - Accept reduced prototype-level control if it improves cohesion.
-- See `docs/architecture/atomic-reuse.md`.
+- See `docs/design/atomic-reuse.md`.
 
 ## Build & Lint
 - SCSS build: `npm run css:build`.
@@ -39,11 +39,19 @@ Use this file as the minimum viable context. It is intentionally short.
 
 ## Where To Go Next
 - System overview: `docs/architecture/system-overview.md`.
-- Atomic reuse policy: `docs/architecture/atomic-reuse.md`.
+- Atomic reuse policy: `docs/design/atomic-reuse.md`.
+- Frontend JavaScript (admin-facing): `docs/architecture/admin-javascript.md`.
+- Script loading matrix: `docs/architecture/script-loading-map.md`.
+- Prototype coverage and migration status: `docs/architecture/prototype-catalog.md`.
+- New site implementation baseline: `docs/architecture/new-site-playbook.md`.
 - Agent-first rules: `docs/architecture/agent-first.md`.
 - Optional components: `docs/architecture/optional-components.md`.
 - Style system rules: `docs/design/style-system.md`.
 - Theme system: `docs/design/theme.md`.
+- Token inventory: `docs/design/tokens.md`.
+- Exceptions policy: `docs/design/exceptions.md`.
+- Prototype styling rules: `docs/design/prototypes.md`.
+- Accessibility checklist: `docs/design/accessibility.md`.
 - Layout architecture: `docs/architecture/layout-system.md`.
 - Frontend structure: `docs/architecture/frontend-structure.md`.
 - Design system details: `docs/design/`.

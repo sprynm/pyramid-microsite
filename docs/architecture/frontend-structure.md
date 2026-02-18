@@ -6,7 +6,7 @@ This document describes the current frontend structure for the site. Keep this f
 - **Primary layout elements** live under `View/Elements/layout/`.
   - `head.ctp` renders the document head, meta, CSS, and opens `<body>`.
   - `nav.ctp` renders the sticky header + primary navigation.
-  - `body_masthead.ctp` renders the optional banner and opens `#content`.
+  - `body_masthead.ctp` renders the interior hero (`.page-hero`) and opens `#content`.
   - `footer.ctp` closes the wrapper and includes footer/nav/scripts.
 - **Page layouts** live under `View/Layouts/`.
   - `default.ctp` = standard content layout with optional subnav.
@@ -35,14 +35,17 @@ Examples that do **not** justify a new layout:
 - Sub-navigation appears in `View/Layouts/default.ctp` when the current top-level item has children.
 
 ## Hero / banner behavior
-- `body_masthead.ctp` renders the legacy `.banner` when `$banner['Image']` exists.
-- Interior hero patterns use shared token spacing and should align to the container rail.
+- `body_masthead.ctp` renders the interior `.page-hero` system (`.page-hero--single`, optional `.page-hero--has-media`).
+- `home_masthead.ctp` renders homepage hero variants (`.page-hero--home`, `.page-hero--truck`).
 - Home hero (`View/Elements/layout/home_masthead.ctp`) uses a standardized `<picture>` source order for banner images:
   - `banner-lrg` at `(min-width: 1441px)`
   - `banner-med` at `(min-width: 801px)`
   - `banner-sm` at `(min-width: 641px)`
   - `banner-xsm` default source
   - fallback `<img>` points to `banner-lrg`
+- Interior hero (`View/Elements/layout/body_masthead.ctp`) currently uses:
+  - `banner-fhdl` at `(min-width: 1441px)` and fallback `<img>`
+  - `banner-med`, `banner-sm`, `banner-xsm` for smaller breakpoints
 - Service/feature tiles may define custom image versions when their layout needs different crops.
 - Unless a component has a defined exception, follow the same banner version pattern as the default responsive standard.
 
@@ -50,3 +53,15 @@ Examples that do **not** justify a new layout:
 - `npm run css:build` compiles SCSS into `webroot/css/stylesheet.css`.
 - `npm run css:watch` watches for changes.
 - Optional deploy tooling lives in `tools/` (upload + FTP test).
+
+## Going-Forward Implementation Rules
+- New visual sections should start with existing compositions/utilities before introducing new block classes.
+- Component responsiveness should be container-first where practical; use viewport media queries for page-level orchestration.
+- Navigation behavior should continue through `webroot/js/navigation-modern.js` and the `nav.ctp` structure.
+- Prototype-specific section styling belongs in `_prototype-<slug>.scss`, not generic block files.
+- Preserve progressive enhancement: core content and primary navigation must remain usable without JS.
+- Keep layout-level CTP logic explicit and compact to minimize template parse/fallback issues.
+
+Source normalization:
+- Derived from `docs/history/cube-migration.md`
+- Derived from `docs/history/style-system-rebuild-log.md`

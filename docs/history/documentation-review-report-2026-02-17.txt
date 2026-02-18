@@ -1,0 +1,129 @@
+● Documentation Review Report
+
+  Overview
+
+  The /docs folder is well-organized with clear separation of concerns across 5 main areas:
+  - ai/ — Agent collaboration rules and context
+  - architecture/ — CMS structure and system behavior
+  - design/ — Styling, tokens, layout guidance
+  - quality/ — Linting and verification
+  - history/ — Migration logs and legacy decisions
+
+  Total docs reviewed: 23 markdown files
+
+  ---
+  Strengths
+
+  1. Clear entry points and routing
+  - AGENTS.md serves as a concise root document with links to deeper docs
+  - docs/ai/README.md has a fast-path workflow and explicit section ownership
+  - docs/architecture/README.md has a recommended reading order
+
+  2. Agent-first workflow is explicit
+  - docs/architecture/agent-first.md defines strict rules for AI changes
+  - "Single source of truth" principle is reinforced throughout
+  - Decision log (docs/ai/decisions.md) captures durable choices
+
+  3. Separation of SCSS source vs CSS output
+  - Multiple docs reinforce "SCSS is source of truth, CSS custom properties are emitted"
+  - docs/design/theme.md and docs/design/style-system.md are consistent
+
+  4. Container-first layout system
+  - docs/architecture/layout-system.md is comprehensive with bands, units policy, and mixins
+  - Container query thresholds are documented with rationale
+
+  5. Recently closed gaps
+  - docs/design/layers.md — now documents CSS layer responsibilities
+  - docs/design/utilities.md — now catalogs utility classes
+  - docs/design/compositions.md — now documents layout primitives
+  - docs/design/components.md — now maps block files to components
+
+  ---
+  Issues Found
+
+  1. Broken link: atomic-reuse.md location mismatch
+  - AGENTS.md:37 links to docs/architecture/atomic-reuse.md
+  - docs/ai/README.md:41 links to docs/architecture/atomic-reuse.md
+  - docs/architecture/README.md:16 links to docs/architecture/atomic-reuse.md
+  - Actual location: docs/design/atomic-reuse.md
+  - Impact: Agents following links will get file-not-found errors
+
+  2. Missing admin-javascript.md reference
+  - docs/architecture/README.md:19 references docs/architecture/admin-javascript.md
+  - File exists but is not linked from AGENTS.md or context.md
+  - Impact: JS guidance is discoverable only via architecture README
+
+  3. style-system-gaps.md lists closed gaps as open
+  - Several gaps listed have now been addressed:
+    - "CSS layer conventions are undocumented" → docs/design/layers.md exists
+    - "Utilities are not cataloged" → docs/design/utilities.md exists
+    - "Compositions are under-documented" → docs/design/compositions.md exists
+    - "Block/component inventory is missing" → docs/design/components.md exists
+  - Impact: Document is stale; suggests work that's already done
+
+  4. Missing token inventory
+  - style-system-gaps.md correctly notes that _theme.scss tokens are not enumerated
+  - No docs/design/tokens.md exists
+  - Impact: Contributors still guess at token names
+
+  5. Implementation plan references non-existent helper
+  - docs/implementation-plan.md previously referenced $this->Settings->renderWithHighlight() (you corrected this, but
+  worth noting the pattern)
+
+  6. No exceptions policy doc
+  - _exceptions.scss exists but no docs/design/exceptions.md explains usage or removal criteria
+  - Impact: Exception rules accumulate without cleanup plan
+
+  ---
+  Consistency Check
+  ┌────────────────────────┬─────────────┬─────────────────────────────────────────────────────────────────────────────┐
+  │         Topic          │ Docs Agree? │                                    Notes                                    │
+  ├────────────────────────┼─────────────┼─────────────────────────────────────────────────────────────────────────────┤
+  │ SCSS source of truth   │ ✓           │ Consistent across theme.md, style-system.md, context.md                     │
+  ├────────────────────────┼─────────────┼─────────────────────────────────────────────────────────────────────────────┤
+  │ Container-first layout │ ✓           │ layout-system.md is authoritative                                           │
+  ├────────────────────────┼─────────────┼─────────────────────────────────────────────────────────────────────────────┤
+  │ Atomic reuse priority  │ ✓           │ AGENTS.md, context.md, atomic-reuse.md aligned                              │
+  ├────────────────────────┼─────────────┼─────────────────────────────────────────────────────────────────────────────┤
+  │ Token usage policy     │ ✓           │ "No raw values" now explicit in style-system.md                             │
+  ├────────────────────────┼─────────────┼─────────────────────────────────────────────────────────────────────────────┤
+  │ Layer order            │ ✓           │ layers.md matches _layers.scss                                              │
+  ├────────────────────────┼─────────────┼─────────────────────────────────────────────────────────────────────────────┤
+  │ Prototype item access  │ ~           │ pyramid-cms.md documents $item['PrototypeItem'] but not all examples use it │
+  └────────────────────────┴─────────────┴─────────────────────────────────────────────────────────────────────────────┘
+  ---
+  Recommendations
+
+  Immediate fixes:
+  1. Move docs/design/atomic-reuse.md to docs/architecture/atomic-reuse.md OR update all references to point to
+  docs/design/atomic-reuse.md
+  2. Update style-system-gaps.md to mark closed gaps as resolved
+  3. Add admin-javascript.md to the "Where To Go Next" section in context.md
+
+  Near-term additions:
+  4. Create docs/design/tokens.md enumerating actual tokens from _theme.scss
+  5. Create docs/design/exceptions.md with rules for exception usage and removal
+
+  Documentation hygiene:
+  6. Add a "Last reviewed" date to key docs (style-system-gaps.md especially)
+  7. Consider consolidating atomic-reuse.md content into components.md since they overlap
+
+  ---
+  Document Health Summary
+  ┌────────────────────┬───────┬──────────────────────────────────────────────┐
+  │       Folder       │ Files │                    Status                    │
+  ├────────────────────┼───────┼──────────────────────────────────────────────┤
+  │ docs/ai/           │ 3     │ Good — clear, concise, current               │
+  ├────────────────────┼───────┼──────────────────────────────────────────────┤
+  │ docs/architecture/ │ 8     │ Good — comprehensive, one broken link        │
+  ├────────────────────┼───────┼──────────────────────────────────────────────┤
+  │ docs/design/       │ 13    │ Mixed — gaps doc is stale, token doc missing │
+  ├────────────────────┼───────┼──────────────────────────────────────────────┤
+  │ docs/quality/      │ 1     │ Good — concise and actionable                │
+  ├────────────────────┼───────┼──────────────────────────────────────────────┤
+  │ docs/history/      │ 3     │ Good — properly archived                     │
+  ├────────────────────┼───────┼──────────────────────────────────────────────┤
+  │ docs/prompts/      │ 1     │ Good — navigation spec exists                │
+  └────────────────────┴───────┴──────────────────────────────────────────────┘
+  Overall: Documentation is well-structured and mostly current. The main issues are the broken atomic-reuse.md link and
+  the stale gaps document.

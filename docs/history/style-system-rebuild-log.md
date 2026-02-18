@@ -1,5 +1,11 @@
 # Style System Rebuild Log
 
+Status: historical implementation log. Active forward rules are normalized into:
+- `docs/history/decision-ledger.md`
+- `docs/architecture/system-overview.md`
+- `docs/architecture/frontend-structure.md`
+- `docs/design/style-system.md`
+
 Date: 2026-02-08  
 Scope: Full replacement of active style/runtime system while preserving legacy files as backup.
 

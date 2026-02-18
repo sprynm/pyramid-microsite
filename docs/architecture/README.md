@@ -13,9 +13,14 @@ Use it for runtime behavior, system organization, and platform-specific rules.
 2. `docs/architecture/pyramid-cms.md`
 3. `docs/architecture/frontend-structure.md`
 4. `docs/architecture/layout-system.md`
-5. `docs/architecture/atomic-reuse.md`
+5. `docs/design/atomic-reuse.md`
 6. `docs/architecture/agent-first.md`
 7. `docs/architecture/optional-components.md`
+8. `docs/architecture/admin-javascript.md`
+9. `docs/architecture/script-loading-map.md`
+10. `docs/architecture/prototype-catalog.md`
+11. `docs/architecture/new-site-playbook.md`
+12. `docs/history/decision-ledger.md` (historical index pointing to active rule docs)
 
 ## Scope (What belongs here)
 - CakePHP stack overview and CMS behavior.
