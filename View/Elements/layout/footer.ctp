@@ -69,6 +69,7 @@
 				</div>
 			</div>
 		</footer>
+		<?php echo $this->element('legal-notice'); ?>
 		<?php
 		$loadJqueryForDebug = class_exists('Configure') ? (bool)Configure::read('debug') : false;
 		if ($loadJqueryForDebug):
@@ -81,7 +82,7 @@
 		// add 'youtube' if you will be embedding youtube videos (http://labnol.org/?p=27941)
 		// add 'jquery.fancybox' and 'fancybox-init' if using fancybox, add _jquery.fancybox into stylesheet.scss
 		// add 'jquery.cookie' if easy jQuery cookie use is needed
-		$scriptArray = array('navigation-modern', 'observers');
+		$scriptArray = array('library', 'navigation-modern', 'observers', 'legal-notice');
 		
 		echo $this->fetch('pluginScriptBottom');
 		// Un-remark this if the site needs the VrebListings plugin.

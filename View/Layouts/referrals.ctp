@@ -471,7 +471,7 @@
 		</footer>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <?php 
-			$scriptArray = array('lazyload.min', 'jquery.cookie', 'cms', 'forms');
+			$scriptArray = array('library', 'lazyload.min', 'jquery.cookie', 'cms', 'forms');
 			echo $this->Html->script($scriptArray);
 
 	    if (isset($extraFooterCode)) {

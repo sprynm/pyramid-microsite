@@ -98,6 +98,8 @@
 		,
 		'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
 		,
+		'library'
+		,
 		'jquery-ui.min'
 		,
 		'cms'
