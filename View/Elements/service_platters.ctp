@@ -51,7 +51,7 @@ $makeSlug = function ($value) {
 			$imageAlt = ($image && !empty($image['alternative'])) ? $image['alternative'] : $title;
 			$sectionSlug = $makeSlug($title);
 			$sectionId = $sectionSlug !== '' ? 'service-' . $sectionSlug : '';
-			$classes = 'c-split-platter';
+			$classes = 'c-split-platter observe animate';
 			if ($index % 2 === 1) {
 				$classes .= ' c-split-platter--flip';
 			}
@@ -60,7 +60,7 @@ $makeSlug = function ($value) {
 				<?php if ($image): ?>
 					<div class="c-split-platter__media">
 						<picture>
-							<img src="<?php echo $this->Media->getImage($image, array('version' => 'medium')); ?>" alt="<?php echo h($imageAlt); ?>" loading="lazy" decoding="async">
+							<img src="<?php echo $this->Media->getImage($image, array('version' => 'large')); ?>" alt="<?php echo h($imageAlt); ?>" loading="lazy" decoding="async">
 						</picture>
 					</div>
 				<?php endif; ?>

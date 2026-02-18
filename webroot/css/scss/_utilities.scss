@@ -96,19 +96,19 @@
   .u-stack-md > * + * { margin-top: var(--space-md); }
   .u-stack-lg > * + * { margin-top: var(--space-lg); }
 
-  .anim {
+  .js-observers .observe.animate {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
 
-  .anim.vis {
+  .js-observers .observe.animate.visible {
     opacity: 1;
     transform: translateY(0);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .anim {
+    .js-observers .observe.animate {
       opacity: 1;
       transform: none;
       transition: none;

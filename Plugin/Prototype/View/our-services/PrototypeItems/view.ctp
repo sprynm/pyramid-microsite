@@ -25,7 +25,7 @@ $imageAlt = ($image && !empty($image['alternative'])) ? $image['alternative'] : 
 	<?php if ($image): ?>
 		<div class="c-split-platter__media">
 			<picture>
-				<img src="<?php echo $this->Media->getImage($image, array('version' => 'medium')); ?>" alt="<?php echo h($imageAlt); ?>" loading="lazy" decoding="async">
+				<img src="<?php echo $this->Media->getImage($image, array('version' => 'large')); ?>" alt="<?php echo h($imageAlt); ?>" loading="lazy" decoding="async">
 			</picture>
 		</div>
 	<?php endif; ?>

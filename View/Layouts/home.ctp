@@ -79,7 +79,7 @@ echo $this->element('layout/home_masthead', array(
 		</section>
 	</div>
 	<?php if ($hasServiceBoxes): ?>
-		<section class="home-service-boxes u-bg-muted anim">
+		<section class="home-service-boxes u-bg-muted observe animate">
 			<div class="c-frame c-container--normal c-region">
 				<?php if ($serviceBoxesTitle !== ''): ?>
 					<h2 class="home-service-boxes__title u-text-center"><?php echo h($serviceBoxesTitle); ?></h2>
