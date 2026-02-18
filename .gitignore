@@ -6,6 +6,8 @@
 
 # reenable root folders
 !/docs/
+docs/temp/*
+docs/customer images/*
 !/tools/
 
 # reenable plugins folders
@@ -36,7 +38,10 @@
 /webroot/css/*
 !/webroot/css/scss/
 !/webroot/fonts/*
+!/webroot/img/
 !/webroot/img/*
+!/webroot/img/cranetruck.webp
+!/webroot/img/poland-logo.png
 !/webroot/js
 !/webroot/js/*
 
@@ -53,4 +58,8 @@ webroot/media/
 webroot/uploads/
 tmp.txt
 webroot/index.php
+
+# Word lock/temp files
+~$*.docx
+/docs/~$*.docx
 
