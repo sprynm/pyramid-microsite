@@ -44,3 +44,12 @@ This is an instance of the Radarhill "pyramid" CMS, built on CakePHP.
 - `npm run css:build`
 - `php -l <file>`
 - `node tools/check-ctp-balance.cjs`
+
+## Naming Conventions (Current)
+- SCSS blocks: `_block-<name>.scss`
+- SCSS prototypes: `_prototype-<slug>.scss`
+- Prototype view overrides: `Plugin/Prototype/View/<slug>/...`
+- Layout partials: `View/Elements/layout/<name>.ctp`
+- JS modules in `webroot/js`: kebab-case filenames (for example `navigation-modern.js`, `legal-notice.js`)
+
+There is no fully centralized, repo-wide naming policy yet beyond these established patterns.

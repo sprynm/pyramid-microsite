@@ -8,6 +8,7 @@ Keep this short, current, and durable. Avoid repeating details that are already 
 - If the task touches architecture or design, jump to the linked docs listed there.
 - If you add decisions, record them in `docs/ai/decisions.md` (date + intent + impact).
 - For end-of-project guardrails, use `docs/ai/closeout-rules.md` as the compact philosophy/rules baseline.
+- If the user asks to close out a session, use `docs/ai/session-wrap-up.md` (proposal-first).
 
 ## 2) Context Hygiene (Avoid Context Rot)
 - Prefer short, task-scoped context. Do not load multiple long docs unless needed.
@@ -40,6 +41,7 @@ Keep this short, current, and durable. Avoid repeating details that are already 
 - `docs/ai/context.md`: concise project context and links.
 - `docs/ai/decisions.md`: dated decision log (authoritative).
 - `docs/ai/closeout-rules.md`: compact learnings, philosophy, and final working rules.
+- `docs/ai/session-wrap-up.md`: optional end-of-session checklist (manual approval workflow).
 - `docs/design/atomic-reuse.md`: reuse utilities + atom-sized blocks before new components.
 - `docs/architecture/agent-first.md`: strict workflow when agents make most changes.
 - `docs/architecture/optional-components.md`: CSS size control via optional `@use` gates.

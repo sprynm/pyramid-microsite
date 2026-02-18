@@ -23,3 +23,13 @@ Use this as the default philosophy for final polish and any post-launch fixes.
 - Recaptcha safety rule: branch script loading from settings (`invisible` vs standard) to avoid runtime errors.
 - Build rule: optimization tooling is allowed only when deterministic, documented, and optional to the normal deploy path.
 - Documentation rule: durable decisions go to `docs/ai/decisions.md`; historical narrative stays in `docs/history/`.
+
+## Scope Rules
+- Every learning/decision must be classified before logging:
+  - `Client` scope: applies only to this client/site implementation.
+  - `System` scope: should apply across Pyramid/Cake client projects.
+- Client scope guidance:
+  - put implementation details in architecture/design docs for this repo.
+- System scope guidance:
+  - prefer durable language and reusable patterns in `docs/ai/decisions.md` and shared architecture docs.
+- If uncertain, default to `Client` and promote to `System` only after repetition across projects.
