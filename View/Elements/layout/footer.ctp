@@ -69,12 +69,19 @@
 				</div>
 			</div>
 		</footer>
+		<?php
+		$loadJqueryForDebug = class_exists('Configure') ? (bool)Configure::read('debug') : false;
+		if ($loadJqueryForDebug):
+		?>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		<?php
+		endif;
+		?>
 		<?php 
 		// add 'youtube' if you will be embedding youtube videos (http://labnol.org/?p=27941)
 		// add 'jquery.fancybox' and 'fancybox-init' if using fancybox, add _jquery.fancybox into stylesheet.scss
 		// add 'jquery.cookie' if easy jQuery cookie use is needed
-		$scriptArray = array('jquery.passive-listeners', 'custom', 'navigation-modern', 'forms', 'observers');
+		$scriptArray = array('navigation-modern', 'observers');
 		
 		echo $this->fetch('pluginScriptBottom');
 		// Un-remark this if the site needs the VrebListings plugin.
@@ -87,6 +94,40 @@
 		// endif;
 		
 		echo $this->Html->script($scriptArray);
+		?>
+		<?php
+		$recaptchaInvisible = (bool)$this->Settings->show('ReCaptcha.invisible');
+		if ($recaptchaInvisible):
+			echo $this->Html->script(
+				array(
+					'ReCaptcha.recaptcha_callback',
+					'https://www.google.com/recaptcha/api.js?onload=reCaptchaOnloadCallback&render=explicit',
+				),
+				array(
+					'async' => true,
+					'defer' => true,
+				)
+			);
+		else:
+			echo $this->Html->script('https://www.google.com/recaptcha/api.js');
+		endif;
+		?>
+		<script>
+			(function () {
+				var needsForms = document.querySelector(
+					'form [name^="data[EmailFormSubmission]"], .radios.required input[type="radio"], .checkboxes.required input[type="checkbox"], .error-message'
+				);
+				if (!needsForms) return;
+
+				if (document.querySelector('script[src$="/js/forms.js"]')) return;
+
+				var script = document.createElement("script");
+				script.src = "/js/forms.js";
+				script.defer = true;
+				document.body.appendChild(script);
+			})();
+		</script>
+		<?php
 
 		if (isset($extraFooterCode)) :
 			echo $extraFooterCode;
