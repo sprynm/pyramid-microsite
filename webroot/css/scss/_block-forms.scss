@@ -395,10 +395,6 @@
     color: var(--color-ink-meta);
   }
 
-  .grecaptcha-badge {
-    display: none;
-  }
-
   @include vp-max($vp-md) {
     #UserLoginForm {
       .input.text,
@@ -416,5 +412,4 @@
     }
   }
 }
-
 

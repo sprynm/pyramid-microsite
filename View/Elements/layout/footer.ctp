@@ -97,20 +97,23 @@
 		echo $this->Html->script($scriptArray);
 		?>
 		<?php
-		$recaptchaInvisible = (bool)$this->Settings->show('ReCaptcha.invisible');
-		if ($recaptchaInvisible):
-			echo $this->Html->script(
-				array(
-					'ReCaptcha.recaptcha_callback',
-					'https://www.google.com/recaptcha/api.js?onload=reCaptchaOnloadCallback&render=explicit',
-				),
-				array(
-					'async' => true,
-					'defer' => true,
-				)
-			);
-		else:
-			echo $this->Html->script('https://www.google.com/recaptcha/api.js');
+		$reCaptchaSiteKey = trim((string)$this->Settings->show('ReCaptcha.Google.sitekey'));
+		if ($reCaptchaSiteKey !== ''):
+			$recaptchaInvisible = (bool)$this->Settings->show('ReCaptcha.invisible');
+			if ($recaptchaInvisible):
+				echo $this->Html->script(
+					array(
+						'ReCaptcha.recaptcha_callback',
+						'https://www.google.com/recaptcha/api.js?onload=reCaptchaOnloadCallback&render=explicit',
+					),
+					array(
+						'async' => true,
+						'defer' => true,
+					)
+				);
+			else:
+				echo $this->Html->script('https://www.google.com/recaptcha/api.js');
+			endif;
 		endif;
 		?>
 		<script>

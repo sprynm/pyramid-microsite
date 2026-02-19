@@ -105,8 +105,9 @@
 		'cms'
 		,
 	);
+	$reCaptchaSiteKey = trim((string)$this->Settings->show('ReCaptcha.Google.sitekey'));
 	//
-	if (!$this->Settings->show('ReCaptcha.invisible')):
+	if ($reCaptchaSiteKey !== '' && !$this->Settings->show('ReCaptcha.invisible')):
 		//
 		$scriptArray[] = 'https://www.google.com/recaptcha/api.js';
 		// (!$this->Settings->show('ReCaptcha.invisible'))
@@ -122,7 +123,7 @@
 		// (isset($extraFooterCode))
 	endif;
 	// 
-	if ($this->Settings->show('ReCaptcha.invisible')):
+	if ($reCaptchaSiteKey !== '' && $this->Settings->show('ReCaptcha.invisible')):
 		//
 		echo $this->Html->script(
 			array(

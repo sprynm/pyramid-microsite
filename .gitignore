@@ -41,6 +41,31 @@ docs/visual-regression/current/*
 !/Plugin/ReCaptcha/CorePlugin/webroot/js/
 !/Plugin/ReCaptcha/CorePlugin/webroot/js/recaptcha_callback.js
 
+# expose EmailForms component updated for recaptcha hardening
+!/Plugin/EmailForms/
+/Plugin/EmailForms/*
+!/Plugin/EmailForms/CorePlugin/
+/Plugin/EmailForms/CorePlugin/*
+!/Plugin/EmailForms/CorePlugin/Controller/
+/Plugin/EmailForms/CorePlugin/Controller/*
+!/Plugin/EmailForms/CorePlugin/Controller/Component/
+/Plugin/EmailForms/CorePlugin/Controller/Component/*
+!/Plugin/EmailForms/CorePlugin/Controller/Component/CmsEmailFormsComponent.php
+
+# expose specific CoreFiles paths updated for recaptcha hardening
+!/CoreFiles/
+/CoreFiles/*
+!/CoreFiles/View/
+/CoreFiles/View/*
+!/CoreFiles/View/Helper/
+/CoreFiles/View/Helper/*
+!/CoreFiles/View/Helper/CmsReCaptchaHelper.php
+!/CoreFiles/Model/
+/CoreFiles/Model/*
+!/CoreFiles/Model/Behavior/
+/CoreFiles/Model/Behavior/*
+!/CoreFiles/Model/Behavior/CmsReCaptchaBehavior.php
+
 # expose select folder in View
 !/View/
 /View/*
