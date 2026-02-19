@@ -58,6 +58,7 @@ Normalization rule: prefer `*-rgb` as the source token, and derive the color tok
 - `--alpha-25`
 - `--alpha-16`
 - `--alpha-10`
+- `--alpha-08`
 - `--alpha-04`
 - `--alpha-02`
 
@@ -89,6 +90,7 @@ Use pattern: `rgb(var(--white-rgb) / var(--alpha-85))` or `rgb(var(--color-brand
 - `--step-5`
 - `--lh-body`
 - `--lh-title`
+- `--ftr-text` — footer body text scale (`clamp(1rem, 0.88rem + 0.28vw, 1.15rem)`)
 
 ## Spacing Scale
 - `--space-2xs`
@@ -116,10 +118,14 @@ Use pattern: `rgb(var(--white-rgb) / var(--alpha-85))` or `rgb(var(--color-brand
 - `--frame-gutter`
 - `--region-space`
 - `--nav-offset`
+- `--nav-drawer-head-height`
 - `--sidebar-col`
 - `--hero-max`
 - `--hero-inline`
 - `--hero-vspace`
+
+## Component Semantic Tokens
+- `--form-space-tight`
 
 ## Usage Rules
 1. Do not hardcode raw spacing/color/weight values when an equivalent token exists.
@@ -127,3 +133,5 @@ Use pattern: `rgb(var(--white-rgb) / var(--alpha-85))` or `rgb(var(--color-brand
 3. Prefer semantic component tokens mapped to global tokens when intent matters.
 4. For transparency, prefer shared alpha tokens with RGB tokens over inline `rgb(... / 0.xx)`.
 5. Use `color-mix()` for blending two colors; use alpha tokens for single-color translucency.
+6. Numeric literals must be named: values other than `0`, `1`, or `100%` must be expressed via `$scss` variable or `--css-token`.
+7. Bespoke values are allowed when truly one-off, but require an inline comment documenting intent (why this measurement exists).

@@ -6,9 +6,11 @@
 
 # reenable root folders
 !/docs/
+docs/temp/
 docs/temp/*
 docs/customer images/*
 docs/visual-regression/diff/*
+docs/visual-regression/current/*
 !/tools/
 
 # reenable plugins folders
@@ -78,3 +80,4 @@ webroot/index.php
 ~$*.docx
 /docs/~$*.docx
 
+docs/temp/home.html

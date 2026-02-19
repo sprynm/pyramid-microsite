@@ -77,6 +77,7 @@ $heroMax: 75rem;
     --alpha-25: 0.25;
     --alpha-16: 0.16;
     --alpha-10: 0.1;
+    --alpha-08: 0.08;
     --alpha-04: 0.04;
     --alpha-02: 0.02;
 
@@ -111,13 +112,14 @@ $heroMax: 75rem;
     --font-weight-black: 166;
     --step--1: clamp(0.9rem, 0.86rem + 0.2vw, 1.05rem);
     --step-0: var(--fluid-body);
-    --step-1: clamp(1rem, 0.9rem + 0.5vw, 1.3rem);
-    --step-2: clamp(1.25rem, 1rem + 0.95vw, 1.8rem);
+    --step-1: clamp(1.2rem, 1.08rem + 0.55vw, 1.6rem);
+    --step-2: clamp(1.45rem, 1.22rem + 0.95vw, 2.05rem);
     --step-3: clamp(1.5rem, 1.1rem + 1.55vw, 2.4rem);
     --step-4: clamp(1.95rem, 1.2rem + 2.8vw, 3.4rem);
     --step-5: clamp(2.5rem, 1.25rem + 4.8vw, 5rem);
     --lh-body: 1.58;
     --lh-title: 1.15;
+    --ftr-text: clamp(1rem, 0.88rem + 0.28vw, 1.15rem);
 
     --space-2xs: clamp(0.35rem, 0.31rem + 0.2vw, 0.5rem);
     --space-xs: clamp(0.5rem, 0.45rem + 0.25vw, 0.7rem);
@@ -146,10 +148,11 @@ $heroMax: 75rem;
     --frame-gutter: clamp(1rem, 1.3vw + 0.7rem, 2rem);
     --region-space: var(--space-xl);
     --nav-offset: #{$navOffset};
+    --nav-drawer-head-height: 3.8rem;
     --sidebar-col: clamp(14rem, 25vw, 20rem);
     --hero-max: #{$heroMax};
     --hero-inline: clamp(1rem, 3vw, 3rem);
     --hero-vspace: 0;
+    --form-space-tight: var(--space-2xs);
   }
 }
-

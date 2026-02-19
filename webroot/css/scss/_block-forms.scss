@@ -30,7 +30,7 @@
     font-family: var(--font-serif);
     color: var(--color-ink-strong);
     margin-bottom: var(--space-2xs);
-    padding: 0 0.3125rem 0;
+    padding: 0 var(--form-space-tight) 0;
     position: relative;
   }
 
@@ -48,7 +48,7 @@
 
   .checkbox,
   .radio {
-    margin: 0 0.3125rem;
+    margin: 0 var(--form-space-tight);
 
     input,
     label {
@@ -101,7 +101,7 @@
   }
 
   option {
-    padding: 0 0.3125rem;
+    padding: 0 var(--form-space-tight);
   }
 
   input[type="submit"],
@@ -127,8 +127,7 @@
   button,
   input[type="submit"],
   input[type="button"],
-  input[type="reset"],
-  input[type="submit"] {
+  input[type="reset"] {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -168,7 +167,7 @@
   }
 
   .error-message {
-    color: #b91c1c;
+    color: var(--color-state-critical);
     font-size: var(--step--1);
   }
 
@@ -222,7 +221,7 @@
     .required {
       color: color-mix(
         in srgb,
-        var(--color-state-critical, #b91c1c) 85%,
+        var(--color-state-critical, #dc2626) 85%,
         var(--color-ink-on-dark, rgb(var(--white-rgb))) 15%
       );
     }
@@ -232,7 +231,7 @@
     font-size: var(--step--1);
     font-style: italic;
     font-weight: var(--font-weight-regular);
-    margin-left: 0.3125rem;
+    margin-left: var(--form-space-tight);
   }
 
   /* Login forms */
@@ -277,7 +276,7 @@
 
   :is(input, textarea):invalid {
     background-image: url(/img/icons/circle-x.svg);
-    border-color: var(--color-state-critical, #b91c1c);
+    border-color: var(--color-state-critical, #dc2626);
   }
 
   :is(input, textarea).invalid:not(:focus) {
@@ -321,7 +320,7 @@
 
   :is(input, textarea).invalid {
     background-image: url(/img/icons/circle-x.svg);
-    border-color: var(--color-state-critical, #b91c1c);
+    border-color: var(--color-state-critical, #dc2626);
   }
 
   :is(input, textarea):not(:required) {
@@ -377,7 +376,7 @@
     font-weight: var(--font-weight-regular);
     font-style: italic;
     font-size: var(--step--1);
-    padding: 0.3125rem;
+    padding: var(--form-space-tight);
     border-radius: var(--radius-sm);
     background: rgb(var(--white-rgb) / var(--alpha-95));
     box-shadow: var(--shadow-sm);
@@ -391,7 +390,7 @@
   .input-desc {
     font-size: var(--step--1);
     font-style: italic;
-    padding: 0.3125rem 0.3125rem 0;
+    padding: var(--form-space-tight) var(--form-space-tight) 0;
     display: block;
     color: var(--color-ink-meta);
   }
@@ -417,6 +416,5 @@
     }
   }
 }
-
 
 

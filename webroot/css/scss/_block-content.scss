@@ -49,7 +49,7 @@
   hr {
     border: 0;
     block-size: 1px;
-    background: rgb(var(--color-brand-primary-rgb) / 0.35);
+    background: rgb(var(--color-brand-primary-rgb) / var(--alpha-35));
     margin-block: var(--space-xl);
   }
 

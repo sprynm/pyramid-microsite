@@ -6,7 +6,9 @@
     "css:build": "node tools/build-css.mjs",
     "css:build:prod": "node tools/build-css.mjs --mode=prod",
     "css:watch": "node tools/watch-css.mjs",
-    "sftp:check": "node tools/check-sftp.mjs"
+    "sftp:check": "node tools/check-sftp.mjs",
+    "visual:capture": "node tools/capture-style-guide.mjs",
+    "visual:compare": "node tools/compare-style-guide.mjs"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",

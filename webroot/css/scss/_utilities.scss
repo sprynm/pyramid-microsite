@@ -47,7 +47,7 @@
 
   .u-full-width { width: 100%; }
   .u-max-w-narrow { max-width: 70ch; }
-  .u-max-w-normal { max-width: 75rem; }
+  .u-max-w-normal { max-width: var(--frame-max); }
   .u-max-w-full { max-width: 90rem; }
   .u-bg-muted { background: var(--color-surface-muted); }
 

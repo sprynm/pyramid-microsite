@@ -2,7 +2,7 @@
 import chokidar from 'chokidar';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { buildCSS, cssOutput } from './build-css.mjs';
+import { buildCSS, cssOutputs } from './build-css.mjs';
 import { uploadCSS } from './upload-css.mjs';
 import notifier from 'node-notifier';
 
@@ -50,8 +50,10 @@ async function triggerBuild(event, filePath) {
   building = true;
   try {
     await buildCSS({ mode: 'dev', log: (msg) => console.log(`[watch] ${msg}`) });
-    await uploadCSS(cssOutput, { log: (msg) => console.log(`[watch] ${msg}`) });
-    toast(`${path.basename(cssOutput)} deployed at ${hhmm()}`);
+    for (const output of cssOutputs) {
+      await uploadCSS(output, { log: (msg) => console.log(`[watch] ${msg}`) });
+    }
+    toast(`${cssOutputs.map((file) => path.basename(file)).join(', ')} deployed at ${hhmm()}`);
   } catch (error) {
     console.error('[watch] Build error:', error);
   } finally {

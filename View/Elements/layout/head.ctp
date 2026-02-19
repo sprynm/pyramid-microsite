@@ -10,6 +10,15 @@
     <title><?php echo $titleTag; ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script>
+			(function () {
+				try {
+					if (window.localStorage && window.localStorage.getItem("legal_notice_dismissed") === "1") {
+						document.documentElement.classList.add("legal-notice-dismissed");
+					}
+				} catch (_error) {}
+			})();
+		</script>
 		<?php
 		echo $this->Html->canonical();
 		echo $this->Html->meta('icon');

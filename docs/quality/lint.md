@@ -10,6 +10,9 @@ This project mixes PHP templates, SCSS, and client-side assets. To keep syntax i
 ## SCSS / CSS
 - Compile SCSS after edits (`npm run css:build` or the project-specific command) and watch for compiler errors or warnings.
 - If you touch `webroot/css/stylesheet.css` directly, ensure the SCSS source reflects the same change so future builds won’t overwrite it.
+- Numeric literal policy: values other than `0`, `1`, or `100%` must be named through a variable (`$scss-var` or `var(--css-token)`), not left as unexplained literals.
+- Component-private one-off measurements may stay bespoke, but they must include a short inline comment explaining why the value exists (for example icon slot, close-control clearance, optical alignment).
+- Choose variable type by scope: use SCSS variables for compile-time, component-local values; use CSS custom properties for shared/runtime values.
 
 ## JavaScript
 - Run any available lint script (`npm run lint` if defined). When no tooling exists, at minimum pass files through a formatter or IDE ESLint to catch missing semicolons or syntax errors.
