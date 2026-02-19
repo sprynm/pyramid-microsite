@@ -8,6 +8,7 @@
 !/docs/
 docs/temp/*
 docs/customer images/*
+docs/visual-regression/diff/*
 !/tools/
 
 # reenable plugins folders
